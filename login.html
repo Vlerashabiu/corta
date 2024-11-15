@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to CORTA</title>
-    <link rel="stylesheet" href="style1.css">
+    
     <link rel="stylesheet" href="login.css">
     
 </head>
@@ -12,25 +12,38 @@
 <div class="navbar">
     <div class ="title">CORTA</div>
     <div>
-       <a href="https://home.com">Home</a>
-       <a href="https://store.com">Store</a>
-       <a href="https://contact.com">ContactUs</a>
+       <a href="home.html">Home</a>
+       <a href="store.html">Store</a>
+       <a href="contact.html">ContactUs</a>
       </div>
     <div>
       <button class="sign-up" >Sign up</button>
-      
-      <a href="login.html" class="button">Login</a>
-     
+      <button class="log-in">Log In</button>
+      <a href="login.html"></a>
     </div>
 </div>
 </head>
 <body>
-    
-    <br><br><b><br><br><br><br></b>
-    <div class="login-container">
-        <h2>LogIn</h2>
+   <div class="login-form">
+    <h2>LogIn</h2>
+    <form>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" required>
 
-    </div>
-    
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit">LogIn</button>
+        <div class="forgot-password">
+            <a href="#">Forgot password?</a>
+        </div>
+        <div class="signup">
+            Don't have an account?<a href="signup.html">Sign Up</a>
+
+        </div>
+
+    </form>
+   </div>
 </body>
 </html>
