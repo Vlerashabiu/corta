@@ -1,8 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
 .navbar{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    height: 13vh;
     background-color: white;
     padding: 10px;
     text-align: center;
@@ -36,7 +43,7 @@ a:hover{
     color: white;
     border: none;
     border-radius: 15px;
-    width: 80px;
+    width: 83px;
     height: 25px;
     cursor: pointer;
     margin-right: 20px;
@@ -50,7 +57,7 @@ a:hover{
     color: white;
     border-radius: 15px;
     border: none;
-    width: 80px;
+    width: 95px;
     height: 25px;
     margin-right: 20px;
     cursor: pointer;
@@ -61,6 +68,8 @@ a:hover{
 .full-width{
     position: relative;
     background-image: url('photo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 1000px;
     background-position: center;
     display: flex;
@@ -83,8 +92,8 @@ p {
     cursor: pointer;
     font-size: 19px; 
     padding: 15px 30px;
-    margin-top: 400px;
-    margin-left: 380px;   
+    margin-top: 300px;
+    margin-left: 500px;   
 }
 .shop:hover{
      background-color: rgb(134, 128, 128);
@@ -93,4 +102,24 @@ p {
 .content{
     font-family: 'Brush Script MT', cursive;
     
+}
+.container-footer{
+    width: 100%;
+    height: 10vh;
+    margin-top: 0.5rem;
+    background-color: gray;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+ 
+}
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+color: white;
+font-size: 2rem;
+
 }
