@@ -46,7 +46,8 @@ a:hover{
     width: 83px;
     height: 25px;
     cursor: pointer;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .log-in:hover{
     background-color: rgb(118, 184, 237);
