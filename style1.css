@@ -93,7 +93,7 @@ p {
     cursor: pointer;
     font-size: 19px; 
     padding: 15px 30px;
-    margin-top: 400px;
+    margin-top: 300px;
     margin-left: 500px;   
 }
 .shop:hover{
@@ -103,4 +103,24 @@ p {
 .content{
     font-family: 'Brush Script MT', cursive;
     
+}
+.container-footer{
+    width: 100%;
+    height: 10vh;
+    margin-top: 0.5rem;
+    background-color: gray;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+ 
+}
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+color: white;
+font-size: 2rem;
+
 }
