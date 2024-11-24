@@ -68,6 +68,8 @@ a:hover{
 .full-width{
     position: relative;
     background-image: url('photo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 1000px;
     background-position: center;
     display: flex;
@@ -91,7 +93,7 @@ p {
     font-size: 19px; 
     padding: 15px 30px;
     margin-top: 400px;
-    margin-left: 380px;   
+    margin-left: 500px;   
 }
 .shop:hover{
      background-color: rgb(134, 128, 128);
