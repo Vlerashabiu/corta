@@ -31,7 +31,7 @@ a:hover{
 }
 .log-in{
     float: right;
-    background-color: rgb(230, 182, 230);
+    background-color: rgb(72, 160, 232);
     color: white;
     border: none;
     border-radius: 15px;
@@ -42,7 +42,7 @@ a:hover{
    
 }
 .log-in:hover{
-    background-color: rgb(216, 139, 240);
+    background-color: rgb(118, 184, 237);
 }
 .sign-up{
     float: right;
@@ -66,27 +66,28 @@ body{
     justify-content: center;
     align-items: center;
     height: 150vp;
-    background-color: rgb(124, 126, 126);
+    background-color: rgb(219, 223, 238);
+  
 
 }
 .signup-form{
-    background-color: rgb(156, 163, 163);
+    background-color: rgb(242, 247, 247);
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(219, 206, 206, 0.1);
     width: 50%;
     max-width: 500px;
 }
 .signup-form h2{
     margin:10px;
     font-size: 24px;
-    color: #333;
+    color: #7a5f82;
     text-align: center;
 }
 .signup-form h5{
     margin: 0 0 20px;
     font-size: 10px;
-    color: #333;
+    color: #7a5f82;
     text-align: center;
 }
 .signup-form .form-group{
@@ -94,10 +95,10 @@ body{
 }
 .signup-form label{
     display: block;
-    font-size: 14px;
+    font-size: 11px;
     margin-bottom: 4px;
     margin-top: 10px;
-    color: #333;
+    color: #7a5f82;
 }
 .signup-form input{
     width: 100%;
@@ -112,18 +113,22 @@ body{
     padding: 10px;
     font-size: 16px;
     color: white;
-    background-color: #5f236f;
+    background-color: #7a5f82;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 .signup-form button:hover{
-    background-color: #260b23;
+    background-color: #3e2e3c;
 }
 .signup-form .login{
     text-align: center;
     padding: 10px;
     font-size: 12px;
+    color: #7a5f82;
     
+}
+.signup-form .login a{
+    text-decoration: none;
 }

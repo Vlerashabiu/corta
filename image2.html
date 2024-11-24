@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgb(219, 217, 217);
+        }
+
+        .title {
+            font-size: 30px;
+            font-family: Arial;
+            letter-spacing: 8px;
+            cursor: pointer;
+        }
+
+        .navbar a {
+            float: left;
+            text-decoration: none;
+            color: black;
+            margin-right: 14px;
+            margin-left: 10px;
+            font-size: 17px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: rgb(123, 133, 124);
+        }
+
+        .log-in {
+            float: right;
+            background-color: rgb(220, 49, 49);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            width: 60px;
+            height: 25px;
+            cursor: pointer;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .log-in:hover {
+            background-color: rgb(244, 80, 80);
+        }
+
+        .sign-up {
+            float: right;
+            background-color: gray;
+            color: white;
+            border-radius: 15px;
+            border: none;
+            width: 80px;
+            height: 25px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .sign-up:hover {
+            background-color: rgb(159, 156, 156);
+        }
+
+        .contanier {
+            display: flex;
+            margin-top: 10rem;
+            justify-content: space-around;
+        }
+
+        .main1 img {
+            border: 1px solid #ccc;
+
+            width: 500px;
+            height: 600px;
+        }
+
+
+        .main2 h1 {
+            font-size: 55px;
+            font-weight: 600;
+
+        }
+
+        .main2 h3 {
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .main2 p {
+            font-size: 20px;
+            font-weight: 600;
+            color: gray;
+            margin-bottom: 3rem;
+            margin-right: 24.3rem;
+        }
+
+
+
+        #color {
+            width: 70%;
+            height: 5vh;
+            font-size: 1rem;
+            padding: 0.5rem;
+            border: 3px solid gray;
+        }
+
+        .label_color {
+            font-size: 1.5rem;
+            color: gray;
+        }
+
+        .sasia-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #ccc;
+            position: absolute;
+            margin-top: 21rem;
+            margin-left: 29.3rem;
+            
+
+        }
+
+        .sasia-button {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .sasia-display {
+            font-size: 20px;
+            width: 40px;
+            text-align: center;
+        }
+
+        .button1 {
+            font-size: 16px;
+            background-color: #000000;
+            padding: 14px 36px;
+            color: white;
+            position: absolute;
+            margin-top: 27rem;
+            margin-left: 29.3rem;
+            border-radius: 10px;
+        }
+        .paragraf{
+            width: 80%;
+            position: absolute;
+            margin-top: 45rem;
+            font-size: 1.5rem;
+          font-family:serif;
+font-weight: 100;
+        }
+        .titulli{
+width: 80.5%;
+            position: absolute;
+            margin-top: 42rem;
+          font-size: 2rem;
+          font-family:serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="title">CORTA</div>
+        <div>
+            <a href="https://home.com">Home</a>
+            <a href="store.html">Store</a>
+            <a href="https://contact.com">ContactUs</a>
+        </div>
+        <div>
+            <button class="sign-up">Sign up</button>
+            <button class="log-in">Log in</button>
+        </div>
+    </div>
+    <div class="contanier">
+        <div class="main1">
+            <img src="foto2.png" alt="">
+        </div>
+        <div class="main2">
+            <h1>Urban Denim  <br>Bag</h1>
+            <h3>100% Organic Cotton Denim</h3>
+            <p>$68.00</p>
+            
+           
+        </div>
+
+        <div class="sasia-selector">
+            <div class="sasia-button" onclick="decrease()">-</div>
+            <div class="sasia-display" id="sasia">1</div>
+            <div class="sasia-button" onclick="increase()">+</div>
+        </div>
+
+        <button class="button1">
+            Add to bag
+        </button>
+        <h1 class="titulli">Decsription:</h1>
+        <p class="paragraf">Lorem ipsum, dolor sit amet conse Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, officiis facere voluptatem expedita omnis illum nulla. Neque facere, dolorem aut, blanditiis quam at aspernatur consequatur, mollitia saepe voluptate molestiae harum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, esse enim labore fugit voluptate repellendus sed quibusdam sequi magnam corporis rerum culpa ipsum autem illum reprehenderit, eius dignissimos harum dolorem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, vitae voluptatum autem sit nostrum perferendis temporibus adipisci maiores, iure porro, tenetur perspiciatis sapiente quis debitis itaque? Odio ratione molestiae sequi. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi corrupti culpa maxime sunt ipsum enim ullam ea exercitationem labore, voluptate atque at tenetur vitae aut amet placeat id modi delectus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam in excepturi illo vel perspiciatis minima, ab aliquid dolorum voluptatibus? Magni dolore laborum dolores optio veniam id dignissimos suscipit necessitatibus molestiaectetur adipisicing elit. Dolor cum corrupti cupiditate quod amet, atque iste et commodi pariatur nihil deleniti praesentium mollitia voluptates, aliquam dignissimos doloribus quae ea? Alias.</p>
+
+
+    </div>
+    <script>
+        let sasia = 1;
+
+        function increase() {
+            sasia++;
+            document.getElementById("sasia").innerText = sasia;
+        }
+
+        function decrease() {
+            if (sasia > 1) {
+                sasia--;
+                document.getElementById("sasia").innerText = sasia;
+            }
+        }
+    </script>
+</body>
+
+</html>
