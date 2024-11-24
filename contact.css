@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
 .navbar{
     position: fixed;
     top: 0;
@@ -36,7 +42,7 @@ a:hover{
     color: white;
     border: none;
     border-radius: 15px;
-    width: 60px;
+    width: 83px;
     height: 25px;
     cursor: pointer;
     margin-left: 10px;
@@ -51,7 +57,7 @@ a:hover{
     color: white;
     border-radius: 15px;
     border: none;
-    width: 80px;
+    width: 95px;
     height: 25px;
     margin-right: 20px;
     cursor: pointer;
@@ -59,8 +65,6 @@ a:hover{
 .sign-up:hover{
     background-color: rgb(159, 156, 156);
 }
-
-
 
 body{
     background-color: #3c5269;
