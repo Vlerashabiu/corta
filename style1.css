@@ -116,6 +116,10 @@ p {
     display: flex;
  
 }
+main {
+    margin-top: 16vh; /* E barabartë me lartësinë e navbar-it */
+    padding: 20px;
+}
 .footer{
     display: flex;
     justify-content: center;
