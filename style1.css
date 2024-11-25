@@ -47,10 +47,11 @@ a:hover{
     height: 25px;
     cursor: pointer;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 .log-in:hover{
     background-color: rgb(118, 184, 237);
+    
 }
 .sign-up{
     float: right;
@@ -85,7 +86,6 @@ p {
     text-align: center;
 }
 .shop{
-    margin-top: 20px;
     background-color: rgb(143, 155, 132);
     border: none;
     color: white;
@@ -93,17 +93,20 @@ p {
     cursor: pointer;
     font-size: 19px; 
     padding: 15px 30px;
-    margin-top: 300px;
-    margin-left: 500px;    
+    text-decoration: none;
+    margin-left: 40%;
+    margin-bottom: 0px;  
 }
 .shop:hover{
      background-color: rgb(178, 167, 167);
-    
+     text-decoration: none; 
 }
  .content p{
-    font-family: 'Brush Script MT', cursive;
-    font-size: 70px;
-    
+    font-size: 60px;  
+    margin-bottom: 20%;
+}
+.content .size{
+   font-size: 45px;
 }
 .container-footer{
     width: 100%;
@@ -117,7 +120,7 @@ p {
  
 }
 main {
-    margin-top: 16vh; /* E barabartë me lartësinë e navbar-it */
+    margin-top: 16vh;
     padding: 20px;
 }
 .footer{
@@ -125,7 +128,7 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
-color: white;
-font-size: 2rem;
+    color: white;
+    font-size: 2rem;
 
 }
