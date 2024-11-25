@@ -1,11 +1,12 @@
-.privacy{
+.refunds{
     font-family:  Tahoma, Verdana, sans-serif;
     text-align: center; 
     color: #3c5269;
     font-size: 40px;
-    margin-top: 30px;
+    margin-bottom: 60px;
+    
 }
-.content{
+.paragraph{
     text-align: justify; 
     color: #333;
     font-size: 16px;
@@ -13,13 +14,13 @@
     margin: 20px 15%;
     margin-top: 10px;
 }
-.info{
+.returning{
     margin-left: 180px;
     color: #3c5269;
     font-size: 24px;
     margin-top: 20px;
 }
-.list{
+.goods{
     text-align: justify; 
     color: #333;
     font-size: 16px;
