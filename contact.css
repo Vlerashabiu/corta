@@ -45,8 +45,7 @@ a:hover{
     width: 83px;
     height: 25px;
     cursor: pointer;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 .log-in:hover{
     background-color: rgb(118, 184, 237);
@@ -147,7 +146,36 @@ body{
     align-items: center;
     text-align: center;
     display: flex;
- 
+}
+.button-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.terms{
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    background-color: #3c5269;
+    font-size: 20px;
+    cursor: pointer;
+}
+.privacy{
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    background-color: #3c5269;
+    font-size: 20px;
+    cursor: pointer;
+}
+.refund{
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    background-color: #3c5269;
+    font-size: 20px;
+    cursor: pointer;
 }
 .footer{
     display: flex;

@@ -9,7 +9,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 13vh;
+    height: 16vh;
     background-color: white;
     padding: 10px;
     text-align: center;
@@ -86,7 +86,7 @@ p {
 }
 .shop{
     margin-top: 20px;
-    background-color: rgb(115, 169, 151);
+    background-color: rgb(143, 155, 132);
     border: none;
     color: white;
     border-radius: 10px;
@@ -94,14 +94,15 @@ p {
     font-size: 19px; 
     padding: 15px 30px;
     margin-top: 300px;
-    margin-left: 500px;   
+    margin-left: 500px;    
 }
 .shop:hover{
-     background-color: rgb(134, 128, 128);
-     color:rgb(147, 212, 190) ;
+     background-color: rgb(178, 167, 167);
+    
 }
-.content{
+ .content p{
     font-family: 'Brush Script MT', cursive;
+    font-size: 70px;
     
 }
 .container-footer{
@@ -114,6 +115,10 @@ p {
     text-align: center;
     display: flex;
  
+}
+main {
+    margin-top: 16vh; /* E barabartë me lartësinë e navbar-it */
+    padding: 20px;
 }
 .footer{
     display: flex;
