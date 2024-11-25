@@ -6,6 +6,7 @@
     <title>Log in</title>
     
     <link rel="stylesheet" href="loginstyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
 </head>
 <body>
@@ -17,8 +18,8 @@
        <a href="contact.html">ContactUs</a>
       </div>
     <div>
-      <button class="sign-up"> <a href="signup.html">Sign up</a></button>
-      <button class="log-in"> <a href="login.html">Log in</a></button>
+      <button class="sign-up" >Sign up</button>
+      <button class="log-in">Log In</button>
       
     </div>
 </div>
@@ -29,9 +30,11 @@
     <form>
         <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" name="email" id="email" placeholder="Enter your email" required>
-
+            <span class="material-icons" >email</span>
+                
+        <input type="email" name="email" id="email" placeholder="Enter your email" required>
             <label for="password">Password</label>
+            <span class="material-icons">password</span>
             <input type="password" name="password" id="password" placeholder="Enter your password" required>
         </div>
         <button type="submit">LogIn</button>

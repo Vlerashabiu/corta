@@ -1,3 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+
 .navbar{
     position: fixed;
     top: 0;
@@ -6,8 +14,9 @@
     background-color: white;
     padding: 10px;
     text-align: center;
-    box-shadow: 0px 4px 8px rgb(219, 217, 217);
+    box-shadow: 0px 4px 8px rgb(169, 162, 162);
     z-index: 10;
+   
 }
 .title{
    font-size: 30px;
@@ -76,6 +85,8 @@ body{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 50%;
     max-width: 500px;
+
+
 }
 .login-form h2{
     margin: 0 0 20px;
@@ -93,16 +104,21 @@ body{
     margin-top: 10px;
     color: #333;
     color: #7a5f82;
+    transform: translateY(150%);
 }
 .login-form input{
+    
     width: 100%;
     padding: 10px;
     font-size: 16px;
     border:  1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-   
+    padding-left: 15%;
+
 }
+
+
 .login-form button{
     width: 100%;
     padding: 10px;
@@ -136,3 +152,11 @@ body{
 .login-form .signup a{
     text-decoration: none;
 }
+.material-icons{
+    color: #7a5f82;
+    transform: translateY(150%);
+    padding-left: 10px;
+
+
+}
+
