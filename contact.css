@@ -95,7 +95,7 @@ body{
 }
 .contact-info p{
     font-size: 20px;
-    color: black; 
+    color: white; 
     max-width: 300px;
     margin-top: 50px;  
 }
@@ -124,8 +124,8 @@ body{
         }
 .submit{
     border: none;
-   
-    background-color:#5a84b1;
+    background-color:#a4b9d0;
+    color: #011123;
     padding: 10px 20px;
     border-radius: 6px;
     cursor: pointer;
@@ -153,13 +153,19 @@ body{
     align-items: center;
     gap: 20px;
 }
-.terms{
+.terms {
     border: none;
     color: white;
     padding: 15px 30px;
     background-color: #3c5269;
     font-size: 20px;
+    text-decoration: none;
     cursor: pointer;
+    display: inline-block;
+}
+.terms:hover{
+    background-color: #2d4055;
+    text-decoration: none;
 }
 .privacy{
     border: none;
@@ -167,7 +173,13 @@ body{
     padding: 15px 30px;
     background-color: #3c5269;
     font-size: 20px;
+    text-decoration: none;
     cursor: pointer;
+    display: inline-block;
+}
+.privacy:hover{
+    background-color: #2d4055;
+    text-decoration: none;
 }
 .refund{
     border: none;
@@ -175,14 +187,20 @@ body{
     padding: 15px 30px;
     background-color: #3c5269;
     font-size: 20px;
+    text-decoration: none;
     cursor: pointer;
+    display: inline-block;
+}
+.refund:hover{
+    background-color: #2d4055;
+    text-decoration: none;
 }
 .footer{
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-color: white;
-font-size: 2rem;
+    color: white;
+    font-size: 2rem;
 
 }
