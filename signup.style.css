@@ -105,6 +105,7 @@ body{
     margin-bottom: 4px;
     margin-top: 10px;
     color: #7a5f82;
+transform: translateY(160%);
 }
 .signup-form input{
     width: 100%;
