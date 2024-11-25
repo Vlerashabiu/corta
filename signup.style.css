@@ -113,6 +113,7 @@ body{
     border:  1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    padding-left:40px;
 }
 .signup-form button{
     width: 100%;
@@ -137,5 +138,10 @@ body{
 }
 .signup-form .login a{
     text-decoration: none;
+}
+.material-icons{
+    color: #7a5f82;
+    transform: translateY(150%);
+    padding-left: 10px;
 }
 
