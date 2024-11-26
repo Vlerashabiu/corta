@@ -31,8 +31,13 @@
           <input type="text" id="name" placeholder="Your Name" required><br><br>
           <label for="email">Email:</label><br>
           <input type="email" id="email" placeholder="Your Email" required><br><br>
+
+          
+         <form id="messageForm">
           <label for="message">Message:</label><br>
-          <textarea name="message" id="message" placeholder="Write your message "></textarea><br><br>
+          <textarea name="message" id="message" placeholder="Write your message " rows="4" cols="50" maxlength="20" ></textarea><br><br>
+
+         </form>
           <button class = "submit">Submit</button>
         </form>
 
@@ -57,5 +62,20 @@
       </div>
   </footer>
   
+
+  <script>
+    document.getElementById('messageForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    const message = document.getElementById('message').value; 
+
+  
+    if (message.length > 20) {
+        alert('Mesazhi duhet të ketë më pak se 20 karaktere!');
+    } else {
+        alert('Mesazhi u dërgua me sukses!'); 
+    }
+});
+  </script>
 </body>
 </html>

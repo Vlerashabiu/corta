@@ -82,7 +82,7 @@ a:hover{
 p {
     font-size: 50px;
     color:white;
-    margin-top: 200px;
+    margin-top:50px;
     text-align: center;
 }
 .shop{
@@ -94,8 +94,8 @@ p {
     font-size: 19px; 
     padding: 15px 30px;
     text-decoration: none;
-    margin-left: 40%;
-    margin-bottom: 0px;  
+    margin-left: 45%;
+    margin-top: 800px;  
 }
 .shop:hover{
      background-color: rgb(178, 167, 167);
@@ -107,6 +107,7 @@ p {
 }
 .content .size{
    font-size: 45px;
+   margin-bottom: 15rem;
 }
 .container-footer{
     width: 100%;
