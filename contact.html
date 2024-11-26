@@ -32,14 +32,16 @@
           <label for="email">Email:</label><br>
           <input type="email" id="email" placeholder="Your Email" required><br><br>
 
-          
-         <form id="messageForm">
-          <label for="message">Message:</label><br>
-          <textarea name="message" id="message" placeholder="Write your message " rows="4" cols="50" maxlength="20" ></textarea><br><br>
-
-         </form>
-          <button class = "submit">Submit</button>
+          <form id="messageForm">
+            <label for="message">Mesazhi:</label>
+            <textarea id="message" name="message" rows="4" cols="50" maxlength="20" required></textarea>
+            <br><br>
+    
+            <button class="submit">Dërgo Mesazhin</button>
         </form>
+         
+        </form>
+        
 
       <div class="contact-info">
         <p><strong>Email:</strong> support@corta.com</p>
@@ -65,7 +67,7 @@
 
   <script>
     document.getElementById('messageForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
+      event.preventDefault();
 
     const message = document.getElementById('message').value; 
 
