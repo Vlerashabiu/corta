@@ -5,14 +5,14 @@
     font-family: sans-serif;
 }
 .navbar{
-    position: fixed;
+    position:fixed;
     top: 0;
     left: 0;
     width: 100%;
     background-color: white;
     padding: 10px;
     text-align: center;
-    box-shadow: rgb(169, 162, 162);
+    box-shadow: rgb(75, 75, 75);
     z-index: 10;
 }
 .title{
@@ -23,21 +23,21 @@
    margin-top: 15px;
 }
 .navbar a{
-    float: left;
+    float: leFt;
     text-decoration: none;
-    color: rgb(2, 0, 0);
+    color: rgb(115, 132, 100);
     margin-right: 14px;
     margin-left: 10px;
     font-size: 17px;
    
 }
 a:hover{
-    text-decoration: underline;
-    color: rgb(123, 133, 124);
+    text-decoration: none;
+
 }
 .log-in{
     float: right;
-    background-color: rgb(72, 160, 232);
+    background-color: #e2d8c8;
     color: white;
     border: none;
     border-radius: 15px;
@@ -46,13 +46,14 @@ a:hover{
     cursor: pointer;
    margin-right: 20px;
    
+   
 }
 .log-in:hover{
-    background-color: rgb(118, 184, 237);
+    background-color: #c3b59e;
 }
 .sign-up{
     float: right;
-    background-color: gray;
+    background-color: #e2d8c8;
     color: white;
     border-radius: 15px;
     border: none;
@@ -62,7 +63,7 @@ a:hover{
     cursor: pointer;
 }
 .sign-up:hover{
-    background-color: rgb(159, 156, 156);
+    background-color: #c3b59e;
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
@@ -72,28 +73,28 @@ body{
     justify-content: center;
     align-items: center;
     height: 150vp;
-    background-color: rgb(219, 223, 238);
+    background-color: #ffffff;
   
 
 }
 .signup-form{
-    background-color: rgb(242, 247, 247);
+    background-color: rgb(247, 250, 245);
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(219, 206, 206, 0.1);
+    box-shadow: 0 4px 10px rgb(143, 155, 132, 0.1);
     width: 50%;
     max-width: 500px;
 }
 .signup-form h2{
     margin:10px;
     font-size: 24px;
-    color: #7a5f82;
+    color: rgb(94, 103, 85);
     text-align: center;
 }
 .signup-form h5{
     margin: 0 0 20px;
     font-size: 10px;
-    color: #7a5f82;
+    color:rgb(143, 155, 132);
     text-align: center;
 }
 .signup-form .form-group{
@@ -104,7 +105,7 @@ body{
     font-size: 11px;
     margin-bottom: 4px;
     margin-top: 10px;
-    color: #7a5f82;
+    color: rgb(94, 103, 85);
 transform: translateY(160%);
 }
 .signup-form input{
@@ -121,28 +122,36 @@ transform: translateY(160%);
     padding: 10px;
     font-size: 16px;
     color: white;
-    background-color: #7a5f82;
+    background-color: rgb(143, 155, 132);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 .signup-form button:hover{
-    background-color: #3e2e3c;
+    background-color: rgb(94, 103, 85);
 }
 .signup-form .login{
     text-align: center;
     padding: 10px;
     font-size: 12px;
-    color: #7a5f82;
+    color: rgb(143, 155, 132);
     
 }
 .signup-form .login a{
     text-decoration: none;
 }
 .material-icons{
-    color: #7a5f82;
+    color: rgb(143, 155, 132);
     transform: translateY(150%);
     padding-left: 10px;
 }
 
+.photo {
+
+    border: #c3b59e;
+    display:inline-flex;
+    margin-top: 0px;
+    height: 599px;
+    width: auto;
+}
