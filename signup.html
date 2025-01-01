@@ -33,7 +33,7 @@
         <h2>Sign up</h2>
         <h5>Create your account</h5>
         <form>
-            <div class="form-group">
+            <div class="form-group" id="signupForm">
             <label for="username">Username</label>
             <span class="material-icons">person</span>
             <input type="username" name="username" id="username" placeholder="Username" required>
@@ -42,13 +42,15 @@
             <span class="material-icons">email</span>
             <input type="email" name="email" id="name" placeholder="Email" required>
 
-            <label for="Password">Password</label>
+           
+                <label for="Password">Password</label>
             <span class="material-icons">password</span>
             <input type="password" name="password" id="password" placeholder="Password" required>
 
             <label for="Confirm password">Confirm Password</label>
             <span class="material-icons">password</span>
-            <input type="password" name="password" id="password" placeholder="Confirm Password" required>
+            <input type="password" name="password" id="password"  placeholder="Confirm Password" required>
+       
         </div>
         <button type="submit">Sign up</button>
         <div class="login">
@@ -59,6 +61,34 @@
         </div>
         </form>
     </div>
+     <script>
+
+
+
+// regjistrimi
+        document.getElementById('signupForm'),
+        document.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const password = document.getElementById('password').value;
+
     
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+
+
+
+    if (!passwordRegex.test(password)) {
+        alert('Fjalëkalimi duhet të ketë të paktën 8 karaktere dhe të përmbajë një shkronjë dhe një numër.');
+    } else {
+        alert('Regjistrimi u bë me sukses!');
+    
+    }
+   
+});
+
+
+
+     </script>
 </body>
 </html>

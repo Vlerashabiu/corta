@@ -106,6 +106,7 @@ body{
     flex: 2;
     max-width: 400px;
     padding: 40px;
+    
       
 }
 
@@ -119,7 +120,6 @@ body{
           border: 1px solid #c5b9b9;
           border-radius: 5px;
           font-size: 16px;
- 
           
         }
 .submit{
@@ -127,10 +127,9 @@ body{
     background-color:#a4b9d0;
     color: #011123;
     padding: 10px 20px;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;
-    margin-left: 150px;
+    font-size: 15px;
 }
 .submit:hover{
     background-color: #6f89a4;
