@@ -49,7 +49,7 @@
 
             <label for="Confirm password">Confirm Password</label>
             <span class="material-icons">password</span>
-            <input type="password" name="password" id="password"  placeholder="Confirm Password" required>
+            <input type="password" name="confirmPassword" id="confirmPassword"  placeholder="Confirm Password" required>
        
         </div>
         <button type="submit">Sign up</button>
@@ -68,34 +68,32 @@
         </div>
            
     </footer>
-     <script>
+<script>
+    function validateForm(){
+    var username=document.getElementById("username").value;
+    var email=document.getElementById("email").value;
+    var password=document.getElementById("password").value;
+    var confirmPassword=document.getElementById("confirmPassword").value;
 
-
-
-// regjistrimi
-        document.getElementById('signupForm'),
-        document.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const password = document.getElementById('password').value;
-
-    
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-
-
-
-    if (!passwordRegex.test(password)) {
-        alert('Fjalëkalimi duhet të ketë të paktën 8 karaktere dhe të përmbajë një shkronjë dhe një numër.');
-    } else {
-        alert('Regjistrimi u bë me sukses!');
-    
+    if(username==""){
+        alert("Kerkohet emri i perdoruesit!");
+        return false;
     }
-   
-});
-
-
-
-     </script>
+    var emailPattern= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if(!emailPattern.test(email)){
+        alert("Email nuk eshte valide.");
+        return  false;
+    }
+    if(password.length < 8){
+        alert("Password duhet te jete te pakten 8 karaktere.");
+        return  false;
+    }
+    if(password!==confirmPassword){
+        alert("Passwords nuk perputhen.")
+        return  false;
+    }
+    return true;
+}
+</script>
 </body>
 </html>
