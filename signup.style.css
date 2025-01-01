@@ -82,8 +82,9 @@ body{
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgb(143, 155, 132, 0.1);
-    width: 50%;
-    max-width: 500px;
+    width: 40%;
+    max-width: 300px;
+    height: 510px;
 }
 .signup-form h2{
     margin:10px;
@@ -152,6 +153,17 @@ transform: translateY(160%);
     border: #c3b59e;
     display:inline-flex;
     margin-top: 0px;
-    height: 599px;
+    height: 540px;
     width: auto;
+    margin-right: 10px;
 }
+.site-footer{
+    position:fixed;
+    width: 100%;
+    bottom: 0;
+     background-color: rgb(202, 216, 190); 
+     color: rgb(143, 155, 132); 
+     padding:9px; 
+     text-align: center; 
+     font-size: 10px; 
+ }
