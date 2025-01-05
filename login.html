@@ -31,7 +31,7 @@
     </div>
    <div class="login-form">
     <h2>Log In</h2>
-    <form id="form">
+    <form id="form" onclick="return validateForm()">
         <div class="form-group">
             <label for="email">Email Address</label>
             <span class="material-icons" >email</span>
@@ -59,6 +59,25 @@
         </div>
            
     </footer>
+    <script>
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            function validateForm(){
+                var email= document.getElementById("email").value;
+                var password=document.getElementById("password").value;
+                if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+                alert("Invalid email address!");
+                return false;
+                }
+                const passwordRedex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                if(!passwordRedex(password)){
+                alert("Password must be at least 8 characters long, and include uppercase, lowercase, a number, and a special character.");
+                return false;
+                 }
+                return true;
+            }
+            });
+    </script>
    
 </body>
 </html>
