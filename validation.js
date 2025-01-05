@@ -1,4 +1,5 @@
-
+document.addEventListener("DOMContentLoaded", ()=>{
+const form = document.getElementById("signupForm");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
    if (validateForm()){
@@ -10,7 +11,7 @@ function validateForm() {
     var username= document.getElementById("username").value;
     var email=document.getElementById("email").value;
     var password=document.getElementById("password").value;
-    var conirmPassword=document.getElementById("conirmPassword").value;
+    var confirmPassword=document.getElementById("confirmPassword").value;
     const emailRegex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if(!emailRegex.test(email)){
         alert("Invalid email address!");
@@ -22,12 +23,13 @@ function validateForm() {
         alert("Password must be at least 8 characters long, and include uppercase, lowercase, a number, and a special character.");
         return false;
     }
-    if(password !== conirmPassword){
+    if(password !== confirmPassword){
         alert("Passwords do not match.");
         return false;
     }
     return true;
 }
+});
 
    
    
