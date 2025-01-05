@@ -31,7 +31,7 @@
     </div>
    <div class="login-form">
     <h2>Log In</h2>
-    <form id="form" onclick="return validateForm()">
+    <form id="form">
         <div class="form-group">
             <label for="email">Email Address</label>
             <span class="material-icons" >email</span>
@@ -60,9 +60,9 @@
            
     </footer>
     <script>
-        form.addEventListener("submit", (e) => {
+        form.addEventListener("submit", function(e) {
             e.preventDefault();
-            function validateForm(){
+            
                 var email= document.getElementById("email").value;
                 var password=document.getElementById("password").value;
                 if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
@@ -75,7 +75,7 @@
                 return false;
                  }
                 return true;
-            }
+            
             });
     </script>
    
