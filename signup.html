@@ -6,6 +6,7 @@
     <title>Sign up</title>
     <link rel="stylesheet" href="signup.style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="validation.js">
    
     
 </head>
@@ -32,7 +33,7 @@
     <div class="signup-form">
         <h2>Sign up</h2>
         <h5>Create your account</h5>
-        <form>
+        <form onsubmit="return validateForm()">
             <div class="form-group" id="signupForm">
             <label for="username">Username</label>
             <span class="material-icons">person</span>
@@ -40,7 +41,7 @@
              
             <label for="Email">Email</label>
             <span class="material-icons">email</span>
-            <input type="email" name="email" id="name" placeholder="Email" required>
+            <input type="email" name="email" id="email" placeholder="Email" required>
 
            
                 <label for="Password">Password</label>
@@ -69,31 +70,7 @@
            
     </footer>
 <script>
-    function validateForm(){
-    var username=document.getElementById("username").value;
-    var email=document.getElementById("email").value;
-    var password=document.getElementById("password").value;
-    var confirmPassword=document.getElementById("confirmPassword").value;
-
-    if(username==""){
-        alert("Kerkohet emri i perdoruesit!");
-        return false;
-    }
-    var emailPattern= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if(!emailPattern.test(email)){
-        alert("Email nuk eshte valide.");
-        return  false;
-    }
-    if(password.length < 8){
-        alert("Password duhet te jete te pakten 8 karaktere.");
-        return  false;
-    }
-    if(password!==confirmPassword){
-        alert("Passwords nuk perputhen.")
-        return  false;
-    }
-    return true;
-}
+   
 </script>
 </body>
 </html>
