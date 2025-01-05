@@ -7,6 +7,7 @@
     
     <link rel="stylesheet" href="loginstyle.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="loginvalidation.js"></script>
 
     
 </head>
@@ -59,25 +60,6 @@
         </div>
            
     </footer>
-    <script>
-        form.addEventListener("submit", function(e) {
-            e.preventDefault();
-            
-                var email= document.getElementById("email").value;
-                var password=document.getElementById("password").value;
-                if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
-                alert("Invalid email address!");
-                return false;
-                }
-                const passwordRedex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-                if(!passwordRedex(password)){
-                alert("Password must be at least 8 characters long, and include uppercase, lowercase, a number, and a special character.");
-                return false;
-                 }
-                return true;
-            
-            });
-    </script>
-   
+    
 </body>
 </html>

@@ -6,7 +6,7 @@
     <title>Sign up</title>
     <link rel="stylesheet" href="signup.style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="validation.js"></script>
+    <script src="validation.js" defer></script>
    
     
 </head>
@@ -33,7 +33,7 @@
     <div class="signup-form">
         <h2>Sign up</h2>
         <h5>Create your account</h5>
-        <form onsubmit="return validateForm()">
+        <form onsubmit="validateForm()">
             <div class="form-group" id="signupForm">
             <label for="username">Username</label>
             <span class="material-icons">person</span>
