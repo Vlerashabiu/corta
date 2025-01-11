@@ -132,8 +132,8 @@ a:hover{
             gap: 10px;
             border: 1px solid #ccc;
             position: absolute;
-            margin-top: 28rem;
-            margin-left: 29.3rem;
+            margin-top: 33.5rem;
+            margin-left: 23rem;
             
 
         }
@@ -163,7 +163,7 @@ a:hover{
             color: white;
             position: absolute;
             margin-top: 40rem;
-            margin-left: 29.3rem;
+            margin-left: 23rem;
             border-radius: 10px;
         }
 
@@ -202,67 +202,82 @@ a:hover{
             <a href="contact.html">ContactUs</a>
         </div>
         <div>
-            <button class="sign-up"> <a href="signup.html">Sign up</a> </button>
-      
-            <button class ="log-in"> <a href="login.html">Log in</a></button>
+            <button class="sign-up"><a href="signup.html">Sign up</a></button>
+            <button class="log-in"><a href="login.html">Log in</a></button>
         </div>
     </div>
+    
     <div class="contanier">
         <div class="main1">
             <img src="foto3.png" alt="">
         </div>
         <div class="main2">
-            <h1>Ocean Breeze Linen  <br>Bag</h1>
+            <h1>Ocean Breeze Linen <br>Bag</h1>
             <h3>100% Organic Linen</h3>
             <p>$76.00</p>
-            <label for="color" class="label_color">Color</label>
-            <br>
+            <label for="color" class="label_color">Color</label><br>
             <select name="color" id="color">
                 <option value="Sea Green">Sea Green</option>
                 <option value="Light Marble">Light Marble</option>
                 <option value="Charcoal">Charcoal</option>
-          
-
             </select>
-           
-    </div>
-       
-        
+        </div>
+
         <div class="sasia-selector">
             <div class="sasia-button" onclick="decrease()">-</div>
             <div class="sasia-display" id="sasia">1</div>
             <div class="sasia-button" onclick="increase()">+</div>
         </div>
 
-        <button class="button1">
-            Add to bag
-        </button>
-       
-
-
+        <button class="button1" onclick="addToBag()">Add to bag</button>
     </div>
-    <script>
-        let sasia = 1;
 
+    <script>
+        let sasia = 1; // Initial quantity
+
+        // Function to increase quantity
         function increase() {
-            sasia++;
-            document.getElementById("sasia").innerText = sasia;
+            if (sasia < 10) { 
+                sasia++; 
+                document.getElementById("sasia").innerText = sasia; // Update display
+            } else {
+                alert("The maximum quantity is 10");
+            }
         }
 
+        // Function to decrease quantity
         function decrease() {
-            if (sasia > 1) {
-                sasia--;
-                document.getElementById("sasia").innerText = sasia;
+            if (sasia > 1) { 
+                sasia--; 
+                document.getElementById("sasia").innerText = sasia; // Update display
+            } else {
+                alert("Minimum quantity is 1");
             }
+        }
+
+        // Function to add item to the bag
+        function addToBag() {
+            let userLoggedIn = localStorage.getItem('userLoggedIn'); 
+
+            if (userLoggedIn === "true") { 
+                alert("Item added to bag with quantity: " + sasia);
+            } else {
+                loginPrompt();
+            }
+        }
+
+        // Redirect to login page if not logged in
+        function loginPrompt() {
+            alert("Please login to continue");
+            window.location.href = "login.html"; 
         }
     </script>
 
-<footer>
     <footer class="site-footer">
-      <div class="footer">
-     <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
-      </div>
-</footer>
+        <div class="footer">
+            <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
+        </div>
+    </footer>
 
 </body>
 

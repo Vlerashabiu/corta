@@ -133,7 +133,7 @@ a:hover{
             border: 1px solid #ccc;
             position: absolute;
             margin-top: 28rem;
-            margin-left: 29.3rem;
+            margin-left: 30.5rem;
             
 
         }
@@ -163,7 +163,7 @@ a:hover{
             color: white;
             position: absolute;
             margin-top: 35rem;
-            margin-left: 29.3rem;
+            margin-left: 30.5rem;
             border-radius: 10px;
         }
         
@@ -224,38 +224,55 @@ a:hover{
             <div class="sasia-button" onclick="increase()">+</div>
         </div>
 
-        <button class="button1">
-            Add to bag
-        </button>
-        
+        <button class="button1" onclick="addToBag()">Add to bag</button>
     </div>
+
     <script>
+        let sasia = 1;
 
-function increase() {
-    if (sasia < 10) { 
-        sasia++;
-        document.getElementById("sasia").innerText = sasia;
-    } else {
-        alert("Sasia maksimale është 10."); 
-    }
-}
+        
+        function increase() {
+            if (sasia < 10) { 
+                sasia++; 
+                document.getElementById("sasia").innerText = sasia; 
+            } else {
+                alert("The maximum quantity is 10");
+            }
+        }
 
-function decrease() {
-    if (sasia > 1) { 
-        sasia--;
-        document.getElementById("sasia").innerText = sasia;
-    } else {
-        alert("Sasia minimale është 1."); 
-}
+        // Funksioni për të ulur sasinë
+        function decrease() {
+            if (sasia > 1) { 
+                sasia--; 
+                document.getElementById("sasia").innerText = sasia; 
+            } else {
+                alert("Minimum quantity is 1");
+            }
+        }
 
+        
+        function addToBag() {
+            let userLoggedIn = localStorage.getItem('userLoggedIn');
+
+            if (userLoggedIn === "true") { 
+                alert("Item added to bag with quantity: " + sasia);
+            } else {
+                loginPrompt();
+            }
+        }
+
+       
+        function loginPrompt() {
+            alert("Please login to continue");
+            window.location.href = "login.html";
+        }
     </script>
 
-<footer>
     <footer class="site-footer">
-      <div class="footer">
-     <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
-      </div>
-</footer>
+        <div class="footer">
+            <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
+        </div>
+    </footer>
 
 </body>
 
