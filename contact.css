@@ -83,7 +83,7 @@ a:hover{
 }
 .contact-info p{
     font-size: 20px;
-    color: black; 
+    color: rgb(79, 90, 69); 
     max-width: 300px;
       
 }
@@ -135,7 +135,7 @@ a:hover{
 .terms, .privacy, .refund {
     border: none;
     padding: 15px 30px;
-    color: black;
+    color: rgb(79, 90, 69);
     font-size: 20px;
     text-decoration: none;
     cursor: pointer;
