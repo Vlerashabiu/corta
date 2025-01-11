@@ -118,6 +118,7 @@ a:hover{
             font-size: 1rem;
             padding: 0.5rem;
             border: 3px solid gray;
+            
        
         }
 
@@ -132,7 +133,7 @@ a:hover{
             gap: 10px;
             border: 1px solid #ccc;
             position: absolute;
-            margin-top: 28rem;
+            margin-top: 33.5rem;
             margin-left: 29.3rem;
             
 
@@ -147,6 +148,7 @@ a:hover{
             border: 1px solid #ccc;
             cursor: pointer;
             user-select: none;
+            
             
         }
 
@@ -189,7 +191,7 @@ a:hover{
     font-size: 10px; 
  }
         
-    </style>
+</style>
 </head>
 
 <body>
@@ -231,42 +233,41 @@ a:hover{
             <div class="sasia-button" onclick="increase()">+</div>
         </div>
 
-        <button class="button1">
-            Add to bag
-        </button>
-       
-
+        <button class="button1" onclick="addToBag()">Add to bag</button>
 
     </div>
     <script>
-        let sasia = 1; 
+        let sasia = 1;
 
-function increase() {
-    if (sasia < 10) { 
-        sasia++;
-        document.getElementById("sasia").innerText = sasia;
-    } else {
-        alert("Sasia maksimale është 10."); 
-    }
-}
+        // Funksioni për të rritur sasinë
+        function increase() {
+            if (sasia < 10) { // Kufizo sasinë në maksimum 10
+                sasia++;
+                document.getElementById("sasia").innerText = sasia;
+            } else {
+                alert("Sasia maksimale është 10.");
+            }
+        }
 
-function decrease() {
-    if (sasia > 1) { 
-        sasia--;
-        document.getElementById("sasia").innerText = sasia;
-    } else {
-        alert("Sasia minimale është 1."); 
-}
+        // Funksioni për të ulur sasinë
+        function decrease() {
+            if (sasia > 1) { // Kufizo sasinë në minimum 1
+                sasia--;
+                document.getElementById("sasia").innerText = sasia;
+            } else {
+                alert("Sasia minimale është 1.");
+            }
+        }
 
-function addToBag() {
-    if (sasia > 0) {
-        alert("Artikulli u shtua në çantë me sasi: " + sasia);
-        
-    } else {
-        alert("Ju lutem zgjidhni një sasi të vlefshme.");
-    }
-}
-
+        // Funksioni për të shtuar artikullin në çantë
+        function addToBag() {
+            if (sasia > 0) { // Kontrollo nëse sasia është më e madhe se 0
+                alert("Artikulli u shtua në çantë me sasi: " + sasia);
+                // Këtu mund të shtoni logjikë tjetër për të menaxhuar çantën e blerjeve.
+            } else {
+                alert("Ju lutem zgjidhni një sasi të vlefshme.");
+            }
+        }
     </script>
 
 <footer>
