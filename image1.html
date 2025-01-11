@@ -239,35 +239,49 @@ a:hover{
     <script>
         let sasia = 1;
 
-        // Funksioni për të rritur sasinë
+       
         function increase() {
-            if (sasia < 10) { // Kufizo sasinë në maksimum 10
+            if (sasia < 10) { /
                 sasia++;
                 document.getElementById("sasia").innerText = sasia;
             } else {
-                alert("Sasia maksimale është 10.");
+                alert("The maximum quantity is 10");
             }
         }
 
-        // Funksioni për të ulur sasinë
         function decrease() {
-            if (sasia > 1) { // Kufizo sasinë në minimum 1
+            if (sasia > 1) { 
                 sasia--;
                 document.getElementById("sasia").innerText = sasia;
             } else {
-                alert("Sasia minimale është 1.");
+                alert("Minimum quantity is 1");
             }
         }
 
-        // Funksioni për të shtuar artikullin në çantë
+        /
         function addToBag() {
-            if (sasia > 0) { // Kontrollo nëse sasia është më e madhe se 0
-                alert("Artikulli u shtua në çantë me sasi: " + sasia);
-                // Këtu mund të shtoni logjikë tjetër për të menaxhuar çantën e blerjeve.
+            if (sasia > 0) { 
+                alert("Item added to bag with quantity: " + sasia);
             } else {
-                alert("Ju lutem zgjidhni një sasi të vlefshme.");
+                alert("Please select a valid quantity");
             }
         }
+
+        function addToBag() {
+    let userLoggedIn = localStorage.getItem('userLoggedIn'); 
+
+    if (userLoggedIn === "true") {
+        alert("Item added to bag with quantity: " + sasia);
+    } else {
+        loginPrompt(); 
+    }
+}
+
+function loginPrompt() {
+    alert("Please login to continue");
+    window.location.href = "login.html"; 
+}
+
     </script>
 
 <footer>
