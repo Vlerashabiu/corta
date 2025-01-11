@@ -95,14 +95,14 @@ a:hover{
 }
 
 .text p {
-    font-size: 60px;
+    font-size: 40px;
     font-weight: bold;
     margin: 10px;
     font-family: 'Ephesis', cursive;
 }
 
 .text .size {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     margin-top: 40px;
     font-family: 'Lora', serif;
@@ -115,7 +115,7 @@ a:hover{
     border-radius: 10px;
     cursor: pointer;
     font-size: 19px; 
-    padding: 30px 50px;
+    padding: 15px 25px;
     text-decoration: none;
     margin-left: 45%;
     margin-top: 800px;  
