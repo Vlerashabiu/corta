@@ -4,25 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <title>Document</title>
     <style>
-        .navbar{
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+        
+ .navbar{
     position: fixed;
-   
-top: 0;
-left: 0;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 13vh;
     background-color: white;
-    
+    padding: 10px;
     text-align: center;
-    box-shadow: 0px 4px 8px rgb(219, 217, 217);
+    box-shadow: 0px 4px 8px rgba(219, 217, 219, 0.4);
     z-index: 10;
-    
 }
 .title{
    font-size: 30px;
-   font-family: Arial;
+   font-family: 'Major Mono Display';
    letter-spacing: 8px;
    cursor: pointer;
    margin-top: 15px;
@@ -30,45 +36,42 @@ left: 0;
 .navbar a{
     float: left;
     text-decoration: none;
-    color: black;
+    color: rgb(115,132, 100);
     margin-right: 14px;
     margin-left: 10px;
     font-size: 17px;
    
 }
 a:hover{
-    text-decoration: underline;
-    color: rgb(123, 133, 124);
+    text-decoration: none;
 }
 
 .log-in{
     float: right;
-    background-color: rgb(72, 160, 232);
+    background-color: #e2d8c8;
     color: white;
     border: none;
     border-radius: 15px;
-    width: 83px;
-    height: 25px;
+    padding: 5px 10px;
     cursor: pointer;
     margin-left: 10px;
     margin-right: 10px;
 }
 .log-in:hover{
-    background-color: rgb(118, 184, 237);
+    background-color: #c3b59e;
 }
 .sign-up{
     float: right;
-    background-color: gray;
+    background-color: #e2d8c8;
     color: white;
     border-radius: 15px;
     border: none;
-    width: 95px;
-    height: 25px;
+    padding: 5px 10px;
     margin-right: 20px;
     cursor: pointer;
 }
 .sign-up:hover{
-    background-color: rgb(159, 156, 156);
+    background-color: #c3b59e;
 }
 
         .contanier {
@@ -175,15 +178,16 @@ a:hover{
     display: flex;
  
 }
-.footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-color: white;
-font-size: 2rem;
-
-}
+.site-footer{
+    position:fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: rgb(202, 216, 190); 
+    color: rgb(143, 155, 132); 
+    padding:9px; 
+    text-align: center; 
+    font-size: 10px; 
+ }
             
     </style>
 </head>
@@ -253,13 +257,13 @@ font-size: 2rem;
     </script>
 
 <footer>
-    
-    <div class="container-footer">
-        <div class="footer">
-            Copyright © 2024 - 2025 Corta, All Right Reserved.
-        </div>
-    </div>
+    <footer class="site-footer">
+      <div class="footer">
+     <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
+      </div>
 </footer>
+
+</body>
 
 </body>
 
