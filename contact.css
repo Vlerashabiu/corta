@@ -80,6 +80,7 @@ a:hover{
     padding: 20px 50px; 
     flex-wrap: wrap;
     color: black; 
+    margin-left: 10%;
 }
 .contact-info p{
     font-size: 20px;
@@ -98,7 +99,6 @@ a:hover{
     max-width: 400px;
     padding: 30px;
     font-size: 18px;
-    margin-left: 15%; 
 }
 
 .form input, .form textarea {

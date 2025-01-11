@@ -1,4 +1,4 @@
-<!DOC<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,7 +24,8 @@
          <p class="info">Reach out to us for any questions or information.</p>
    
     <div class = "main">
-     <div class="form">
+      <form id="form">
+        <div class="form">
           <label for="name">Name:</label><br>
           <input type="text" id="name" placeholder="Your name" required><br><br>
           <label for="email">Email:</label><br>
@@ -34,9 +35,9 @@
           <textarea id="message" name="message" placeholder="Enter your message" rows="4" cols="50" maxlength="200" required></textarea>
          <br><br>
     
-          <button type="button" class="submit" onclick="validateForm()">Submit</button>  
+         <button type="submit" class="submit">Submit</button>
         </div>
-        
+      </form> 
 
       <div class="contact-info">
         <p><strong>Email:</strong> support@corta.com</p>
@@ -57,6 +58,7 @@
     </footer>
   
 
-  <script src="contact.js"></script>
+    <script src="contact.js"></script>
+
 </body>
 </html>
