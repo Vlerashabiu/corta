@@ -1,24 +1,24 @@
 *{
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    padding: 0; 
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 .navbar{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 16vh;
     background-color: white;
     padding: 10px;
     text-align: center;
-    box-shadow: 0px 4px 8px rgb(219, 217, 217);
+    box-shadow: 0px 4px 8px rgba(219, 217, 219, 0.4);
+
     z-index: 10;
 }
 .title{
    font-size: 30px;
-   font-family: Arial;
+   font-family: 'Major Mono Display';
    letter-spacing: 8px;
    cursor: pointer;
    margin-top: 15px;
@@ -26,36 +26,33 @@
 .navbar a{
     float: left;
     text-decoration: none;
-    color: black;
+    color: rgb(115,132, 100);
     margin-right: 14px;
     margin-left: 10px;
     font-size: 17px;
    
 }
 a:hover{
-    text-decoration: underline;
-    color: rgb(123, 133, 124);
+    text-decoration: none;
 }
 
 .log-in{
     float: right;
-    background-color: rgb(72, 160, 232);
+    background-color: #e2d8c8;
     color: white;
     border: none;
     border-radius: 15px;
     width: 83px;
     height: 25px;
     cursor: pointer;
-    margin-left: 10px;
-    margin-right: 20px;
+    margin-right: 20px;  
 }
 .log-in:hover{
-    background-color: rgb(118, 184, 237);
-    
+    background-color: #c3b59e;
 }
 .sign-up{
     float: right;
-    background-color: gray;
+    background-color: #e2d8c8;
     color: white;
     border-radius: 15px;
     border: none;
@@ -65,34 +62,62 @@ a:hover{
     cursor: pointer;
 }
 .sign-up:hover{
-    background-color: rgb(159, 156, 156);
+    background-color: #c3b59e;
 }
-.full-width{
-    position: relative;
-    background-image: url('photo.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 1000px;
-    background-position: center;
+.image-container{
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    color: white;
+    padding: 20px;
 }
-p {
-    font-size: 50px;
-    color:white;
-    margin-top:50px;
-    text-align: center;
+.img1, .img2 {
+    width: 30%; 
+    padding-left: 10%;
+    padding-right: 10px;
 }
+.img1 img, .img2 img {
+    width: 100%; 
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.img2{
+    margin-top: 100px;
+    margin-right: 10%;
+   
+}
+.img1{
+    margin-right: 10%;
+}
+
+
+.text{
+    width: 30%; 
+    text-align: center; 
+    color: black;
+}
+
+.text p {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 10px;
+    font-family: 'Ephesis', cursive;
+}
+
+.text .size {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 40px;
+    font-family: 'Lora', serif;
+}
+
 .shop{
-    background-color: rgb(143, 155, 132);
+    background-color: #cdbfa9;
     border: none;
     color: white;
     border-radius: 10px;
     cursor: pointer;
     font-size: 19px; 
-    padding: 15px 30px;
+    padding: 30px 50px;
     text-decoration: none;
     margin-left: 45%;
     margin-top: 800px;  
@@ -101,35 +126,17 @@ p {
      background-color: rgb(178, 167, 167);
      text-decoration: none; 
 }
- .content p{
-    font-size: 60px;  
-    margin-bottom: 20%;
-}
-.content .size{
-   font-size: 45px;
-   margin-bottom: 15rem;
-}
-.container-footer{
-    width: 100%;
-    height: 10vh;
-    margin-top: 0.5rem;
-    background-color: gray;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    display: flex;
- 
-}
 main {
     margin-top: 16vh;
     padding: 20px;
 }
-.footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    font-size: 2rem;
-
-}
+.site-footer{
+    position:fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: rgb(202, 216, 190); 
+    color: rgb(143, 155, 132); 
+    padding:9px; 
+    text-align: center; 
+    font-size: 10px; 
+ }
