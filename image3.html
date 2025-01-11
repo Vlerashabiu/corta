@@ -233,29 +233,28 @@ a:hover{
     </div>
 
     <script>
-        let sasia = 1; // Initial quantity
+        let sasia = 1; 
 
-        // Function to increase quantity
         function increase() {
             if (sasia < 10) { 
                 sasia++; 
-                document.getElementById("sasia").innerText = sasia; // Update display
+                document.getElementById("sasia").innerText = sasia; 
             } else {
                 alert("The maximum quantity is 10");
             }
         }
 
-        // Function to decrease quantity
+       
         function decrease() {
             if (sasia > 1) { 
                 sasia--; 
-                document.getElementById("sasia").innerText = sasia; // Update display
+                document.getElementById("sasia").innerText = sasia; 
             } else {
                 alert("Minimum quantity is 1");
             }
         }
 
-        // Function to add item to the bag
+        
         function addToBag() {
             let userLoggedIn = localStorage.getItem('userLoggedIn'); 
 
@@ -266,7 +265,7 @@ a:hover{
             }
         }
 
-        // Redirect to login page if not logged in
+        
         function loginPrompt() {
             alert("Please login to continue");
             window.location.href = "login.html"; 
