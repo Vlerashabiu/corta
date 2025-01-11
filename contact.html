@@ -1,4 +1,4 @@
-<!DOC<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,22 +24,20 @@
          <p class="info">Reach out to us for any questions or information.</p>
    
     <div class = "main">
-     <div class="form">
+      <form id="form">
+        <div class="form">
           <label for="name">Name:</label><br>
           <input type="text" id="name" placeholder="Your name" required><br><br>
           <label for="email">Email:</label><br>
           <input type="email" id="email" placeholder="Your email" required><br><br>
 
-          <form id="messageForm">
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" placeholder="Enter your message" rows="4" cols="50" maxlength="20" required></textarea>
-            <br><br>
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" placeholder="Enter your message" rows="4" cols="50" maxlength="200" required></textarea>
+         <br><br>
     
-            <button class="submit">Submit</button>
-        </form>
-         
+         <button type="submit" class="submit">Submit</button>
         </div>
-        
+      </form> 
 
       <div class="contact-info">
         <p><strong>Email:</strong> support@corta.com</p>
@@ -52,30 +50,15 @@
     </div>
   </div>
 </div>
-
-    <footer>
-    
-      <footer class="site-footer">
+ 
+   <footer class="site-footer">
         <div class="footer">
        <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
-        </div>
-           
+        </div>        
     </footer>
   
 
-  <script>
-    document.getElementById('messageForm').addEventListener('submit', function(event) {
-      event.preventDefault();
+    <script src="contact.js"></script>
 
-    const message = document.getElementById('message').value; 
-
-  
-    if (message.length > 20) {
-        alert('Mesazhi duhet të ketë më pak se 20 karaktere!');
-    } else {
-        alert('Mesazhi u dërgua me sukses!'); 
-    }
-});
-  </script>
 </body>
 </html>
