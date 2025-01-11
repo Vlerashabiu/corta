@@ -239,19 +239,34 @@ a:hover{
 
     </div>
     <script>
-        let sasia = 1;
+        let sasia = 1; 
 
-        function increase() {
-            sasia++;
-            document.getElementById("sasia").innerText = sasia;
-        }
+function increase() {
+    if (sasia < 10) { 
+        sasia++;
+        document.getElementById("sasia").innerText = sasia;
+    } else {
+        alert("Sasia maksimale është 10."); 
+    }
+}
 
-        function decrease() {
-            if (sasia > 1) {
-                sasia--;
-                document.getElementById("sasia").innerText = sasia;
-            }
-        }
+function decrease() {
+    if (sasia > 1) { 
+        sasia--;
+        document.getElementById("sasia").innerText = sasia;
+    } else {
+        alert("Sasia minimale është 1."); 
+}
+
+function addToBag() {
+    if (sasia > 0) {
+        alert("Artikulli u shtua në çantë me sasi: " + sasia);
+        
+    } else {
+        alert("Ju lutem zgjidhni një sasi të vlefshme.");
+    }
+}
+
     </script>
 
 <footer>
