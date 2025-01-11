@@ -112,7 +112,7 @@ a:hover{
     background-color: #cdbfa9;
     border: none;
     color: white;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 19px; 
     padding: 15px 25px;
@@ -121,7 +121,7 @@ a:hover{
     margin-top: 800px;  
 }
 .shop:hover{
-     background-color: rgb(178, 167, 167);
+     background-color: #988e7d;
      text-decoration: none; 
 }
 main {
