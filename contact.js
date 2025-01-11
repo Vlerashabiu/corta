@@ -1,6 +1,5 @@
 document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
-    console.log("Form submitted");
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
