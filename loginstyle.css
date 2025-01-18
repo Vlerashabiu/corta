@@ -143,10 +143,12 @@ body{
 }
 .login-form .forgot-password a{
     text-decoration: none;
+    color:rgb(94, 103, 85);
 
 }
 .login-form .signup a{
     text-decoration: none;
+    color:rgb(94, 103, 85);
 }
 .material-icons{
     color: rgb(143, 155, 132);
