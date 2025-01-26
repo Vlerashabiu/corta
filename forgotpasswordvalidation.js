@@ -21,21 +21,27 @@ if (forgotPasswordForm) {
         }
     });
    }
-   });
-
-
+   
     const confirmationForm=document.getElementById('confirmationForm');
     if(confirmationForm){
         confirmationForm.addEventListener('submit', function(e){
             e.preventDefault();
 
-            const enterCode=document.getElementById('confirmationCode').value;
+            const enterCode = Array.from(document.querySelectorAll('.code-input'))
+                        .map(input => input.value)
+                        .join('');
+
             const storedCode = localStorage.getItem('confirmationCode');
 
             console.log("Entered Code: ", enterCode);
             console.log("Stored Code: ", storedCode);
 
-            if(enterCode === storedCode){
+            if (!storedCode) {
+                alert("No confirmation code found. Please request a new code.");
+                return;
+            }
+
+            if(enterCode.trim() === storedCode.trim()){
                 alert("Code verified successully");
                 window.location.href="resetPassword.html";
             }else{
@@ -64,4 +70,5 @@ function validateEmail(email) {
     const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
  }
+});
     
