@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
-    const forgotPasswordForm=document.getElementById('forgotPasswordForm');
+    const form=document.getElementById('form');
     if(forgotPasswordForm){
-        forgotPasswordForm.addEventListener('submit', function(e){
+        form.addEventListener('submit', function(e){
             e.preventDefault();
             const email=document.getElementById('email').value;
 
