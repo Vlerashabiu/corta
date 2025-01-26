@@ -1,20 +1,21 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('forgotpasswordForm');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email =document.getElementById('email').value;
-        if (validateEmail(email)) {
-            const confirmationCode=Math.floor(100000 +Math.random()*900000);
-            localStorage.setItem('confirmationCode', confirmationCode);
-            localStorage.setItem('email',email);
-            console.log("Generated Code: ", confirmationCode);
-            alert(`A cofirmation code has been sent to ${email}!`);
-            window.location.href='confirmationCode.html';
-        }else{
-            alert('Please enter a valid email adress.')
-        }
-    });
+document.addEventListener('DOMContentLoaded', function(){
+    const forgotPasswordForm=document.getElementById('forgotPasswordForm');
+    if(forgotPasswordForm){
+        forgotPasswordForm.addEventListener('submit', function(e){
+            e.preventDefault();
+            const email=document.getElementById('email').value;
 
+            if(validateEmail(email)){
+                const confirmationCode=Math.floor(100000 + Math.random()*900000);
+                localStorage.setItem('confirmationCode',confirmationCode);
+                localStorage.setItem('email', email);
+                alert(`A confirmation code has been sent to ${email}`);
+                window.location.href="confirmationCode.html";
+            }else{
+                alert("Please enter a valid email address");
+            }
+        });
+    }
 
     const confirmationForm=document.getElementById('confirmationForm');
     if(confirmationForm){
