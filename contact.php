@@ -1,9 +1,8 @@
 <?php
 session_start();
 
-$isLoggedIn = isset($_SESSION['username']);
-$username = $isLogedIn ? $_SESSION['username'] : '';
-$email = $_SESSION['email'] : '';
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 ?>
 
 <!DOCTYPE html>
@@ -65,11 +64,6 @@ $email = $_SESSION['email'] : '';
        <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
         </div>        
     </footer>
-  
-
-    <script>
-        const isLoggedIn = <?php echo $isLoggedIn ? 'true' : 'false'; ?>;
-    </script>
 
     <script src="contact.js"></script>
 
