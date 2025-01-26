@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function(){
 const forgotPasswordForm = document.getElementById('forgotpasswordForm');
 
 if (forgotPasswordForm) {
@@ -19,7 +20,9 @@ if (forgotPasswordForm) {
             alert("Please enter a valid email address");
         }
     });
-}
+   }
+   });
+
 
     const confirmationForm=document.getElementById('confirmationForm');
     if(confirmationForm){
