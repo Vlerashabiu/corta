@@ -5,6 +5,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
     const message = document.getElementById('message').value;
 
    
+    conts isLoggedIn = <?php echo $isLoggedIn ? 'true' : 'false'; ?>; 
     if(name === "" || email === "" || message === ""){
         alert("All fields are required!");
         return false;
