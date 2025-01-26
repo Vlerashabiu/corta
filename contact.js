@@ -4,13 +4,12 @@ document.getElementById('form').addEventListener('submit', function(event) {
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
 
-   
-    conts isLoggedIn = <?php echo $isLoggedIn ? 'true' : 'false'; ?>; 
-    if(name === "" || email === "" || message === ""){
-        alert("All fields are required!");
-        return false;
+    if (!isLoggedIn) {
+        if (name === "" || email === "" || message === "") {
+            alert("All fields are required!");
+            return false;
+        }
     }
-
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if(!emailRegex.test(email)){
          alert("Invalid email address!");

@@ -1,11 +1,9 @@
 <?php
-
 session_start();
 
 $isLoggedIn = isset($_SESSION['username']);
 $username = $isLogedIn ? $_SESSION['username'] : '';
 $email = $_SESSION['email'] : '';
-
 ?>
 
 <!DOCTYPE html>
@@ -33,11 +31,15 @@ $email = $_SESSION['email'] : '';
     <div class = "main">
       <form id="form">
         <div class="form">
-          <label for="name">Name:</label><br>
-          <input type="text" id="name" placeholder="Your name" required><br><br>
-          <label for="email">Email:</label><br>
-          <input type="email" id="email" placeholder="Your email" required><br><br>
-
+        <?php if (!$isLoggedIn): ?>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" placeholder="Your name" required><br><br>
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" placeholder="Your email" required><br><br>
+                <?php else: ?>
+                    <input type="hidden" id="name" value="<?php echo $username; ?>">
+                    <input type="hidden" id="email" value="<?php echo $email; ?>">
+                <?php endif; ?>
           <label for="message">Message:</label>
           <textarea id="message" name="message" placeholder="Enter your message" rows="4" cols="50" maxlength="200" required></textarea>
          <br><br>
@@ -64,6 +66,10 @@ $email = $_SESSION['email'] : '';
         </div>        
     </footer>
   
+
+    <script>
+        const isLoggedIn = <?php echo $isLoggedIn ? 'true' : 'false'; ?>;
+    </script>
 
     <script src="contact.js"></script>
 
