@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 const confirmationCode=Math.floor(100000 + Math.random()*900000);
                 localStorage.setItem('confirmationCode',confirmationCode);
                 localStorage.setItem('email', email);
+                console.log("Generated Code:", confirmationCode); 
                 alert(`A confirmation code has been sent to ${email}`);
                 window.location.href="confirmationCode.html";
             }else{
