@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', function(){
                 const confirmationCode=Math.floor(100000 + Math.random()*900000);
                 localStorage.setItem('confirmationCode',confirmationCode);
                 localStorage.setItem('email', email);
-                console.log("Generated Code:", confirmationCode); 
+                
+                console.log("Generated Confirmation Code:", confirmationCode);
+                console.log("Stored Email:", email);
+
                 alert(`A confirmation code has been sent to ${email}`);
                 window.location.href="confirmationCode.html";
             }else{
@@ -29,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function(){
             console.log("Entered Code: ", enterCode);
             console.log("Stored Code: ", storedCode);
 
-            if(enterCode == storedCode){
+            if(enterCode === storedCode){
                 alert("Code verified successully");
                 window.location.href="resetPassword.html";
             }else{
@@ -44,16 +47,13 @@ document.addEventListener('DOMContentLoaded', function(){
        const newPassword=document.getElementById('newPassword').value;
        const confirmPassword=document.getElementById('confirmPassword').value;
 
-       if(newPassword == confirmPassword){
+       if(newPassword === confirmPassword){
         localStorage.setItem('newPassword', newPassword);
         alert("Your password has been successully changed");
         window.location.href= "login.html";
        }else{
         alert("Passwords do not match. Please try again.")
        }
-       
-
-
         
      });
     }
