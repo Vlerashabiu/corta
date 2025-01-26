@@ -8,6 +8,9 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 
 $sql = "SELECT * FROM users";
 $result = $conn->query($sql);
+
+include '..db.php';
+
 ?>
 
 <!DOCTYPE html>
