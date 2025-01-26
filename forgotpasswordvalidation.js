@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const confirmationCode=Math.floor(100000 +Math.random()*900000);
             localStorage.setItem('confirmationCode', confirmationCode);
             localStorage.setItem('email',email);
+            console.log("Generated Code: ", confirmationCode);
             alert(`A cofirmation code has been sent to ${email}!`);
             window.location.href='confirmationCode.html';
         }else{
@@ -22,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const enterCode=document.getElementById('confirmationCode').value;
             const storedCode = localStorage.getItem('confirmationCode');
+
+            console.log("Entered Code: ", enterCode);
+            console.log("Stored Code: ", storedCode);
 
             if(enterCode == storedCode){
                 alert("Code verified successully");
