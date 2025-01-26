@@ -1,25 +1,25 @@
-document.addEventListener('DOMContentLoaded', function(){
-    const form=document.getElementById('form');
-    if(forgotPasswordForm){
-        form.addEventListener('submit', function(e){
-            e.preventDefault();
-            const email=document.getElementById('email').value;
+const forgotPasswordForm = document.getElementById('forgotpasswordForm');
 
-            if(validateEmail(email)){
-                const confirmationCode=Math.floor(100000 + Math.random()*900000);
-                localStorage.setItem('confirmationCode',confirmationCode);
-                localStorage.setItem('email', email);
-                
-                console.log("Generated Confirmation Code:", confirmationCode);
-                console.log("Stored Email:", email);
+if (forgotPasswordForm) {
+    forgotPasswordForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
 
-                alert(`A confirmation code has been sent to ${email}`);
-                window.location.href="confirmationCode.html";
-            }else{
-                alert("Please enter a valid email address");
-            }
-        });
-    }
+        if (validateEmail(email)) {
+            const confirmationCode = Math.floor(100000 + Math.random() * 900000);
+            localStorage.setItem('confirmationCode', confirmationCode);
+            localStorage.setItem('email', email);
+            
+            console.log("Generated Confirmation Code:", confirmationCode);
+            console.log("Stored Email:", email);
+
+            alert(`A confirmation code has been sent to ${email}`);
+            window.location.href = "confirmationCode.html";
+        } else {
+            alert("Please enter a valid email address");
+        }
+    });
+}
 
     const confirmationForm=document.getElementById('confirmationForm');
     if(confirmationForm){
@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function(){
         
      });
     }
-});
 function validateEmail(email) {
     const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
