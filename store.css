@@ -71,6 +71,7 @@ h1{
 }
 
 .image{
+   
     display: flex;
     justify-content: space-around;
     margin-top: 5rem;
@@ -120,9 +121,9 @@ body {
 
 
 .site-footer{
-    position:fixed;
+    position:absolute;
+ 
     width: 100%;
-    bottom: 0;
     background-color: rgb(202, 216, 190); 
     color: rgb(143, 155, 132); 
     padding:9px; 
