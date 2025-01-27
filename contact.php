@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +25,7 @@
           <button class="log-in"> <a href="login.html">Log in</a></button>
     </header>
 
-         <p class="info">Reach out to us for any questions or information.</p>
+    <p class="info">Reach out to us for any questions or information.</p>
    
     <div class = "main">
       <form id="form">
@@ -27,7 +34,7 @@
           <input type="text" id="name" placeholder="Your name" required><br><br>
           <label for="email">Email:</label><br>
           <input type="email" id="email" placeholder="Your email" required><br><br>
-
+            
           <label for="message">Message:</label>
           <textarea id="message" name="message" placeholder="Enter your message" rows="4" cols="50" maxlength="200" required></textarea>
          <br><br>
@@ -53,7 +60,6 @@
        <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
         </div>        
     </footer>
-  
 
     <script src="contact.js"></script>
 

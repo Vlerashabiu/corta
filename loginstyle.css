@@ -17,7 +17,7 @@
 }
 .title{
    font-size: 30px;
-   font-family: 'Major Mono Display';
+   font-family:'Major Mono Display' ;
    letter-spacing: 8px;
    cursor: pointer;
    margin-top: 15px;
@@ -143,10 +143,12 @@ body{
 }
 .login-form .forgot-password a{
     text-decoration: none;
+    color:rgb(94, 103, 85);
 
 }
 .login-form .signup a{
     text-decoration: none;
+    color:rgb(94, 103, 85);
 }
 .material-icons{
     color: rgb(143, 155, 132);
