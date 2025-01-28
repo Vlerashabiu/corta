@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $date = date('Y-m-d');
 
         $stmt = $conn->prepare("INSERT INTO news (title,description,image_url, date) VALUES (?, ?, ?,?)");
-        $stmt->bind_param("sss", $title, $description, $image_url, $date);
+        $stmt->bind_param("ssss", $title, $description, $image_url, $date);
         if ($stmt->execute()) {
             echo "<p style='color:green;'>News added successfully!</p>";
         } else {
@@ -54,21 +54,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
     <h2>Existing News</h2>
     <?php
-  
-    $result = $conn->query("SELECT * FROM news");
+
+   $result = $conn->query("SELECT * FROM news");
     if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo "<div>";
-            echo "<h3>{$row['title']}</h3>";
-            echo "<p>{$row['description']}</p>";
-            echo "<img src='{$row['image_url']}' alt='News Image' style='width:100px; height:auto;'>";
-            echo "<p>Published on: {$row['date']}</p>";
-            echo "</div>";
-        }
+      while ($row = $result->fetch_assoc()) {
+          echo "<div>";
+          echo "<h3>{$row['title']}</h3>";
+          echo "<p>{$row['description']}</p>";
+          echo "<img src='{$row['image_url']}' alt='News Image' style='width:100px; height:auto;'>";
+          echo "<p>Published on: {$row['date']}</p>";  
+          echo "</div>";
+       }
     } else {
-        echo "<p>No news available.</p>";
-    }
-    ?>
+       echo "<p>No news available.</p>";
+      }
+   ?>
 </body>
 </html>
 
