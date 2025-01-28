@@ -20,9 +20,10 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     <p>Manage your site and users here.</p>
     
  
-    <a href="manage_users.php">Manage Users</a> 
-    <a href="view_contact_messages.php">View Contact Messages</a>  
-    <a href="add_product.php">Add New Product</a>  
+    <a href="manage_users.php">Manage Users</a>
+    <a href="manage_news.php">Manage News</a> 
+    <a href="manage_products.php">Manage Products</a>
+    <a href="view_contact.php">View Contact Messages</a>  
     <a href="logout.php">Logout</a>
 </body>
 </html> 

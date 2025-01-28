@@ -5,7 +5,9 @@ if ($_SESSION['role'] !== 'admin') {
     exit();
 }
 
-include 'db.php';
+
+include 'db.php'; 
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'add') {
@@ -16,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $stmt = $conn->prepare("INSERT INTO news (title, content, added_by) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $title, $content, $added_by);
         if ($stmt->execute()) {
-            echo "News added successfully!";
+            echo "<p style='color:green;'>News added successfully!</p>";
         } else {
-            echo "Error: " . $conn->error;
+            echo "<p style='color:red;'>Error: " . $conn->error . "</p>";
         }
     }
 }
@@ -33,6 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 </head>
 <body>
     <h1>Manage News</h1>
+    
+  
     <form method="POST">
         <input type="hidden" name="action" value="add">
         <label for="title">Title:</label>
@@ -46,14 +50,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
     <h2>Existing News</h2>
     <?php
+  
     $result = $conn->query("SELECT * FROM news");
-    while ($row = $result->fetch_assoc()) {
-        echo "<div>";
-        echo "<h3>{$row['title']}</h3>";
-        echo "<p>{$row['content']}</p>";
-        echo "<p>Added by: {$row['added_by']}</p>";
-        echo "</div>";
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<div>";
+            echo "<h3>{$row['title']}</h3>";
+            echo "<p>{$row['content']}</p>";
+            echo "<p>Added by: {$row['added_by']}</p>";
+            echo "</div>";
+        }
+    } else {
+        echo "<p>No news available.</p>";
     }
     ?>
 </body>
 </html>
+
