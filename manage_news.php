@@ -12,11 +12,12 @@ include 'db.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'add') {
         $title = $_POST['title'];
-        $content = $_POST['content'];
-        $added_by = $_SESSION['username'];
+        $description = $_POST['description'];
+        $image_url = $_POST['image_url'];
+        $date = date('Y-m-d');
 
-        $stmt = $conn->prepare("INSERT INTO news (title, content, added_by) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $title, $content, $added_by);
+        $stmt = $conn->prepare("INSERT INTO news (title,description,image_url, date) VALUES (?, ?, ?,?)");
+        $stmt->bind_param("sss", $title, $description, $image_url, $date);
         if ($stmt->execute()) {
             echo "<p style='color:green;'>News added successfully!</p>";
         } else {
@@ -42,9 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
         
-        <label for="content">Content:</label>
-        <textarea id="content" name="content" required></textarea>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
         
+        <label for="image_url">Image URL:</label>
+        <input type="text" id="image_url" name="image_url" required>
+
         <button type="submit">Add News</button>
     </form>
 
@@ -56,8 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         while ($row = $result->fetch_assoc()) {
             echo "<div>";
             echo "<h3>{$row['title']}</h3>";
-            echo "<p>{$row['content']}</p>";
-            echo "<p>Added by: {$row['added_by']}</p>";
+            echo "<p>{$row['description']}</p>";
+            echo "<img src='{$row['image_url']}' alt='News Image' style='width:100px; height:auto;'>";
+            echo "<p>Published on: {$row['date']}</p>";
             echo "</div>";
         }
     } else {
