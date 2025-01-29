@@ -78,9 +78,9 @@
         }
 
         .slider {
-            position: relative;
+            position:relative;
             width: 100%;
-            height: 400px; 
+            height:300px; 
             overflow: hidden;
             margin-top: 20px;
         }
@@ -94,41 +94,45 @@
 
         .slide img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: 200%;
+            object-fit:cover;
         }
 
         .text {
             position: absolute;
             bottom: 20px;
             left: 20px;
-            color: white;
-            font-size: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
+            color: #f5ecec;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 10px;
+            background-color: rgba(122, 126, 155, 0.5);
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 20px;
             height: auto;
         }
 
-        .text h2 {
+        .text h3 {
             margin: 0;
-            font-size: 24px;
+            font-size: 15px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             
         }
 
         .text p {
             margin: 0;
-            font-size: 16px;
+            font-size: 12px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
            
         }
 
-        @media (max-width: 768px) {
-            .text h2 {
-                font-size: 20px;
+        @media (max-width: 88px) {
+            .text h3 {
+                font-size: 21px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             }
 
             .text p {
-                font-size: 14px;
+                font-size: 10px;
             }
         }
 
@@ -136,32 +140,35 @@
             display: flex;
             justify-content: space-around;
             margin-top: 5rem;
-            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             height: auto;
         }
 
-        .image h4 {
+        .image h5 {
             text-align: center;
-            font-size: 30px;
-            font-weight: 500;
+            font-size: 15px;
+            font-weight: 700;
             object-fit: cover;
-            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             height: auto;
+            color: rgba(0, 0, 0, 0.5);;
         }
 
         .image p {
             text-align: center;
             padding: 1rem;
-            font-size: 20px;
-            font-weight: 500;
-            font-style: italic;
+            font-size: 12px;
+            font-weight: 700;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             height: auto;
+            color: rgba(0, 1, 4, 0.5);;
         }
 
         .image img {
-            width: 350px;
-            height: 350px;
+            width: 250px;
+            height: 270px;
             border: 2px solid #ccc;
+            border-radius: 30px;
             
         }
 
@@ -191,23 +198,23 @@
 
     <div class="slider">
         <div class="slide fade">
-            <img src="foto10.jpg" alt="New Organic Products Launched">
+            <img src="materials.jpg" alt="New Organic Products Launched">
             <div class="text">
-                <h2>New Organic Products Launched</h2>
+                <h3>New Organic Products Launched</h3>
                 <p>January 12, 2025</p>
             </div>
         </div>
         <div class="slide fade">
-            <img src="foto11.jpg" alt="Discount for First Orders">
+            <img src="aboutus.jpg" alt="Discount for First Orders">
             <div class="text">
-                <h2>Discount for First Orders</h2>
-                <p>January 10, 2025</p>
+                <h3>Discount for First Orders</h3>
+                <p>January 12,2025</p>
             </div>
         </div>
         <div class="slide fade">
-            <img src="foto13.jpg" alt="About Us">
+            <img src="newProducts.jpg" alt="About Us">
             <div class="text">
-                <h2>About Us</h2>
+                <h3>About Us</h3>
                 <p>January 8, 2025</p>
             </div>
         </div>
@@ -216,28 +223,28 @@
     <div class="image">
         <div class="image1">
             <a href="news1.html">
-                <img src="foto10.jpg" alt="">
+                <img src="materials.jpg" alt="">
             </a>
-            <h4>New Organic </h4>
-            <h4>Products Launched</h4>
+            <h5>New Organic </h5>
+            <h5>Products Launched</h5>
             <p>January 12, 2025</p>
         </div>
 
         <div class="image2">
-            <a href="news2.html">
-                <img src="foto11.jpg" alt="">
+            <a href="news3.html">
+                <img src="aboutus.jpg" alt="">
             </a>
-            <h4>Discount for </h4>
-            <h4>First Orders</h4>
-            <p>January 10, 2025</p>
+            <h5>About Us </h5>
+            <p>January 8, 2025</p>
         </div>
 
         <div class="image3">
-            <a href="news3.html">
-                <img src="foto13.jpg" alt="">
+            <a href="news2.html">
+                <img src="newProducts.jpg" alt="">
             </a>
-            <h4>About Us </h4>
-            <p>January 8, 2025</p>
+            <h5>Discount for </h5>
+            <h5>First Orders</h5>
+            <p>January 10, 2025</p>
         </div>
     </div>
 
@@ -247,22 +254,37 @@
 
     <script>
         let slideIndex = 0;
-
+    
         function showSlides() {
             let slides = document.getElementsByClassName("slide");
+            
+           
             for (let i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";  
             }
+    
+           
             slideIndex++;
+            
+            
             if (slideIndex > slides.length) {
                 slideIndex = 1;
             }  
+    
             slides[slideIndex - 1].style.display = "block";  
-            setTimeout(showSlides, 3000); 
         }
-
-        showSlides();  
+    
+        function nextSlide() {
+            showSlides(); 
+        }
+    
+        showSlides();
+    
+        
+        let slides = document.getElementsByClassName("slide");
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].addEventListener("click", nextSlide);
+        }
     </script>
-</body>
 
 </html>
