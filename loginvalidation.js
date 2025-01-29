@@ -1,8 +1,8 @@
 document.getElementById('form').addEventListener('submit', function(event){
     event.preventDefault();
-    const email=document.getElementById('email').value; 
+    var email=document.getElementById('email').value; 
     const emailRegex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const password=document.getElementById('password').value;
+    var password=document.getElementById('password').value;
     const passwordRegex=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if(!emailRegex.test(email)){
         alert('Invalid email address!');
