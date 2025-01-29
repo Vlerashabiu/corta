@@ -1,39 +1,44 @@
 <?php
 session_start();
-$conn = new mysqli('localhost', 'root', '', 'corta');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
+// Connection to the database
+$servername = "localhost";
+$username = "root"; // your db username
+$password = ""; // your db password
+$dbname = "corta"; // your database name
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $result = $conn->query($sql);
 
-    if ($result->num_rows === 1) {
-        $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['role'];
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if (password_verify($password, $row['password'])) { // Verify the hashed password
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['role'] = $row['role'];
 
-            if ($user['role'] === 'admin') {
-                header("Location: admin_dashboard.php");
+            if ($row['role'] == 'admin') {
+                header("Location: admin_dashboard.php"); // Redirect to admin dashboard
             } else {
-                header("Location: user_dashboard.php");
+                header("Location: user_dashboard.php"); // Redirect to user dashboard
             }
-            exit();
         } else {
-            echo "Invalid password!";
+            echo "Invalid credentials.";
         }
     } else {
-        echo "User not found!";
+        echo "No user found with this email.";
     }
+
+    $conn->close();
 }
 ?>
 
-<form method="POST">
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Login</button>
-</form>

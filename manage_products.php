@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $action = $_POST['action'];
 
         if ($action === 'add') {
-           
             $name = $_POST['name'];
             $price = $_POST['price'];
             $image = $_POST['image'];
@@ -48,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Products</title>
+    <link rel="stylesheet" href="products.css">
 </head>
 <body>
     <h1>Manage Products</h1>
