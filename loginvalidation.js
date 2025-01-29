@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     
         }
         const passwordRedex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        if(!passwordRedex.test(password)){
+        if(!passwordRegex.test(password)){
             alert("Password must be at least 8 characters long, and include uppercase, lowercase, a number, and a special character.");
             return false;
         }
