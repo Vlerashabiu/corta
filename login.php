@@ -1,39 +1,44 @@
 <?php
 session_start();
 
-$conn = new mysqli("localhost", "root", "", "your_database_name");
+// Connection to the database
+$servername = "localhost";
+$username = "root"; // your db username
+$password = ""; // your db password
+$dbname = "corta"; // your database name
+
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    $sql = "SELECT id, username, password, role FROM users WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-    $stmt->bind_result($id, $username, $hashedPassword, $role);
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $result = $conn->query($sql);
 
-    if ($stmt->fetch() && password_verify($password, $hashedPassword)) {
-        $_SESSION["user_id"] = $id;
-        $_SESSION["username"] = $username;
-        $_SESSION["role"] = $role; 
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if (password_verify($password, $row['password'])) { // Verify the hashed password
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['role'] = $row['role'];
 
-        if ($role === "admin") {
-            header("Location: admin_dashboard.php"); 
+            if ($row['role'] == 'admin') {
+                header("Location: admin_dashboard.php"); // Redirect to admin dashboard
+            } else {
+                header("Location: user_dashboard.php"); // Redirect to user dashboard
+            }
         } else {
-            header("Location: user_dashboard.php"); 
-        exit();
+            echo "Invalid credentials.";
+        }
     } else {
-        echo "Invalid email or password!";
+        echo "No user found with this email.";
     }
 
-    $stmt->close();
+    $conn->close();
 }
-
-$conn->close();
 ?>
+
