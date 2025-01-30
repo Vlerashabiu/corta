@@ -16,22 +16,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Kontrollo nëse përdoruesi ekziston
+    
     $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         
-        // Verifikimi i fjalëkalimit
+        
         if (password_verify($password, $row['password'])) {
             
-            // Vendosja e emrit të përdoruesit në sesion
-            $_SESSION['username'] = $row['username'];  // Sigurohuni që 'username' është emri i kolonës që përmban emrin e përdoruesit
+           
+            $_SESSION['username'] = $row['username'];  
             $_SESSION['email'] = $row['email']; 
             $_SESSION['role'] = $row['role'];
 
-            // Rruga nëse është admin ose përdorues
             if ($row['role'] == 'admin') {
                 header("Location: admin_dashboard.php");
             } else {
