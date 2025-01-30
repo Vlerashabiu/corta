@@ -1,35 +1,36 @@
 <?php
 session_start();
 
+// Kontrollo nëse përdoruesi është loguar si admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit();
 }
 
-$username = $_SESSION['username'];
-$role = $_SESSION['role'];
+$username = $_SESSION['username'];  // Merr emrin e përdoruesit nga sesioni
+$role = $_SESSION['role'];  // Merr rolin e përdoruesit
 
-
-include 'db.php'; 
+include 'db.php';  // Lidhja me databazën
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action']) && $_POST['action'] === 'add') {
         $name = $_POST['name'];
         $price = $_POST['price'];
 
+        // Kontrollo nëse është ngarkuar një imazh
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
             $image_tmp_name = $_FILES['image']['tmp_name'];
             $image_name = $_FILES['image']['name'];
             $image_size = $_FILES['image']['size'];
             $image_ext = pathinfo($image_name, PATHINFO_EXTENSION);
 
-          
             $new_image_name = uniqid('', true) . '.' . $image_ext;
-            $upload_directory = 'uploads/';  
+            $upload_directory = 'uploads/';  // Kjo duhet të jetë në folderin ku mund të ruash imazhet
 
+            // Kontrollo nëse formati i imazhit është i pranueshëm
             if (in_array($image_ext, ['png', 'jpg', 'jpeg'])) {
                 if (move_uploaded_file($image_tmp_name, $upload_directory . $new_image_name)) {
-                    $image_url = $upload_directory . $new_image_name;  
+                    $image_url = $upload_directory . $new_image_name;
                 } else {
                     echo "Gabim gjatë ngarkimit të imazhit.";
                     $image_url = '';  
@@ -39,12 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $image_url = '';  
             }
         } else {
-           
+            // Nëse nuk ka imazh të ngarkuar, përdor një imazh të parazgjedhur
             $image_url = 'uploads/foto2.png';  
         }
 
+        // Shto produktin në databazë dhe ruaj emrin e përdoruesit që e ka shtuar
         $stmt = $conn->prepare("INSERT INTO products (name, price, image, added_by) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("sdss", $name, $price, $image_url, $_SESSION['username']);
+        $stmt->bind_param("sdss", $name, $price, $image_url, $_SESSION['username']); // Përdor emrin e përdoruesit që ka shtuar produktin
         
         if ($stmt->execute()) {
             echo "Product added successfully!";
@@ -88,4 +90,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </footer>
 </body>
 </html>
-

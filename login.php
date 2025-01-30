@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 $servername = "localhost";
 $username = "root"; 
 $password = ""; 
@@ -17,19 +16,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // Kontrollo nëse përdoruesi ekziston
     $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) { 
-            $_SESSION['email'] = $row['email'];
+        
+        // Verifikimi i fjalëkalimit
+        if (password_verify($password, $row['password'])) {
+            
+            // Vendosja e emrit të përdoruesit në sesion
+            $_SESSION['username'] = $row['username'];  // Sigurohuni që 'username' është emri i kolonës që përmban emrin e përdoruesit
+            $_SESSION['email'] = $row['email']; 
             $_SESSION['role'] = $row['role'];
 
+            // Rruga nëse është admin ose përdorues
             if ($row['role'] == 'admin') {
-                header("Location: admin_dashboard.php"); 
+                header("Location: admin_dashboard.php");
             } else {
-                header("Location: index.php"); 
+                header("Location: index.php");
             }
         } else {
             echo "Invalid credentials.";
@@ -41,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
