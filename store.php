@@ -5,7 +5,7 @@ class Product {
     private $name;
     private $price;
 
-    // Konstruktor
+   
     public function __construct($link, $image, $name, $price) {
         $this->setLink($link);
         $this->setImage($image);
@@ -13,7 +13,7 @@ class Product {
         $this->setPrice($price);
     }
 
-    // Setters
+  
     public function setLink($link) {
         if (empty($link)) {
             throw new Exception("Linku nuk mund të jetë i zbrazët");
