@@ -1,7 +1,9 @@
 <?php
 session_start();
-
-if($_SERVER["REQUEST_METHOD"]== "POST"){
+if (!isset($_SESSION['reset_code'])) {
+    echo "Session expired or reset code not found. Please request a new reset link.";
+    exit(); 
+}
     $user_code =implode("",$_POST["code"]);
     if($user_code == $_SESSION['reset_code']){
         header("Location: resetpassword.php");
@@ -9,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"]== "POST"){
     }else{
         $error= "Invalid confirmation code!";
     }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
