@@ -22,14 +22,31 @@ if (forgotPasswordForm) {
     });
    }
    
-    const confirmationForm=document.getElementById('confirmationForm');
-    if(confirmationForm){
-        confirmationForm.addEventListener('submit', function(e){
+   document.addEventListener('DOMContentLoaded', function () {
+    const confirmationForm = document.getElementById('confirmationForm');
+    const codeInputs = document.querySelectorAll('.code-input');
+
+    codeInputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            if (e.target.value.length === 1 && index < codeInputs.length - 1) {
+                codeInputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                codeInputs[index - 1].focus();
+            }
+        });
+    });
+
+    if (confirmationForm) {
+        confirmationForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            const enterCode = Array.from(document.querySelectorAll('.code-input'))
-                        .map(input => input.value)
-                        .join('');
+            const enterCode = Array.from(codeInputs)
+                .map(input => input.value)
+                .join('');
 
             const storedCode = localStorage.getItem('confirmationCode');
 
@@ -41,14 +58,15 @@ if (forgotPasswordForm) {
                 return;
             }
 
-            if(enterCode.trim() === storedCode.trim()){
-                alert("Code verified successully");
-                window.location.href="resetPassword.html";
-            }else{
-                alert("Invalid confirmation code.")
+            if (enterCode.trim() === storedCode.trim()) {
+                alert("Code verified successfully");
+                window.location.href = "resetPassword.html";
+            } else {
+                alert("Invalid confirmation code.");
             }
         });
     }
+});
     const resetPassword=document.getElementById('resetPassword');
     if(resetPassword){
        resetPassword.addEventListener('submit', function (e){
