@@ -8,173 +8,154 @@
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <style>
          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
 
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: white;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0px 4px 8px rgba(219, 217, 219, 0.4);
-            z-index: 10;
-        }
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(219, 217, 219, 0.4);
+    z-index: 10;
+}
 
-        .title {
-            font-size: 30px;
-            font-family: 'Major Mono Display';
-            letter-spacing: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
+.title {
+    font-size: 30px;
+    font-family: 'Major Mono Display';
+    letter-spacing: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+}
 
-        .navbar a {
-            float: left;
-            text-decoration: none;
-            color: rgb(115, 132, 100);
-            margin-right: 14px;
-            margin-left: 10px;
-            font-size: 17px;
-        }
+.navbar a {
+    float: left;
+    text-decoration: none;
+    color: rgb(115, 132, 100);
+    margin-right: 14px;
+    margin-left: 10px;
+    font-size: 17px;
+}
 
-        a:hover {
-            text-decoration: none;
-        }
+a:hover {
+    text-decoration: none;
+}
 
-        .log-in {
-            float: right;
-            background-color: #e2d8c8;
-            color: white;
-            border: none;
-            border-radius: 15px;
-            padding: 5px 10px;
-            cursor: pointer;
-            margin-right: 20px;
-        }
+.log-in {
+    float: right;
+    background-color: #e2d8c8;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 20px;
+}
 
-        .log-in:hover {
-            background-color: #c3b59e;
-        }
+.log-in:hover {
+    background-color: #c3b59e;
+}
 
-        .sign-up {
-            float: right;
-            background-color: #e2d8c8;
-            color: white;
-            border-radius: 15px;
-            border: none;
-            padding: 5px 10px;
-            margin-right: 20px;
-            cursor: pointer;
-        }
+.sign-up {
+    float: right;
+    background-color: #e2d8c8;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 20px;
+    cursor: pointer;
+}
 
-        .sign-up:hover {
-            background-color: #c3b59e;
-        }
+.sign-up:hover {
+    background-color: #c3b59e;
+}
 
-        .slider {
-            position:relative;
-            width: 100%;
-            height:360px; 
-            overflow: hidden;
-            transform: translateX();
-            margin-top: 20px;
-        }
+.slider {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+    transform: translateX();
+    margin-top: 20px;
+}
 
-        .slide {
-            display: none;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
+.slide {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 
-        .slide img {
-            width: 100%;
-            object-fit:cover;
-            height: 100%;
-            
-        }
+.slide img {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
 
-        .text {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            color: #f5ecec;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 10px;
-            background-color: rgba(122, 126, 155, 0.5);
-            padding: 10px;
-            border-radius: 20px;
-            height: auto;
-        }
+.text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #f5ecec;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    background-color: rgba(122, 126, 155, 0.5);
+    padding: 10px;
+    border-radius: 20px;
+    height: auto;
+}
 
-        .text h3 {
-            margin: 0;
-            font-size: 15px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            
-        }
+.text h3 {
+    margin: 0;
+    font-size: 15px;
+}
 
-        .text p {
-            margin: 0;
-            font-size: 12px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-           
-        }
+.text p {
+    margin: 0;
+    font-size: 12px;
+}
 
-        @media (max-width: 88px) {
-            .text h3 {
-                font-size: 21px;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            }
+.image {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    height: auto;
+}
 
-            .text p {
-                font-size: 10px;
-            }
-        }
+.image h5 {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    object-fit: cover;
+    height: auto;
+    color: rgba(0, 0, 0, 0.5);
+}
 
-        .image {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 5rem;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            height: auto;
-        }
+.image p {
+    text-align: center;
+    padding: 1rem;
+    font-size: 12px;
+    font-weight: 700;
+    height: auto;
+    color: rgba(0, 1, 4, 0.5);
+}
 
-        .image h5 {
-            text-align: center;
-            font-size: 15px;
-            font-weight: 700;
-            object-fit: cover;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            height: auto;
-            color: rgba(0, 0, 0, 0.5);;
-        }
+.image img {
+    width: 350px;
+    height: 370px;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+}
 
-        .image p {
-            text-align: center;
-            padding: 1rem;
-            font-size: 12px;
-            font-weight: 700;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            height: auto;
-            color: rgba(0, 1, 4, 0.5);;
-        }
-
-        .image img {
-            width: 350px;
-            height: 370px;
-            border: 2px solid #ccc;
-            border-radius: 30px;
-            
-        }
-
-        .site-footer {
+.site-footer {
             position: absolute;
             width: 100%;
           
@@ -184,6 +165,78 @@
             text-align: center;
             font-size: 10px;
         }
+
+@media (max-width: 768px) {
+    .navbar a {
+        font-size: 14px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .title {
+        font-size: 24px;
+        letter-spacing: 5px;
+    }
+
+    .slider {
+        height: 250px;
+    }
+
+    .image {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image img {
+        width: 300px;
+        height: 300px;
+        margin-bottom: 1rem;
+    }
+
+    .text h3 {
+        font-size: 14px;
+    }
+
+    .text p {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar a {
+        font-size: 12px;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+
+    .title {
+        font-size: 20px;
+        letter-spacing: 3px;
+    }
+
+    .slider {
+        height: 200px;
+    }
+
+    .image img {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 1rem;
+    }
+
+    .text h3 {
+        font-size: 13px;
+    }
+
+    .text p {
+        font-size: 8px;
+    }
+
+    .site-footer {
+        font-size: 8px;
+    }
+}
+
     </style>
 </head>
 
