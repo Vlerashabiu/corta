@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($row['role'] == 'admin') {
                 header("Location: admin_dashboard.php"); 
             } else {
-                header("Location: user_dashboard.php"); 
+                header("Location: index.php"); 
             }
         } else {
             echo "Invalid credentials.";
@@ -50,8 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="loginstyle.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
-    <script src="loginvalidation.js" defer></script>
-</head>
+    
 <body>
 <header class="navbar">
     <div class ="title">CORTA</div>
