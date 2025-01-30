@@ -57,8 +57,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
            
             <button type="submit">Send Code</button>
-        </form>
-        <div class="login">
+            </form>
+            <div class="login">
             Return to <a href="login.html">Log In</a>
         </div>
     </div>

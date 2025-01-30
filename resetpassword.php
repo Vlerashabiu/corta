@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if($stmt->execute()){
         echo "Password has been reset seccessfully!";
         unset($_SESSION['reset_email']);
-        header ("Location: login.html");
+        header ("Location: login.php");
         exit();
     }else{
         echo "Error resetting password.";
