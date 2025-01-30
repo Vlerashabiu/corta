@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "Invalid email address!";
     } else {
-        $stmt = $conn->prepare("INSERT INTO m (name, email, message, created_at) VALUES (?, ?, ?, NOW())");
+        $stmt = $conn->prepare("INSERT INTO messages (name, email, message, created_at) VALUES (?, ?, ?, NOW())");
         $stmt->bind_param("sss", $name, $email, $message);
 
         if ($stmt->execute()) {
