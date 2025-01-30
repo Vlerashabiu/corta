@@ -42,7 +42,7 @@ class Product {
         $this->price = $price;
     }
 
-    // Getters
+  
     public function getLink() {
         return $this->link;
     }
@@ -79,7 +79,7 @@ $products = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to CORTA</title>
-    <!-- Lidhja me skedarin CSS -->
+    
     <link rel="stylesheet" href="store.css">
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
 </head>
