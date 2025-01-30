@@ -1,3 +1,22 @@
+<?php
+// Përfshijmë klasat që kemi krijuar
+include 'Slide.php';
+include 'NewsItem.php';
+
+// Instancimi i slides dhe lajmeve
+$slides = [
+    new Slide("materials.jpg", "New Organic Products Launched", "January 12, 2025"),
+    new Slide("aboutus.jpg", "Discount for First Orders", "January 12, 2025"),
+    new Slide("newProducts.jpg", "About Us", "January 8, 2025")
+];
+
+$news = [
+    new NewsItem("news1.html", "materials.jpg", "New Organic Products Launched", "January 12, 2025"),
+    new NewsItem("news3.html", "aboutus.jpg", "About Us", "January 8, 2025"),
+    new NewsItem("news2.html", "newProducts.jpg", "Discount for First Orders", "January 10, 2025")
+];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +26,8 @@
     <title>News - CORTA</title>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <style>
-        * {
+    
+         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -43,7 +63,11 @@
             font-size: 17px;
         }
 
-        .log-in, .sign-up {
+        a:hover {
+            text-decoration: none;
+        }
+
+        .log-in {
             float: right;
             background-color: #e2d8c8;
             color: white;
@@ -54,15 +78,31 @@
             margin-right: 20px;
         }
 
-        .log-in:hover, .sign-up:hover {
+        .log-in:hover {
+            background-color: #c3b59e;
+        }
+
+        .sign-up {
+            float: right;
+            background-color: #e2d8c8;
+            color: white;
+            border-radius: 15px;
+            border: none;
+            padding: 5px 10px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .sign-up:hover {
             background-color: #c3b59e;
         }
 
         .slider {
-            position: relative;
+            position:relative;
             width: 100%;
-            height: 360px;
+            height:360px; 
             overflow: hidden;
+            transform: translateX();
             margin-top: 20px;
         }
 
@@ -75,25 +115,75 @@
 
         .slide img {
             width: 100%;
+            object-fit:cover;
             height: 100%;
-            object-fit: cover;
+            
         }
 
         .text {
             position: absolute;
             bottom: 20px;
             left: 20px;
-            color: white;
+            color: #f5ecec;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 10px;
             background-color: rgba(122, 126, 155, 0.5);
             padding: 10px;
             border-radius: 20px;
+            height: auto;
+        }
+
+        .text h3 {
+            margin: 0;
+            font-size: 15px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            
+        }
+
+        .text p {
+            margin: 0;
+            font-size: 12px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+           
+        }
+
+        @media (max-width: 88px) {
+            .text h3 {
+                font-size: 21px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+
+            .text p {
+                font-size: 10px;
+            }
         }
 
         .image {
             display: flex;
             justify-content: space-around;
             margin-top: 5rem;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            height: auto;
+        }
+
+        .image h5 {
             text-align: center;
+            font-size: 15px;
+            font-weight: 700;
+            object-fit: cover;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            height: auto;
+            color: rgba(0, 0, 0, 0.5);;
+        }
+
+        .image p {
+            text-align: center;
+            padding: 1rem;
+            font-size: 12px;
+            font-weight: 700;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            height: auto;
+            color: rgba(0, 1, 4, 0.5);;
         }
 
         .image img {
@@ -101,11 +191,13 @@
             height: 370px;
             border: 2px solid #ccc;
             border-radius: 30px;
+            
         }
 
         .site-footer {
             position: absolute;
             width: 100%;
+          
             background-color: rgb(202, 216, 190);
             color: rgb(143, 155, 132);
             padding: 9px;
@@ -127,44 +219,20 @@
         <button class="log-in"><a href="login.html">Log in</a></button>
     </header>
 
+    <!-- Slider -->
     <div class="slider">
         <?php
-        $slides = [
-            ["materials.jpg", "New Organic Products Launched", "January 12, 2025"],
-            ["aboutus.jpg", "Discount for First Orders", "January 12, 2025"],
-            ["newProducts.jpg", "About Us", "January 8, 2025"]
-        ];
-
         foreach ($slides as $slide) {
-            echo '
-            <div class="slide fade">
-                <img src="' . $slide[0] . '" alt="' . $slide[1] . '">
-                <div class="text">
-                    <h3>' . $slide[1] . '</h3>
-                    <p>' . $slide[2] . '</p>
-                </div>
-            </div>';
+            $slide->render();  // Thirr funksionin për të shfaqur çdo slide
         }
         ?>
     </div>
 
+    <!-- News Items -->
     <div class="image">
         <?php
-        $news = [
-            ["news1.html", "materials.jpg", "New Organic Products Launched", "January 12, 2025"],
-            ["news3.html", "aboutus.jpg", "About Us", "January 8, 2025"],
-            ["news2.html", "newProducts.jpg", "Discount for First Orders", "January 10, 2025"]
-        ];
-
         foreach ($news as $item) {
-            echo '
-            <div class="image-box">
-                <a href="' . $item[0] . '">
-                    <img src="' . $item[1] . '" alt="' . $item[2] . '">
-                </a>
-                <h5>' . $item[2] . '</h5>
-                <p>' . $item[3] . '</p>
-            </div>';
+            $item->render();  // Thirr funksionin për të shfaqur çdo artikull lajmi
         }
         ?>
     </div>
@@ -193,3 +261,4 @@
 </body>
 
 </html>
+
