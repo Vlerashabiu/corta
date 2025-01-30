@@ -12,9 +12,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $_SESSION['reset_code']=$code;
         $_SESSION['reset_email']= $email;
 
-        echo "Your reset code is: " . $code;
+        mail($email, "Password Reset Code", "Your reset code is: " . $code);
+        echo "A reset code has been sent to your email address.";
+
     }else{
-        echo "No account ound with this email.";
+        echo "No account found with this email.";
     }
 }
 ?>
@@ -69,4 +71,3 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="forgotpasswordvalidation.js" defer></script>
 </body>
 </html>
-

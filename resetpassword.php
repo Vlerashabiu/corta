@@ -15,11 +15,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         echo "Passwords do not match.";
         exit();
     }
-    $hashedPassword =password_hash($newPassword, PASSWORD_DEAULT);
+    $hashedPassword =password_hash($newPassword, PASSWORD_DEFAULT);
 
     $sql = "UPDATE users SET password = ? WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt ->bind_param("ss", $hashedPassword,$email);
+
     if($stmt->execute()){
         echo "Password has been reset seccessfully!";
         unset($_SESSION['reset_email']);
@@ -72,6 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
            
     </footer>
     <script src="forgotpasswordvalidation.js" defer></script>
+    
     
 </body>
 </html>
