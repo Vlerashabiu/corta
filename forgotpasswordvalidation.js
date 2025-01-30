@@ -7,14 +7,7 @@ if (forgotPasswordForm) {
         const email = document.getElementById('email').value;
 
         if (validateEmail(email)) {
-            const confirmationCode = Math.floor(100000 + Math.random() * 900000);
-            localStorage.setItem('confirmationCode', confirmationCode);
-            localStorage.setItem('email', email);
-            
-            console.log("Generated Confirmation Code:", confirmationCode);
-            console.log("Stored Email:", email);
-
-            alert(`A confirmation code has been sent to ${email}`);
+           alert(`A confirmation code has been sent to ${email}`); 
             window.location.href = "confirmationCode.html";
         } else {
             alert("Please enter a valid email address");
@@ -23,8 +16,8 @@ if (forgotPasswordForm) {
    }
    
    document.addEventListener('DOMContentLoaded', function () {
-    const confirmationForm = document.getElementById('confirmationForm');
     const codeInputs = document.querySelectorAll('.code-input');
+    const confirmationForm = document.querySelector('form');
 
     codeInputs.forEach((input, index) => {
         input.addEventListener('input', (e) => {
@@ -40,53 +33,37 @@ if (forgotPasswordForm) {
         });
     });
 
-    if (confirmationForm) {
-        confirmationForm.addEventListener('submit', function (e) {
-            e.preventDefault();
+    confirmationForm.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-            const enterCode = Array.from(codeInputs)
-                .map(input => input.value)
-                .join('');
+        const enterCode = Array.from(codeInputs)
+            .map(input => input.value)
+            .join('');
 
-            const storedCode = localStorage.getItem('confirmationCode');
+            const sessionCode = '<?php echo $_SESSION ["reset_code"] ?>';
 
-            console.log("Entered Code: ", enterCode);
-            console.log("Stored Code: ", storedCode);
-
-            if (!storedCode) {
-                alert("No confirmation code found. Please request a new code.");
-                return;
-            }
-
-            if (enterCode.trim() === storedCode.trim()) {
-                alert("Code verified successfully");
-                window.location.href = "resetPassword.html";
-            } else {
+            if(enterCode === sessionCode){
+                alert("Code vverified successfully");
+                window.location.href ="resetPassword.html";
+            }else{
                 alert("Invalid confirmation code.");
             }
         });
-    }
-});
-    const resetPassword=document.getElementById('resetPassword');
-    if(resetPassword){
-       resetPassword.addEventListener('submit', function (e){
-       e.preventDefault();
-       const newPassword=document.getElementById('newPassword').value;
-       const confirmPassword=document.getElementById('confirmPassword').value;
+    });
 
-       if(newPassword === confirmPassword){
-        localStorage.setItem('newPassword', newPassword);
-        alert("Your password has been successully changed");
-        window.location.href= "login.html";
-       }else{
-        alert("Passwords do not match. Please try again.")
-       }
-        
-     });
-    }
-function validateEmail(email) {
+    document.getElementById("resetPassword").addEventListener("submit", function(e){
+        const newPassword =document.getElementById('newPassword').value;
+        const confirmPassword =document.getElementById('confirmPassword').value;
+
+        if(newPassword !== confirmPassword){
+            alert("Passwords do not match.");
+            e.preventDefault();
+        }
+    });
+
+    function validateEmail(email) {
     const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
- }
+    }
 });
     
