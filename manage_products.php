@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit();
@@ -14,12 +15,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image = $_POST['image'];
         $added_by = $_SESSION['username']; 
 
-        $stmt = $conn->prepare("INSERT INTO products (name, price, image, added_by) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("sdss", $name, $price, $image, $added_by);
-        if ($stmt->execute()) {
-            echo "Product added successfully!";
+        if (!filter_var($image, FILTER_VALIDATE_URL)) {
+            echo "Invalid image URL.";
         } else {
-            echo "Error: " . $conn->error;
+            $stmt = $conn->prepare("INSERT INTO products (name, price, image, added_by) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("sdss", $name, $price, $image, $added_by);
+            
+            if ($stmt->execute()) {
+                echo "Product added successfully!";
+            } else {
+                echo "Error: " . $conn->error;
+            }
         }
     }
 }
@@ -39,17 +45,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST">
         <h2>Add New Product</h2>
         <input type="hidden" name="action" value="add">
+        
         <label for="name">Product Name:</label>
         <input type="text" id="name" name="name" required>
 
         <label for="price">Price:</label>
         <input type="number" id="price" name="price" step="0.01" required>
-
+ 
         <label for="image">Image URL:</label>
         <input type="text" id="image" name="image" required>
 
         <button type="submit">Add Product</button>
     </form>
+
+    <footer>
+        <p>Copyright © 2024 - 2025 Corta, All Rights Reserved.</p>
+    </footer>
 
 </body>
 </html>
