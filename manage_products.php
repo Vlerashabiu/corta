@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = $_POST['name'];
         $price = $_POST['price'];
         $image = $_POST['image'];
-        $added_by = $_SESSION['username']; // Merr emrin e përdoruesit të kyçur
+        $added_by = $_SESSION['username']; 
 
         $stmt = $conn->prepare("INSERT INTO products (name, price, image, added_by) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("sdss", $name, $price, $image, $added_by);
