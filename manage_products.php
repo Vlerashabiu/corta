@@ -52,6 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Error: " . $conn->error;
         }
     }
+    if (isset($_POST['delete_id'])) {
+        $delete_id = $_POST['delete_id'];
+        $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
+        $stmt->bind_param("i", $delete_id);
+    
+        if ($stmt->execute()) {
+            echo "Product deleted successfully!";
+        } else {
+            echo "Error deleting product: " . $conn->error;
+        }
+    }
 }
 ?>
 
@@ -83,8 +94,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Add Product</button>
     </form>
 
-    <footer class="site-footer">
-        <p>Copyright © 2024 - 2025 Corta, All Rights Reserved.</p>
-    </footer>
+    <?php
+    $result = $conn->query("SELECT id, name, price, image FROM products ORDER BY id DESC");
+
+    if ($result->num_rows > 0) {
+        echo "<h2>Product List</h2>";
+        echo "<table>";
+        echo "<tr><th>Image</th><th>Name</th><th>Price</th><th>Action</th></tr>";
+    
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td><img src='" . $row['image'] . "' alt='Product Image' width='50'></td>";
+            echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+            echo "<td>$" . number_format($row['price'], 2) . "</td>";
+            echo "<td><form method='POST'><input type='hidden' name='delete_id' value='" . $row['id'] . "'>
+                  <button type='submit' class='btn-delete'>Delete</button></form></td>";
+            echo "</tr>";
+        }
+    
+        echo "</table>";
+    } else {
+        echo "<p>No products found.</p>";
+    }
+    ?>
+
+
 </body>
 </html>

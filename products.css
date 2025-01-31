@@ -5,14 +5,6 @@ body {
     padding: 20px;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
 
 h1 {
     text-align: center;
@@ -20,7 +12,12 @@ h1 {
 }
 
 form {
-    margin-bottom: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 label {
@@ -33,21 +30,21 @@ input[type="text"],
 input[type="number"],
 button {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 button {
-    background: #28a745;
+    background: #8bd29b;
     color: white;
     font-weight: bold;
     cursor: pointer;
 }
 
 button:hover {
-    background: #218838;
+    background: #5eb070;
 }
 
 table {
@@ -58,7 +55,7 @@ table {
 
 table th, table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: center;
 }
 
@@ -66,8 +63,16 @@ table th {
     background: #f8f9fa;
 }
 
+img {
+    border-radius: 5px;
+    width: 80px;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
 .btn-delete {
-    background: #dc3545;
+    background: #748f9c;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -75,16 +80,6 @@ table th {
 }
 
 .btn-delete:hover {
-    background: #c82333;
+    background: #677d89;
 }
-.site-footer{
-    position:fixed;
-    width: 100%;
-    bottom: 0;
-    background-color: rgb(202, 216, 190); 
-    color: rgb(143, 155, 132); 
-    padding:9px; 
-    text-align: center; 
-    font-size: 10px; 
-    right: 0;
-}
+
