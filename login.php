@@ -2,8 +2,10 @@
 session_start();
 include 'db.php';
 
+
 class LoginSystem{
     private $conn;
+
     public function __construct($conn){
         $this->conn =$conn;
     }
@@ -11,36 +13,41 @@ class LoginSystem{
         $stmt =$this->conn->prepare("SELECT * FROM users WHERE email =?");
         $stmt->bind_param("s",$email);
         $stmt->execute();
-        $result =$stmt-get_result();
+        $stmt->store_result();
 
-        if($result->num_rows >0){
-            $user= $result->fetch_assoc();
+        if($stmt->num_rows >0){
+            $stmt->bind_result($id,$username,$hashed_password,$role,$created_at,$email);
+            $stmt->fetch();
 
-            if(password_verify($password, $user['password'])){
-                $_SESSION['username']=$user['username'];
-                $_SESSION['email']=$user['email'];
-                $_SESSION['role']=$user['role'];
+            if(password_verify($password, $hashed_password)){
+                $_SESSION['id']=$id;
+                $_SESSION['username']=$username;
+                $_SESSION['email']=$email;
+                $_SESSION['role']=$role;
 
-                return $user['role'] === 'admin' ? "admin_dashboard.php" : "index.php";
+                return $role === 'admin' ? "admin_dashboard.php" : "index.php";
 
             }
         }
         return false;
     }
 }
+$loginSystem=new LoginSystem($conn);
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $email =$_POST['email'];
     $password =$_POST['password'];
 
-    $loginSystem= new LoginSystem($conn);
-    $redirectPage =$loginSystem->loginUSer($email, $password);
+    if(!isset($conn)){
+        die("Database connection not found");
+    }
+    $redirectPage =$loginSystem->loginUser($email, $password);
 
     if($redirectPage){
         header("Location: $redirectPage");
         exit();
     }else{
-        $error= "Invalid email or password."
+        $error= "Invalid email or password.";
     }
 }
 

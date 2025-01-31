@@ -6,11 +6,12 @@ class Database {
     private $dbname;
     private $conn;
 
-    public function __construct($host, $user, $password, $dbname) {
+    public function __construct($host ="localhost", $user="root", $password="", $dbname="corta") {
         $this->host = $host;
         $this->user = $user;
         $this->password = $password;
         $this->dbname = $dbname;
+        $this->connect();
     }
 
     public function connect() {
@@ -19,8 +20,6 @@ class Database {
         if ($this->conn->connect_error) {
             die("Database connection failed: " . $this->conn->connect_error);
         }
-
-        echo "Lidhja me bazën e të dhënave është kryer me sukses!";
     }
 
     public function getConnection() {
@@ -34,4 +33,7 @@ class Database {
         }
     }
 }
+
+$db =new Database();
+$conn=$db->getConnection();
 ?>
