@@ -1,9 +1,9 @@
 <?php
-// Përfshijmë klasat që kemi krijuar
+
 include 'Slide.php';
 include 'NewsItem.php';
 
-// Instancimi i slides dhe lajmeve
+
 $slides = [
     new Slide("materials.jpg", "New Organic Products Launched", "January 12, 2025"),
     new Slide("aboutus.jpg", "Discount for First Orders", "January 12, 2025"),
@@ -265,26 +265,26 @@ a:hover {
         <div class="title">CORTA</div>
         <a href="home.html">Home</a>
         <a href="store.html">Store</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="contact.html">ContactUs</a>
         <a href="news.html">News</a>
         <button class="sign-up"><a href="signup.html">Sign up</a></button>
         <button class="log-in"><a href="login.html">Log in</a></button>
     </header>
 
-    <!-- Slider -->
+   
     <div class="slider">
         <?php
         foreach ($slides as $slide) {
-            $slide->render();  // Thirr funksionin për të shfaqur çdo slide
+            $slide->render();  
         }
         ?>
     </div>
 
-    <!-- News Items -->
+  
     <div class="image">
         <?php
         foreach ($news as $item) {
-            $item->render();  // Thirr funksionin për të shfaqur çdo artikull lajmi
+            $item->render(); 
         }
         ?>
     </div>
