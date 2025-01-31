@@ -2,6 +2,22 @@
 <?php
 include 'db.php'; 
 
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$dbname = 'corta';
+
+$database = new Database($host, $user, $password, $dbname);
+$database->connect();
+$conn = $database->getConnection();
+
+function validateInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = validateInput($_POST['name']);
     $email = validateInput($_POST['email']);
@@ -23,13 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
     }
 }
-
-function validateInput($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+$database->closeConnection();
 ?>
 
 <!DOCTYPE html>

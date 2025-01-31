@@ -1,14 +1,37 @@
 <?php
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$dbname = 'corta';
+class Database {
+    private $host;
+    private $user;
+    private $password;
+    private $dbname;
+    private $conn;
 
-$conn = new mysqli($host, $user, $password, $dbname);
+    public function __construct($host, $user, $password, $dbname) {
+        $this->host = $host;
+        $this->user = $user;
+        $this->password = $password;
+        $this->dbname = $dbname;
+    }
 
-if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
+    public function connect() {
+        $this->conn = new mysqli($this->host, $this->user, $this->password, $this->dbname);
+
+        if ($this->conn->connect_error) {
+            die("Database connection failed: " . $this->conn->connect_error);
+        }
+
+        echo "Lidhja me bazën e të dhënave është kryer me sukses!";
+    }
+
+    public function getConnection() {
+        return $this->conn;
+    }
+
+    public function closeConnection() {
+        if ($this->conn) {
+            $this->conn->close();
+            echo "Lidhja me bazën e të dhënave është mbyllur.";
+        }
+    }
 }
-echo "Lidhja me data bazen eshte kryer me sukses!";
 ?>
-
