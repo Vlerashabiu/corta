@@ -77,3 +77,14 @@ table th {
 .btn-delete:hover {
     background: #c82333;
 }
+.site-footer{
+    position:fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: rgb(202, 216, 190); 
+    color: rgb(143, 155, 132); 
+    padding:9px; 
+    text-align: center; 
+    font-size: 10px; 
+    right: 0;
+}

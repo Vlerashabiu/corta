@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Add Product</button>
     </form>
 
-    <footer>
+    <footer class="site-footer">
         <p>Copyright © 2024 - 2025 Corta, All Rights Reserved.</p>
     </footer>
 </body>
