@@ -1,50 +1,49 @@
 <?php
 session_start();
+include 'db.php';
 
-$servername = "localhost";
-$username = "root"; 
-$password = ""; 
-$dbname = "corta"; 
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    
-    $sql = "SELECT * FROM users WHERE email = '$email'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        
-        
-        if (password_verify($password, $row['password'])) {
-            
-           
-            $_SESSION['username'] = $row['username'];  
-            $_SESSION['email'] = $row['email']; 
-            $_SESSION['role'] = $row['role'];
-
-            if ($row['role'] == 'admin') {
-                header("Location: admin_dashboard.php");
-            } else {
-                header("Location: index.php");
-            }
-        } else {
-            echo "Invalid credentials.";
-        }
-    } else {
-        echo "No user found with this email.";
+class LoginSystem{
+    private $conn;
+    public function __construct($conn){
+        $this->conn =$conn;
     }
+    public function loginUser($email, $password){
+        $stmt =$this->conn->prepare("SELECT * FROM users WHERE email =?");
+        $stmt->bind_param("s",$email);
+        $stmt->execute();
+        $result =$stmt-get_result();
 
-    $conn->close();
+        if($result->num_rows >0){
+            $user= $result->fetch_assoc();
+
+            if(password_verify($password, $user['password'])){
+                $_SESSION['username']=$user['username'];
+                $_SESSION['email']=$user['email'];
+                $_SESSION['role']=$user['role'];
+
+                return $user['role'] === 'admin' ? "admin_dashboard.php" : "index.php";
+
+            }
+        }
+        return false;
+    }
 }
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $email =$_POST['email'];
+    $password =$_POST['password'];
+
+    $loginSystem= new LoginSystem($conn);
+    $redirectPage =$loginSystem->loginUSer($email, $password);
+
+    if($redirectPage){
+        header("Location: $redirectPage");
+        exit();
+    }else{
+        $error= "Invalid email or password."
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
