@@ -1,33 +1,60 @@
 <?php
 session_start();
+include 'db.php';
 
-$servername = "localhost";
-$username = "root";
-$password = ""; 
-$dbname = "corta"; 
+class SignupSystem{
+    private $conn;
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+    public function __construct($conn){
+        $this->conn=$conn;
+    }
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    public function registerUser($username,$email,$password){
+        $stmt=$this->conn->prepare("SELECT id FROM users WHERE email =?");
+        $stmt->bind_param("s",$email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if($stmt->num_rows > 0){
+            return "Email already exists";
+        }
+
+        $hashedPassword= password_hash($password, PASSWORD_DEFAULT);
+        $role='user';
+
+        $stmt=$this->conn->prepare("INSERT INTO users (username, email, password, role) VALUES (?,?,?,?)");
+        $stmt->bind_param("ssss",$username, $email, $hashedPassword, $role);
+
+        if($stmt->execute()){
+            return true;
+        }else{
+            return "Error: Could not register user.";
+        }
+    }
 }
+$signupSystem= new SignupSystem($conn);
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); 
-    $role = 'user'; 
+    $password = $_POST['password'];
+    $confirmPassword=$_POST['confirmPassword'];
 
-    $sql = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$password', '$role')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-        header("Location: login.php"); 
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    if($password !== $confirmPassword){
+        $error="Passwords do not match";
+    }else{
+        if(!isset($conn)){
+            die("Database connection not found");
+        }
+        $result = $signupSystem->registerUser($username, $email, $password);
+        if($result === true){
+            header("Location: login.php");
+            exit();
+        }else{
+            $error=$result;
+        }
     }
-
-    $conn->close();
 }
 ?>
 <!DOCTYPE html>
