@@ -13,12 +13,12 @@
 <body>
 <header class="navbar">
     <div class ="title">CORTA</div>
-       <a href="home.html">Home</a>
-       <a href="store.html">Store</a>
-       <a href="contact.html">ContactUs</a>
-       <a href="news.html">News</a>
-        <button class="sign-up"> <a href="signup.html">Sign up</a> </button>
-        <button class ="log-in"> <a href="login.html">Log in</a> </button>
+       <a href="index.php">Home</a>
+       <a href="store.php">Store</a>
+       <a href="contact.php">ContactUs</a>
+       <a href="news.php">News</a>
+        <button class="sign-up"> <a href="signup.php">Sign up</a> </button>
+        <button class ="log-in"> <a href="login.php">Log in</a> </button>
 </header>
 
 
@@ -35,7 +35,7 @@
         <img src="home2.jpg" alt="Image 2">
     </div>
 </div> 
-<a href="store.html" class="shop">SHOP NOW</a>
+<a href="store.php" class="shop">SHOP NOW</a>
 
 
 <footer class="site-footer">

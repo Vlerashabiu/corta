@@ -1,21 +1,27 @@
 <?php
+session_start();
+include 'db.php';
+include 'PasswordReset.php';
 
-include 'passwordReset.php';
+$db = new Database();
+$passwordReset = new PasswordReset($db);
+$error = "";
 
-$db= new Database();
-$passwordReset=new PasswordReset($db);
+if (!isset($_SESSION['reset_email'])) {
+    die("Session expired. Please start the reset process again.");
+}
 
-if($_SERVER["REQUEST_METHOD"]== "POST"){
-    $user_code=implode("",$_POST["code"]);
-    $email=$_SESSION['email'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user_code = implode("", $_POST["code"]);
+    $email = $_SESSION['reset_email'];
 
-    $verificationResult=$passwordReset->verifyCode($user_code,$email);
-    
-    if($verificationResult === "valid"){
+    $verificationResult = $passwordReset->verifyCode($email, $user_code);
+
+    if ($verificationResult === "valid") {
         header("Location: resetpassword.php");
         exit();
-    }else{
-        $error="Incorrect or expired code";
+    } else {
+        $error = "Incorrect or expired code.";
     }
 }
 ?>
@@ -62,6 +68,6 @@ if($_SERVER["REQUEST_METHOD"]== "POST"){
            
     </footer>
   
-    <script src="forgotpasswordvalidation.js" defer></script>
+
 </body>
 </html>
