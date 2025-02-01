@@ -1,13 +1,11 @@
 <?php
-session_start();
-if ($_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
-    exit();
-}
 
+require_once "sessionManager.php";
+require_once "db.php";
+require_once "NewsManager.php";
 
-include 'db.php'; 
-
+$db = new Database();
+$newsManager = new NewsManager($db);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'add') {
@@ -16,15 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $image_url = $_POST['image_url'];
         $date = date('Y-m-d');
 
-        $stmt = $conn->prepare("INSERT INTO news (title,description,image_url, date) VALUES (?, ?, ?,?)");
-        $stmt->bind_param("ssss", $title, $description, $image_url, $date);
-        if ($stmt->execute()) {
+        if ($newsManager->addNews($title, $description, $image_url)) {
             echo "<p style='color:green;'>News added successfully!</p>";
         } else {
-            echo "<p style='color:red;'>Error: " . $conn->error . "</p>";
+            echo "<p style='color:red;'>Error adding news.</p>";
         }
     }
 }
+$newsList = $newsManager->getAllNews();
 ?>
 
 <!DOCTYPE html>
@@ -53,22 +50,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     </form>
 
     <h2>Existing News</h2>
-    <?php
-
-   $result = $conn->query("SELECT * FROM news");
-    if ($result && $result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-          echo "<div>";
-          echo "<h3>{$row['title']}</h3>";
-          echo "<p>{$row['description']}</p>";
-          echo "<img src='{$row['image_url']}' alt='News Image' style='width:100px; height:auto;'>";
-          echo "<p>Published on: {$row['date']}</p>";  
-          echo "</div>";
-       }
-    } else {
-       echo "<p>No news available.</p>";
-      }
-   ?>
+    <?php if (!empty($newsList)) : ?>
+        <?php foreach ($newsList as $news) : ?>
+            <div>
+                <h3><?= htmlspecialchars($news['title']); ?></h3>
+                <p><?= htmlspecialchars($news['description']); ?></p>
+                <img src="<?= htmlspecialchars($news['image_url']); ?>" alt="News Image" style="width:100px; height:auto;">
+                <p>Published on: <?= htmlspecialchars($news['date']); ?></p>
+            </div>
+        <?php endforeach; ?>
+    <?php else : ?>
+        <p>No news available.</p>
+    <?php endif; ?>
 </body>
 </html>
 
