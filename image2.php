@@ -259,7 +259,7 @@ $product = new Product("Urban Denim Bag", "100% Organic Cotton Denim", 68.00, "f
 <body>
     <header class="navbar">
         <div class="title">CORTA</div>
-        <a href="home.php">Home</a>
+        <a href="index.php">Home</a>
         <a href="store.php">Store</a>
         <a href="contact.php">ContactUs</a>
         <a href="news.php">News</a>
@@ -267,8 +267,8 @@ $product = new Product("Urban Denim Bag", "100% Organic Cotton Denim", 68.00, "f
         <?php if (isUserLoggedIn()): ?>
             <button class="log-in"><a href="logout.php">Logout</a></button>
         <?php else: ?>
-            <button class="log-in"><a href="login.php">Log in</a></button>
             <button class="sign-up"><a href="signup.php">Sign up</a></button>
+            <button class="log-in"><a href="login.php">Log in</a></button>
         <?php endif; ?>
     </header>
 
