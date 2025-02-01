@@ -1,5 +1,4 @@
 <?php
-// Krijimi i një klase për Navbar
 class Navbar {
     public function render() {
         echo '
@@ -15,7 +14,6 @@ class Navbar {
     }
 }
 
-// Krijimi i një klase për menaxhimin e çantës së blerjeve
 class Cart {
     private $quantity = 1;
 
@@ -54,7 +52,7 @@ class Cart {
     }
 }
 
-session_start(); // Aktivizimi i sesionit për menaxhimin e gjendjes së login
+session_start(); 
 ?>
 
 <!DOCTYPE html>
@@ -65,12 +63,13 @@ session_start(); // Aktivizimi i sesionit për menaxhimin e gjendjes së login
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Urban Denim Bag</title>
     <style>
-        *{
+    *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
 }
+        
  .navbar{
     position: fixed;
     top: 0;
@@ -129,6 +128,7 @@ a:hover{
 .sign-up:hover{
     background-color: #c3b59e;
 }
+
 
         .contanier {
             display: flex;

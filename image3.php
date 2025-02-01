@@ -64,7 +64,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ocean Breeze Linen Bag</title>
     <style>
-        *{
+   *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -129,6 +129,7 @@ a:hover{
 .sign-up:hover{
     background-color: #c3b59e;
 }
+
 
         .contanier {
             display: flex;
