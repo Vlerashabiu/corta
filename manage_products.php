@@ -6,22 +6,26 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
-$username = $_SESSION['username'];  
-$role = $_SESSION['role'];
+require_once 'db.php';
+require_once 'product.php';
+ 
+$db = new Database();
+$product = new Product($db);
 
-include 'db.php';  
+$username = $_SESSION['username'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action']) && $_POST['action'] === 'add') {
         $name = $_POST['name'];
         $price = $_POST['price'];
 
+        $image_url = 'uploads/foto2.png'; 
+
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
             $image_tmp_name = $_FILES['image']['tmp_name'];
             $image_name = $_FILES['image']['name'];
             $image_size = $_FILES['image']['size'];
             $image_ext = pathinfo($image_name, PATHINFO_EXTENSION);
-
             $new_image_name = uniqid('', true) . '.' . $image_ext;
             $upload_directory = 'uploads/';  
 
@@ -29,41 +33,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (in_array($image_ext, ['png', 'jpg', 'jpeg'])) {
                 if (move_uploaded_file($image_tmp_name, $upload_directory . $new_image_name)) {
                     $image_url = $upload_directory . $new_image_name;
-                } else {
-                    echo "Gabim gjatë ngarkimit të imazhit.";
-                    $image_url = '';  
                 }
-            } else {
-                echo "Përzgjedhni një imazh PNG, JPG ose JPEG.";
-                $image_url = '';  
             }
-        } else {
-            
-            $image_url = 'uploads/foto2.png';  
         }
-
-       
-        $stmt = $conn->prepare("INSERT INTO products (name, price, image, added_by) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("sdss", $name, $price, $image_url, $_SESSION['username']); 
-        
-        if ($stmt->execute()) {
+            
+        if ($product->addProduct($name, $price, $image_url, $username)) {
             echo "Product added successfully!";
         } else {
-            echo "Error: " . $conn->error;
+            echo "Error adding product.";
         }
     }
+
+       
     if (isset($_POST['delete_id'])) {
         $delete_id = $_POST['delete_id'];
-        $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
-        $stmt->bind_param("i", $delete_id);
-    
-        if ($stmt->execute()) {
+        if ($product->deleteProduct($delete_id)) {
             echo "Product deleted successfully!";
         } else {
-            echo "Error deleting product: " . $conn->error;
+            echo "Error deleting product.";
         }
     }
 }
+
+$products = $product->getProducts();
 ?>
 
 <!DOCTYPE html>
@@ -94,30 +86,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Add Product</button>
     </form>
 
-    <?php
-    $result = $conn->query("SELECT id, name, price, image FROM products ORDER BY id DESC");
-
-    if ($result->num_rows > 0) {
-        echo "<h2>Product List</h2>";
-        echo "<table>";
-        echo "<tr><th>Image</th><th>Name</th><th>Price</th><th>Action</th></tr>";
-    
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td><img src='" . $row['image'] . "' alt='Product Image' width='50'></td>";
-            echo "<td>" . htmlspecialchars($row['name']) . "</td>";
-            echo "<td>$" . number_format($row['price'], 2) . "</td>";
-            echo "<td><form method='POST'><input type='hidden' name='delete_id' value='" . $row['id'] . "'>
-                  <button type='submit' class='btn-delete'>Delete</button></form></td>";
-            echo "</tr>";
-        }
-    
-        echo "</table>";
-    } else {
-        echo "<p>No products found.</p>";
-    }
-    ?>
-
-
+    <h2>Product List</h2>
+    <?php if (!empty($products)) : ?>
+        <table>
+            <tr><th>Image</th><th>Name</th><th>Price</th><th>Action</th></tr>
+            <?php foreach ($products as $row) : ?>
+                <tr>
+                    <td><img src="<?= htmlspecialchars($row['image']); ?>" alt="Product Image" width="50"></td>
+                    <td><?= htmlspecialchars($row['name']); ?></td>
+                    <td>$<?= number_format($row['price'], 2); ?></td>
+                    <td>
+                        <form method="POST">
+                            <input type="hidden" name="delete_id" value="<?= $row['id']; ?>">
+                            <button type="submit" class="btn-delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php else : ?>
+        <p>No products found.</p>
+    <?php endif; ?>
 </body>
 </html>
