@@ -1,83 +1,87 @@
 <?php
+session_start();
 
-class Navbar {
-    public function render() {
-        echo '
-        <header class="navbar">
-            <div class="title">CORTA</div>
-            <a href="home.php">Home</a>
-            <a href="store.php">Store</a>
-            <a href="contact.php">ContactUs</a>
-            <a href="news.php">News</a>
-            <button class="sign-up"> <a href="signup.php">Sign up</a> </button>
-            <button class="log-in"> <a href="login.php">Log in</a></button>
-        </header>';
+class Product {
+    private $name;
+    private $price;
+    private $colors;
+    
+    public function __construct($name, $price, $colors) {
+        $this->name = $name;
+        $this->price = $price;
+        $this->colors = $colors;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getPrice() {
+        return $this->price;
+    }
+
+    public function getColors() {
+        return $this->colors;
     }
 }
 
+class User {
+    private $isLoggedIn;
+
+    public function __construct() {
+        $this->isLoggedIn = isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] === true;
+    }
+
+    public function isLoggedIn() {
+        return $this->isLoggedIn;
+    }
+
+    public function login() {
+        $_SESSION['userLoggedIn'] = true;
+    }
+
+    public function logout() {
+        session_unset();
+        session_destroy();
+    }
+}
 
 class Cart {
-    private $quantity = 1;
-    private $productName = "Canvas Coast Bag";
-    private $productPrice = 60.00;
+    private $items = [];
 
-    public function increaseQuantity() {
-        if ($this->quantity < 10) {
-            $this->quantity++;
-        } else {
-            echo "<script>alert('The maximum quantity is 10');</script>";
-        }
+    public function addItem($product, $quantity) {
+        $this->items[] = ['product' => $product, 'quantity' => $quantity];
     }
 
-    public function decreaseQuantity() {
-        if ($this->quantity > 1) {
-            $this->quantity--;
-        } else {
-            echo "<script>alert('Minimum quantity is 1');</script>";
-        }
-    }
-
-    public function getQuantity() {
-        return $this->quantity;
-    }
-
-    public function addToBag() {
-        $userLoggedIn = isset($_SESSION['userLoggedIn']) ? $_SESSION['userLoggedIn'] : false;
-
-        if ($userLoggedIn) {
-            echo "<script>alert('Item added to bag with quantity: " . $this->getQuantity() . "');</script>";
-        } else {
-            $this->loginPrompt();
-        }
-    }
-
-    private function loginPrompt() {
-        echo "<script>alert('Please login to continue'); window.location.href = 'login.php';</script>";
-    }
-
-    public function getProductDetails() {
-        return [
-            'name' => $this->productName,
-            'price' => $this->productPrice
-        ];
+    public function getItems() {
+        return $this->items;
     }
 }
 
-session_start(); 
-
-
+$product = new Product("Canvas Coast Bag", 60.00, ['Olive', 'Midnight', 'Fashion Grey', 'Sand']);
+$user = new User();
 $cart = new Cart();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($user->isLoggedIn()) {
+        $quantity = $_POST['quantity'] ?? 1; 
+        $cart->addItem($product, $quantity);
+        echo "Item added to bag with quantity: " . $quantity;
+    } else {
+        echo "<script>alert('Please login to continue');</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas Coast Bag</title>
-   <style>
-    *{
+    <title>Product Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <style>
+        *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -260,82 +264,82 @@ a:hover{
     padding:9px; 
     text-align: center; 
     font-size: 10px; 
- }
-   </style>
+}
+    </style>
 </head>
-
 <body>
-<?php
-    $navbar = new Navbar(); 
-    $navbar->render(); 
-?>
-
-<div class="contanier">
-    <div class="main1">
-        <img src="foto4.png" alt="Canvas Coast Bag">
-    </div>
-    <div class="main2">
-        <h1><?php echo $cart->getProductDetails()['name']; ?></h1>
-        <h3>100% Organic Cotton Canvas</h3>
-        <p>$<?php echo number_format($cart->getProductDetails()['price'], 2); ?></p>
-        <label for="color" class="label_color">Color</label>
-        <br>
-        <select name="color" id="color">
-            <option value="Olive">Olive</option>
-            <option value="Midnight">Midnight</option>
-            <option value="Fashion Grey">Fashion Grey</option>
-            <option value="Sand">Sand</option>
-        </select>
-    </div>
-
-    <div class="sasia-selector">
-        <div class="sasia-button" onclick="decrease()">-</div>
-        <div class="sasia-display" id="sasia">1</div>
-        <div class="sasia-button" onclick="increase()">+</div>
-    </div>
-
-    <button class="button1" onclick="addToBag()">Add to bag</button>
-</div>
-
-<script>
-    let sasia = 1;
-
-    function increase() {
-        sasia++;
-        document.getElementById("sasia").innerText = sasia;
-    }
-
-    function decrease() {
-        if (sasia > 1) {
-            sasia--;
-            document.getElementById("sasia").innerText = sasia;
-        } else {
-            alert("Minimum quantity is 1");
-        }
-    }
-
-    function addToBag() {
-        <?php if(isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] === true): ?>
-            alert("Item added to bag with quantity: " + sasia);
+    <header class="navbar">
+        <div class="title">CORTA</div>
+        <a href="home.php">Home</a>
+        <a href="store.php">Store</a>
+        <a href="contact.php">ContactUs</a>
+        <a href="news.php">News</a>
+        <?php if ($user->isLoggedIn()): ?>
+            <button class="sign-up"><a href="logout.php">Log out</a></button>
         <?php else: ?>
-            loginPrompt();
+            <button class="sign-up"><a href="login.php">Log in</a></button>
         <?php endif; ?>
-    }
+    </header>
 
-    function loginPrompt() {
-        alert("Please login to continue");
-        window.location.href = "login.php";
-    }
-</script>
+    <div class="container">
+        <div class="main1">
+            <img src="foto4.png" alt="Product Image">
+        </div>
+        <div class="main2">
+            <h1><?php echo $product->getName(); ?></h1>
+            <h3>100% Organic Cotton Canvas</h3>
+            <p>$<?php echo $product->getPrice(); ?></p>
+            <label for="color" class="label_color">Color</label>
+            <br>
+            <select name="color" id="color">
+                <?php foreach ($product->getColors() as $color): ?>
+                    <option value="<?php echo $color; ?>"><?php echo $color; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
-<footer class="site-footer">
-    <div class="footer">
-        <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
+        <form method="POST" action="">
+            <div class="sasia-selector">
+                <div class="sasia-button" onclick="decrease()">-</div>
+                <div class="sasia-display" id="sasia">1</div>
+                <div class="sasia-button" onclick="increase()">+</div>
+            </div>
+            <input type="hidden" name="quantity" id="quantity" value="1">
+            <button class="button1" type="submit">Add to bag</button>
+        </form>
     </div>
-</footer>
 
+    <footer class="site-footer">
+        <div class="footer">
+            <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let quantity = 1; 
+
+        function increase() {
+            if (quantity < 10) {
+                quantity++; 
+                document.getElementById("sasia").innerText = quantity; 
+                document.getElementById("quantity").value = quantity;
+            } else {
+                alert("The maximum quantity is 10");
+            }
+        }
+
+        function decrease() {
+            if (quantity > 1) {
+                quantity--; 
+                document.getElementById("sasia").innerText = quantity; 
+                document.getElementById("quantity").value = quantity;
+            } else {
+                alert("Minimum quantity is 1");
+            }
+        }
+    </script>
 </body>
-
 </html>
+
 
 

@@ -1,24 +1,39 @@
 <?php
+class Product {
+    public $name;
+    public $price;
+    public $image;
+    public $colors;
 
-class Navbar {
-    public function render() {
-        echo '
-        <header class="navbar">
-            <div class="title">CORTA</div>
-            <a href="home.php">Home</a>
-            <a href="store.php">Store</a>
-            <a href="contact.php">ContactUs</a>
-            <a href="news.php">News</a>
-            <button class="sign-up"> <a href="signup.php">Sign up</a> </button>
-            <button class="log-in"> <a href="login.php">Log in</a></button>
-        </header>';
+    public function __construct($name, $price, $image, $colors) {
+        $this->name = $name;
+        $this->price = $price;
+        $this->image = $image;
+        $this->colors = $colors;
+    }
+
+    public function displayProduct() {
+        echo "<div class='main2'>
+                <h1>{$this->name}</h1>
+                <h3>{$this->price}</h3>
+                <p>\${$this->price}</p>
+                <label for='color' class='label_color'>Color</label><br>
+                <select name='color' id='color'>";
+        foreach ($this->colors as $color) {
+            echo "<option value='$color'>$color</option>";
+        }
+        echo "</select></div>";
     }
 }
 
 class Cart {
-    private $quantity = 1;
+    private $quantity;
 
-    public function increaseQuantity() {
+    public function __construct($quantity = 1) {
+        $this->quantity = $quantity;
+    }
+
+    public function increase() {
         if ($this->quantity < 10) {
             $this->quantity++;
         } else {
@@ -26,7 +41,7 @@ class Cart {
         }
     }
 
-    public function decreaseQuantity() {
+    public function decrease() {
         if ($this->quantity > 1) {
             $this->quantity--;
         } else {
@@ -37,34 +52,36 @@ class Cart {
     public function getQuantity() {
         return $this->quantity;
     }
+}
 
-    public function addToBag() {
-        $userLoggedIn = isset($_SESSION['userLoggedIn']) ? $_SESSION['userLoggedIn'] : false;
-
-        if ($userLoggedIn) {
-            echo "<script>alert('Item added to bag with quantity: " . $this->getQuantity() . "');</script>";
-        } else {
-            $this->loginPrompt();
-        }
-    }
-
-    private function loginPrompt() {
-        echo "<script>alert('Please login to continue'); window.location.href = 'login.php';</script>";
+class User {
+    public static function isLoggedIn() {
+        return isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] === true;
     }
 }
 
-session_start(); 
+session_start();
+
+$product = new Product("Ocean Breeze Linen Bag", 76.00, "foto3.png", ["Sea Green", "Light Marble", "Charcoal"]);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addToBag'])) {
+    if (User::isLoggedIn()) {
+        echo "<script>alert('Item added to bag with quantity: " . $_POST['quantity'] . "');</script>";
+    } else {
+        echo "<script>window.location.href = 'login.php';</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ocean Breeze Linen Bag</title>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <style>
-   *{
+       *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -129,7 +146,6 @@ a:hover{
 .sign-up:hover{
     background-color: #c3b59e;
 }
-
 
         .contanier {
             display: flex;
@@ -250,79 +266,65 @@ a:hover{
     text-align: center; 
     font-size: 10px; 
  }
+        
     </style>
 </head>
-
 <body>
-<?php
-    $navbar = new Navbar(); 
-    $navbar->render(); 
-?>
+    <header class="navbar">
+        <div class="title">CORTA</div>
+        <a href="home.php">Home</a>
+        <a href="store.php">Store</a>
+        <a href="contact.php">ContactUs</a>
+        <a href="news.php">News</a>
+        <button class="sign-up"><a href="signup.php">Sign up</a></button>
+        <button class="log-in"><a href="login.php">Log in</a></button>
+    </header>
 
-<div class="contanier">
-    <div class="main1">
-        <img src="foto3.png" alt="Ocean Breeze Linen Bag">
+    <div class="contanier">
+        <div class="main1">
+            <img src="<?= $product->image ?>" alt="">
+        </div>
+        <?php $product->displayProduct(); ?>
+        
+        <form method="POST" action="">
+            <div class="sasia-selector">
+                <div class="sasia-button" onclick="decrease()">-</div>
+                <div class="sasia-display" id="sasia"><?= $cart->getQuantity() ?></div>
+                <div class="sasia-button" onclick="increase()">+</div>
+            </div>
+            
+            <input type="hidden" name="quantity" value="<?= $cart->getQuantity() ?>">
+            <button class="button1" type="submit" name="addToBag">Add to bag</button>
+        </form>
     </div>
-    <div class="main2">
-        <h1>Ocean Breeze Linen <br>Bag</h1>
-        <h3>100% Organic Linen</h3>
-        <p>$76.00</p>
-        <label for="color" class="label_color">Color</label><br>
-        <select name="color" id="color">
-            <option value="Sea Green">Sea Green</option>
-            <option value="Light Marble">Light Marble</option>
-            <option value="Charcoal">Charcoal</option>
-        </select>
-    </div>
 
-    <div class="sasia-selector">
-        <div class="sasia-button" onclick="decrease()">-</div>
-        <div class="sasia-display" id="sasia">1</div>
-        <div class="sasia-button" onclick="increase()">+</div>
-    </div>
+    <footer class="site-footer">
+        <div class="footer">
+            <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
+        </div>
+    </footer>
 
-    <button class="button1" onclick="addToBag()">Add to bag</button>
-</div>
+    <script>
+        let sasia = <?= $cart->getQuantity() ?>;
 
-<script>
-    let sasia = 1;
-
-    function increase() {
-        sasia++;
-        document.getElementById("sasia").innerText = sasia;
-    }
-
-    function decrease() {
-        if (sasia > 1) {
-            sasia--;
-            document.getElementById("sasia").innerText = sasia;
-        } else {
-            alert("Minimum quantity is 1");
+        function increase() {
+            if (sasia < 10) {
+                sasia++;
+                document.getElementById("sasia").innerText = sasia;
+            } else {
+                alert("The maximum quantity is 10");
+            }
         }
-    }
 
-    function addToBag() {
-        let userLoggedIn = localStorage.getItem('userLoggedIn');
-
-        if (userLoggedIn === "true") {
-            alert("Item added to bag with quantity: " + sasia);
-        } else {
-            loginPrompt();
+        function decrease() {
+            if (sasia > 1) {
+                sasia--;
+                document.getElementById("sasia").innerText = sasia;
+            } else {
+                alert("Minimum quantity is 1");
+            }
         }
-    }
-
-    function loginPrompt() {
-        alert("Please login to continue");
-        window.location.href = "login.php";
-    }
-</script>
-
-<footer class="site-footer">
-    <div class="footer">
-        <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
-    </div>
-</footer>
-
+    </script>
 </body>
-
 </html>
+
