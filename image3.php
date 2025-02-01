@@ -1,5 +1,5 @@
 <?php
-$cart = new Cart();
+
 class Navbar {
     public function render() {
         echo '
@@ -249,7 +249,6 @@ a:hover{
     text-align: center; 
     font-size: 10px; 
  }
-        
     </style>
 </head>
 
@@ -261,19 +260,17 @@ a:hover{
 
 <div class="contanier">
     <div class="main1">
-        <img src="foto4.png" alt="Canvas Coast Bag">
+        <img src="foto3.png" alt="Ocean Breeze Linen Bag">
     </div>
     <div class="main2">
-        <h1><?php echo $cart->getProductDetails()['name']; ?></h1>
-        <h3>100% Organic Cotton Canvas</h3>
-        <p>$<?php echo number_format($cart->getProductDetails()['price'], 2); ?></p>
-        <label for="color" class="label_color">Color</label>
-        <br>
+        <h1>Ocean Breeze Linen <br>Bag</h1>
+        <h3>100% Organic Linen</h3>
+        <p>$76.00</p>
+        <label for="color" class="label_color">Color</label><br>
         <select name="color" id="color">
-            <option value="Olive">Olive</option>
-            <option value="Midnight">Midnight</option>
-            <option value="Fashion Grey">Fashion Grey</option>
-            <option value="Sand">Sand</option>
+            <option value="Sea Green">Sea Green</option>
+            <option value="Light Marble">Light Marble</option>
+            <option value="Charcoal">Charcoal</option>
         </select>
     </div>
 
@@ -285,7 +282,6 @@ a:hover{
 
     <button class="button1" onclick="addToBag()">Add to bag</button>
 </div>
-
 
 <script>
     let sasia = 1;

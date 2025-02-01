@@ -1,22 +1,71 @@
 <?php
-// Definimi i klasës Cart
-class Cart {
-    private $productDetails;
 
-    public function __construct() {
-        // Krijimi i detajeve të produktit
-        $this->productDetails = [
-            'name' => 'Canvas Coast Bag',
-            'price' => 60.00
-        ];
-    }
-
-    public function getProductDetails() {
-        return $this->productDetails;
+class Navbar {
+    public function render() {
+        echo '
+        <header class="navbar">
+            <div class="title">CORTA</div>
+            <a href="home.php">Home</a>
+            <a href="store.php">Store</a>
+            <a href="contact.php">ContactUs</a>
+            <a href="news.php">News</a>
+            <button class="sign-up"> <a href="signup.php">Sign up</a> </button>
+            <button class="log-in"> <a href="login.php">Log in</a></button>
+        </header>';
     }
 }
 
-// Krijimi i një instance të klasës Cart
+
+class Cart {
+    private $quantity = 1;
+    private $productName = "Canvas Coast Bag";
+    private $productPrice = 60.00;
+
+    public function increaseQuantity() {
+        if ($this->quantity < 10) {
+            $this->quantity++;
+        } else {
+            echo "<script>alert('The maximum quantity is 10');</script>";
+        }
+    }
+
+    public function decreaseQuantity() {
+        if ($this->quantity > 1) {
+            $this->quantity--;
+        } else {
+            echo "<script>alert('Minimum quantity is 1');</script>";
+        }
+    }
+
+    public function getQuantity() {
+        return $this->quantity;
+    }
+
+    public function addToBag() {
+        $userLoggedIn = isset($_SESSION['userLoggedIn']) ? $_SESSION['userLoggedIn'] : false;
+
+        if ($userLoggedIn) {
+            echo "<script>alert('Item added to bag with quantity: " . $this->getQuantity() . "');</script>";
+        } else {
+            $this->loginPrompt();
+        }
+    }
+
+    private function loginPrompt() {
+        echo "<script>alert('Please login to continue'); window.location.href = 'login.php';</script>";
+    }
+
+    public function getProductDetails() {
+        return [
+            'name' => $this->productName,
+            'price' => $this->productPrice
+        ];
+    }
+}
+
+session_start(); 
+
+
 $cart = new Cart();
 ?>
 
@@ -26,85 +75,80 @@ $cart = new Cart();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corta - Canvas Coast Bag</title>
-    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
-    <style>
-        /* CSS e jashtme */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
+    <title>Canvas Coast Bag</title>
+   <style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+        
+ .navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(219, 217, 219, 0.4);
+    z-index: 10;
+}
+.title{
+   font-size: 30px;
+   font-family: 'Major Mono Display';
+   letter-spacing: 8px;
+   cursor: pointer;
+   margin-top: 15px;
+}
+.navbar a{
+    float: left;
+    text-decoration: none;
+    color: rgb(115,132, 100);
+    margin-right: 14px;
+    margin-left: 10px;
+    font-size: 17px;
+   
+}
+a:hover{
+    text-decoration: none;
+}
 
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: white;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0px 4px 8px rgba(219, 217, 219, 0.4);
-            z-index: 10;
-        }
-
-        .title {
-            font-size: 30px;
-            font-family: 'Major Mono Display';
-            letter-spacing: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        .navbar a {
-            float: left;
-            text-decoration: none;
-            color: rgb(115, 132, 100);
-            margin-right: 14px;
-            margin-left: 10px;
-            font-size: 17px;
-        }
-
-        a:hover {
-            text-decoration: none;
-        }
-
-        .log-in {
-            float: right;
-            background-color: #e2d8c8;
-            color: white;
-            border: none;
-            border-radius: 15px;
-            padding: 5px 10px;
-            cursor: pointer;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        .log-in:hover {
-            background-color: #c3b59e;
-        }
-
-        .sign-up {
-            float: right;
-            background-color: #e2d8c8;
-            color: white;
-            border-radius: 15px;
-            border: none;
-            padding: 5px 10px;
-            margin-right: 20px;
-            cursor: pointer;
-        }
-
-        .sign-up:hover {
-            background-color: #c3b59e;
-        }
+.log-in{
+    float: right;
+    background-color: #e2d8c8;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.log-in:hover{
+    background-color: #c3b59e;
+}
+.sign-up{
+    float: right;
+    background-color: #e2d8c8;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.sign-up:hover{
+    background-color: #c3b59e;
+}
 
         .contanier {
             display: flex;
+            
             justify-content: space-around;
         }
+
 
         .main1 img {
             border: 1px solid #ccc;
@@ -112,14 +156,14 @@ $cart = new Cart();
             height: 600px;
             margin-top: 10rem;
         }
-
-        .main2 {
-            margin-top: 10rem;
-        }
+.main2{
+    margin-top: 10rem;
+}
 
         .main2 h1 {
             font-size: 55px;
             font-weight: 600;
+
         }
 
         .main2 h3 {
@@ -135,12 +179,15 @@ $cart = new Cart();
             margin-right: 24.2rem;
         }
 
+
+
         #color {
             width: 70%;
             height: 5vh;
             font-size: 1rem;
             padding: 0.5rem;
             border: 3px solid gray;
+       
         }
 
         .label_color {
@@ -156,6 +203,8 @@ $cart = new Cart();
             position: absolute;
             margin-top: 33.5rem;
             margin-left: 29.3rem;
+            
+
         }
 
         .sasia-button {
@@ -167,6 +216,7 @@ $cart = new Cart();
             border: 1px solid #ccc;
             cursor: pointer;
             user-select: none;
+            
         }
 
         .sasia-display {
@@ -185,106 +235,107 @@ $cart = new Cart();
             margin-left: 29.3rem;
             border-radius: 10px;
         }
-
-        .button1:hover {
+        .button1:hover{
             cursor: pointer;
             background-color: #c3b59e;
         }
-
-        .site-footer {
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            background-color: rgb(202, 216, 190);
-            color: rgb(143, 155, 132);
-            padding: 9px;
-            text-align: center;
-            font-size: 10px;
-        }
-    </style>
+        
+        .container-footer{
+    width: 100%;
+    height: 10vh;
+    margin-top: 0.5rem;
+    background-color: gray;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+ 
+}
+.site-footer{
+    position:fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: rgb(202, 216, 190); 
+    color: rgb(143, 155, 132); 
+    padding:9px; 
+    text-align: center; 
+    font-size: 10px; 
+ }
+   </style>
 </head>
 
 <body>
-    <header class="navbar">
-        <div class="title">CORTA</div>
-        <a href="home.html">Home</a>
-        <a href="store.html">Store</a>
-        <a href="contact.html">ContactUs</a>
-        <a href="news.html">News</a>
-        <button class="sign-up"> <a href="signup.html">Sign up</a> </button>
-        <button class="log-in"> <a href="login.html">Log in</a></button>
-    </header>
+<?php
+    $navbar = new Navbar(); 
+    $navbar->render(); 
+?>
 
-    <div class="contanier">
-        <div class="main1">
-            <img src="foto4.png" alt="Canvas Coast Bag">
-        </div>
-        <div class="main2">
-            <h1><?php echo $cart->getProductDetails()['name']; ?></h1>
-            <h3>100% Organic Cotton Canvas</h3>
-            <p>$<?php echo number_format($cart->getProductDetails()['price'], 2); ?></p>
-            <label for="color" class="label_color">Color</label>
-            <br>
-            <select name="color" id="color">
-                <option value="Olive">Olive</option>
-                <option value="Midnight">Midnight</option>
-                <option value="Fashion Grey">Fashion Grey</option>
-                <option value="Sand">Sand</option>
-            </select>
-        </div>
-
-        <div class="sasia-selector">
-            <div class="sasia-button" onclick="decrease()">-</div>
-            <div class="sasia-display" id="sasia">1</div>
-            <div class="sasia-button" onclick="increase()">+</div>
-        </div>
-
-        <button class="button1" onclick="addToBag()">Add to bag</button>
+<div class="contanier">
+    <div class="main1">
+        <img src="foto4.png" alt="Canvas Coast Bag">
+    </div>
+    <div class="main2">
+        <h1><?php echo $cart->getProductDetails()['name']; ?></h1>
+        <h3>100% Organic Cotton Canvas</h3>
+        <p>$<?php echo number_format($cart->getProductDetails()['price'], 2); ?></p>
+        <label for="color" class="label_color">Color</label>
+        <br>
+        <select name="color" id="color">
+            <option value="Olive">Olive</option>
+            <option value="Midnight">Midnight</option>
+            <option value="Fashion Grey">Fashion Grey</option>
+            <option value="Sand">Sand</option>
+        </select>
     </div>
 
-    <script>
-        let sasia = 1;
+    <div class="sasia-selector">
+        <div class="sasia-button" onclick="decrease()">-</div>
+        <div class="sasia-display" id="sasia">1</div>
+        <div class="sasia-button" onclick="increase()">+</div>
+    </div>
 
-        function increase() {
-            if (sasia < 10) {
-                sasia++;
-                document.getElementById("sasia").innerText = sasia;
-            } else {
-                alert("The maximum quantity is 10");
-            }
+    <button class="button1" onclick="addToBag()">Add to bag</button>
+</div>
+
+<script>
+    let sasia = 1;
+
+    function increase() {
+        sasia++;
+        document.getElementById("sasia").innerText = sasia;
+    }
+
+    function decrease() {
+        if (sasia > 1) {
+            sasia--;
+            document.getElementById("sasia").innerText = sasia;
+        } else {
+            alert("Minimum quantity is 1");
         }
+    }
 
-        function decrease() {
-            if (sasia > 1) {
-                sasia--;
-                document.getElementById("sasia").innerText = sasia;
-            } else {
-                alert("Minimum quantity is 1");
-            }
-        }
+    function addToBag() {
+        <?php if(isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] === true): ?>
+            alert("Item added to bag with quantity: " + sasia);
+        <?php else: ?>
+            loginPrompt();
+        <?php endif; ?>
+    }
 
-        function addToBag() {
-            let userLoggedIn = localStorage.getItem('userLoggedIn');
+    function loginPrompt() {
+        alert("Please login to continue");
+        window.location.href = "login.php";
+    }
+</script>
 
-            if (userLoggedIn === "true") {
-                alert("Item added to bag with quantity: " + sasia);
-            } else {
-                loginPrompt();
-            }
-        }
-
-        function loginPrompt() {
-            alert("Please login to continue");
-            window.location.href = "login.html";
-        }
-    </script>
-
-    <footer class="site-footer">
-        <div class="footer">
-            <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
-        </div>
-    </footer>
+<footer class="site-footer">
+    <div class="footer">
+        <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
+    </div>
+</footer>
 
 </body>
 
 </html>
+
+
