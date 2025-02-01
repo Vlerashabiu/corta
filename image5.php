@@ -71,58 +71,76 @@ $cart = new Cart();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco Cedar Bag</title>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <style>
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: white;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0px 4px 8px rgba(219, 217, 219, 0.4);
-            z-index: 10;
-        }
-        .title {
-            font-size: 30px;
-            font-family: 'Major Mono Display';
-            letter-spacing: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-        .navbar a {
-            float: left;
-            text-decoration: none;
-            color: rgb(115, 132, 100);
-            margin-right: 14px;
-            margin-left: 10px;
-            font-size: 17px;
-        }
-        a:hover {
-            text-decoration: none;
-        }
-        .log-in,
-        .sign-up {
-            float: right;
-            background-color: #e2d8c8;
-            color: white;
-            border: none;
-            border-radius: 15px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        .log-in:hover,
-        .sign-up:hover {
-            background-color: #c3b59e;
-        }
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+        
+ .navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(219, 217, 219, 0.4);
+    z-index: 10;
+}
+.title{
+   font-size: 30px;
+   font-family: 'Major Mono Display';
+   letter-spacing: 8px;
+   cursor: pointer;
+   margin-top: 15px;
+}
+.navbar a{
+    float: left;
+    text-decoration: none;
+    color: rgb(115,132, 100);
+    margin-right: 14px;
+    margin-left: 10px;
+    font-size: 17px;
+   
+}
+a:hover{
+    text-decoration: none;
+}
+
+.log-in{
+    float: right;
+    background-color: #e2d8c8;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.log-in:hover{
+    background-color: #c3b59e;
+}
+.sign-up{
+    float: right;
+    background-color: #e2d8c8;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.sign-up:hover{
+    background-color: #c3b59e;
+    
+}
 
         .container {
             display: flex;

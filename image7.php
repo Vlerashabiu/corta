@@ -39,7 +39,7 @@ class ProductPage {
             <title>Product Page</title>
             <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
             <style>
-              *{
+             *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -224,6 +224,7 @@ a:hover{
     text-align: center; 
     font-size: 10px; 
  }
+        
         
             </style>
         </head>

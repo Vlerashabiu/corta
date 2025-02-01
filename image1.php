@@ -1,72 +1,77 @@
 <?php
 session_start();
 
+// Klasa për Navbar
+class Navbar {
+    public function render() {
+        echo '<header class="navbar">
+                <div class="title">CORTA</div>
+                <a href="home.php">Home</a>
+                <a href="store.php">Store</a>
+                <a href="contact.php">ContactUs</a>
+                <a href="news.php">News</a>';
+        
+        if (!isset($_SESSION['userLoggedIn']) || $_SESSION['userLoggedIn'] != "true") {
+            echo '<button class="sign-up"><a href="signup.php">Sign up</a></button>
+                  <button class="log-in"><a href="login.php">Log in</a></button>';
+        }
+        
+        echo '</header>';
+    }
+}
+
+// Klasa për Footer
+class Footer {
+    public function render() {
+        echo '<footer class="site-footer">
+                <div class="footer">
+                    <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
+                </div>
+              </footer>';
+    }
+}
+
+// Klasa për të menaxhuar produktet dhe funksionet si shtimi në "bag"
 class Product {
-    public $name;
-    public $description;
-    public $price;
-    public $colorOptions;
+    private $quantity;
 
-    public function __construct($name, $description, $price, $colorOptions) {
-        $this->name = $name;
-        $this->description = $description;
-        $this->price = $price;
-        $this->colorOptions = $colorOptions;
+    public function __construct($quantity = 1) {
+        $this->quantity = $quantity;
     }
 
-    public function displayProduct() {
-        echo "<h1>" . $this->name . "</h1>";
-        echo "<h3>" . $this->description . "</h3>";
-        echo "<p>$" . $this->price . "</p>";
-        echo '<label for="color" class="label_color">Color</label><br>';
-        echo '<select name="color" id="color">';
-        foreach ($this->colorOptions as $color) {
-            echo "<option value='$color'>$color</option>";
-        }
-        echo '</select><br>';
-    }
-}
-
-class User {
-    private $isLoggedIn;
-
-    public function __construct() {
-        $this->isLoggedIn = isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] === true;
-    }
-
-    public function loginPrompt() {
-        if (!$this->isLoggedIn) {
-            echo "<script>alert('Please login to continue'); window.location.href = 'login.php';</script>";
+    public function increase() {
+        if ($this->quantity < 10) {
+            $this->quantity++;
         } else {
-            echo "<script>alert('Item added to bag');</script>";
+            return "The maximum quantity is 10";
         }
     }
 
-    public function login($username, $password) {
-        if ($username == 'user' && $password == 'password') {
-            $_SESSION['userLoggedIn'] = true;
-            echo "<script>alert('Logged in successfully');</script>";
+    public function decrease() {
+        if ($this->quantity > 1) {
+            $this->quantity--;
         } else {
-            echo "<script>alert('Invalid credentials');</script>";
+            return "Minimum quantity is 1";
         }
     }
 
-    public function logout() {
-        session_destroy();
-        echo "<script>alert('Logged out successfully');</script>";
+    public function addToBag() {
+        if (isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] == "true") {
+            return "Item added to bag with quantity: " . $this->quantity;
+        } else {
+            return "Please login to continue";
+        }
     }
 
-    public function checkLogin() {
-        return $this->isLoggedIn;
+    public function getQuantity() {
+        return $this->quantity;
     }
 }
 
-$product = new Product("Chic Corduroy Bag", "100% Organic Cotton Corduroy", 65.00, ["Olive", "Midnight", "Fashion Grey", "Sand"]);
-$user = new User();
-
-if (isset($_POST['add_to_bag'])) {
-    $user->loginPrompt();
-}
+// Instancimi i klasave dhe shfaqja e përmbajtjes
+$navbar = new Navbar();
+$footer = new Footer();
+$product = new Product(1); // Mund të ndryshoni këtë vlerë për të menaxhuar sasinë
 
 ?>
 
@@ -75,10 +80,11 @@ if (isset($_POST['add_to_bag'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page</title>
+    <title>Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <style>
-       *{
+    
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -264,60 +270,75 @@ a:hover{
     </style>
 </head>
 <body>
-    <header class="navbar">
-        <div class="title">CORTA</div>
-        <a href="home.php">Home</a>
-        <a href="store.php">Store</a>
-        <a href="contact.php">Contact Us</a>
-        <a href="news.php">News</a>
-        <button class="sign-up"><a href="signup.php">Sign Up</a></button>
-        <button class="log-in"><a href="login.php">Log In</a></button>
-    </header>
 
-    <div class="contanier">
-        <div class="main1">
-            <img src="foto1.png" alt="Product Image">
-        </div>
-        <div class="main2">
-            <?php
-                $product->displayProduct();
-            ?>
+<?php
+$navbar->render();
+?>
 
-            <form method="POST">
-                <div class="quantity-selector">
-                    <button type="button" class="quantity-button" onclick="decrease()">-</button>
-                    <span id="quantity" class="quantity-display">1</span>
-                    <button type="button" class="quantity-button" onclick="increase()">+</button>
-                </div>
-                <button type="submit" name="add_to_bag" class="button1">Add to Bag</button>
-            </form>
-        </div>
+<div class="contanier">
+    <div class="main1">
+        <img src="foto1.png" alt="">
+    </div>
+    <div class="main2">
+        <h1>Chic Corduroy <br> Bag</h1>
+        <h3>100% Organic Cotton Corduroy</h3>
+        <p>$65.00</p>
+        <label for="color" class="label_color">Color</label>
+        <br>
+        <select name="color" id="color">
+            <option value="Olive">Olive</option>
+            <option value="Midnight">Midnight</option>
+            <option value="Fashion Grey">Fashion Grey</option>
+            <option value="Sand">Sand</option>
+        </select>
     </div>
 
-    <script>
-        let quantity = 1;
+    <div class="sasia-selector">
+        <div class="sasia-button" onclick="decrease()">-</div>
+        <div class="sasia-display" id="sasia"><?php echo $product->getQuantity(); ?></div>
+        <div class="sasia-button" onclick="increase()">+</div>
+    </div>
 
-        function increase() {
-            if (quantity < 10) {
-                quantity++;
-                document.getElementById("quantity").innerText = quantity;
-            } else {
-                alert("Maximum quantity is 10");
-            }
+    <button class="button1" onclick="addToBag()">Add to bag</button>
+</div>
+
+<script>
+    let sasia = <?php echo $product->getQuantity(); ?>; 
+
+    function increase() {
+        if (sasia < 10) {
+            sasia++;
+            document.getElementById("sasia").innerText = sasia;
+        } else {
+            alert("The maximum quantity is 10");
         }
+    }
 
-        function decrease() {
-            if (quantity > 1) {
-                quantity--;
-                document.getElementById("quantity").innerText = quantity;
-            } else {
-                alert("Minimum quantity is 1");
-            }
+    function decrease() {
+        if (sasia > 1) {
+            sasia--;
+            document.getElementById("sasia").innerText = sasia;
+        } else {
+            alert("Minimum quantity is 1");
         }
-    </script>
+    }
 
-    <footer class="site-footer">
-        <p>&copy; 2024 Corta, All Rights Reserved.</p>
-    </footer>
+    function addToBag() {
+        let userLoggedIn = <?php echo isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] == "true" ? 'true' : 'false'; ?>;
+
+        if (userLoggedIn) {
+            alert("Item added to bag with quantity: " + sasia);
+        } else {
+            alert("Please login to continue");
+            window.location.href = "login.php";
+        }
+    }
+</script>
+
+<?php
+$footer->render();
+?>
+
 </body>
 </html>
+
