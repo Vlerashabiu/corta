@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'db.php';
-include 'PasswordReset.php';
+include 'passwordReset.php';
 
 $db = new Database();
 $passwordReset = new PasswordReset($db);

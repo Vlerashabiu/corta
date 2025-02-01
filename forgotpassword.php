@@ -13,7 +13,7 @@ $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Form submitted!<br>";
     echo "Email: " . $_POST['email'] . "<br>";
-    exit(); // Stop execution to test only form submission
+    exit(); 
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -55,12 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <header class="navbar">
         <div class ="title">CORTA</div>
-           <a href="home.html">Home</a>
-           <a href="store.html">Store</a>
-           <a href="contact.html">ContactUs</a>
-           <a href="news.html">News</a>
-          <button class="sign-up"><a href="signup.html">Sign up</a></button>
-          <button class="log-in"> <a href="login.html">Log in</a></button>
+           <a href="index.php">Home</a>
+           <a href="store.php">Store</a>
+           <a href="contact.php">ContactUs</a>
+           <a href="news.php">News</a>
+          <button class="sign-up"><a href="signup.php">Sign up</a></button>
+          <button class="log-in"> <a href="login.php">Log in</a></button>
     </header>
 
     <div class="forgot-group">
