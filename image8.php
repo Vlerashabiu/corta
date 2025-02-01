@@ -22,7 +22,7 @@ class Page {
         return '
         <header class="navbar">
             <div class="title">CORTA</div>
-            <a href="home.php">Home</a>
+            <a href="index.php">Home</a>
             <a href="store.php">Store</a>
             <a href="contact.php">ContactUs</a>
             <a href="news.php">News</a>
