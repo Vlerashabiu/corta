@@ -11,9 +11,9 @@ $slides = [
 ];
 
 $news = [
-    new NewsItem("news1.html", "materials.jpg", "New Organic Products Launched", "January 12, 2025"),
-    new NewsItem("news3.html", "aboutus.jpg", "About Us", "January 8, 2025"),
-    new NewsItem("news2.html", "newProducts.jpg", "Discount for First Orders", "January 10, 2025")
+    new NewsItem("news1.php", "materials.jpg", "New Organic Products Launched", "January 12, 2025"),
+    new NewsItem("news3.php", "aboutus.jpg", "About Us", "January 8, 2025"),
+    new NewsItem("news2.php", "newProducts.jpg", "Discount for First Orders", "January 10, 2025")
 ];
 ?>
 
