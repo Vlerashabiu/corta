@@ -45,7 +45,7 @@ class Cart {
         $userLoggedIn = isset($_SESSION['userLoggedIn']) ? $_SESSION['userLoggedIn'] : false;
 
         if ($userLoggedIn) {
-            // Logic to add item to the cart
+        
             echo "<script>alert('Item added to cart with quantity: " . $this->getQuantity() . "');</script>";
         } else {
             $this->loginPrompt();

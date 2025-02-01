@@ -1,5 +1,4 @@
 <?php
-// Starting a session
 session_start();
 
 class Product {
@@ -44,7 +43,6 @@ class User {
     }
 
     public function login($username, $password) {
-        // This is just a basic example. You should implement secure password hashing and verification
         if ($username == 'user' && $password == 'password') {
             $_SESSION['userLoggedIn'] = true;
             echo "<script>alert('Logged in successfully');</script>";
@@ -63,13 +61,9 @@ class User {
     }
 }
 
-// Create an instance of the Product class
 $product = new Product("Chic Corduroy Bag", "100% Organic Cotton Corduroy", 65.00, ["Olive", "Midnight", "Fashion Grey", "Sand"]);
-
-// Create an instance of the User class
 $user = new User();
 
-// Handling the add to bag button click
 if (isset($_POST['add_to_bag'])) {
     $user->loginPrompt();
 }
