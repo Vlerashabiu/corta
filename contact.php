@@ -3,21 +3,16 @@
 session_start();
 include 'db.php';
 include 'message.php';
+include 'formValidator.php';
 
-function validateInput($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
+$formValidator = new formValidator();
 $database = new Database();
 $message = new Message($database);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = validateInput($_POST['name']);
-    $email = validateInput($_POST['email']);
-    $messageText = validateInput($_POST['message']);
+    $name = $formValidator->validateInput($_POST['name']);
+    $email = $formValidator->validateInput($_POST['email']);
+    $messageText = $formValidator->validateInput($_POST['message']);
 
     if (empty($name) || empty($email) || empty($messageText)) {
         $error = "All fields are required!";
