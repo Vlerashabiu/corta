@@ -1,20 +1,42 @@
 <?php
 
+
+
+session_start();
+include 'db.php';
 include 'passwordReset.php';
 
- $db=new Database();
- $passwordReset =new PasswordReset($db);
+$db = new Database();
+$passwordReset = new passwordReset($db);
+$error = "";
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo "Form submitted!<br>";
+    echo "Email: " . $_POST['email'] . "<br>";
+    exit(); // Stop execution to test only form submission
+}
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $email =$_POST['email'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   $email = trim($_POST['email']);
 
-    if($passwordReset->sendResetCode($email)){
-        header("Location: confirmationCode.php");
-        exit();
-    }else{
-        echo "No account found with this email.";
-        
+    if (empty($email)) {
+        $error = "Please enter an email.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Invalid email format.";
+    } else {
+       
+        if (!$passwordReset->checkEmailExists($email)) {
+            $error = "No account found with this email.";
+        } else {
+            $result = $passwordReset->sendResetCode($email);
+            if ($result === true) {
+                $_SESSION['reset_email'] = $email;
+                header("Location: confirmationCode.php");
+                exit();
+            } else {
+                $error = "Error: " . $result;
+            }
+        }
     }
 }
 ?>
@@ -45,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h2>Forgot Password</h2>
         <h6>Please enter the email you used for your account</h6>
 
-        <form id="forgotpasswordForm" method="POST">
+        <form id="forgotpasswordForm" method="POST" action="forgotpassword.php">
             <div class="form-group">
                 <img src="forgotpic.png" alt="">
                 
@@ -66,6 +88,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
            
     </footer>
-    <script src="forgotpasswordvalidation.js" defer></script>
+   <script src="forgotpasswordvalidation.js" defer></script>
 </body>
 </html>

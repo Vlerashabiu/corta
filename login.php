@@ -16,7 +16,7 @@ class LoginSystem{
         $stmt->store_result();
 
         if($stmt->num_rows >0){
-            $stmt->bind_result($id,$username,$hashed_password,$role,$created_at,$email);
+            $stmt->bind_result($id,$username,$hashed_password,$role,$created_at,$email,$reset_password,$expires_at);
             $stmt->fetch();
 
             if(password_verify($password, $hashed_password)){

@@ -1,68 +1,67 @@
 <?php
-session_start();
-include 'db.php';
-
-class PasswordReset{
+class PasswordReset {
     private $conn;
 
-    public function __construct($db){
-        $this->conn=$db->getConnection();
+    public function __construct($db) {
+        $this->conn = $db->getConnection();
     }
-    public function sendResetCode($email){
-        $stmt=$this->db->prepare("SELECT * FROM users WHERE email =?");
-        $stmt->execute([$email]);
-        $user=$stmt->fetch();
 
-        if($user){
-           return false;
+    public function checkEmailExists($email) {
+        $stmt = $this->conn->prepare("SELECT id FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0; 
+    }
+
+    public function sendResetCode($email) {
+        $stmt = $this->conn->prepare("SELECT id FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if ($result->num_rows > 0) {
+            $code = rand(100000, 999999);
+            $_SESSION['reset_code'] = $code;
+            $_SESSION['reset_email'] = $email;
+    
+            // Debugging Output
+            echo "Reset code: $code <br>";
+            echo "Sending email to: $email <br>";
+    
+            if (mail($email, "Password Reset Code", "Your reset code is: $code")) {
+                echo "Mail sent successfully!<br>";
+                return true;
+            } else {
+                echo "Failed to send email.<br>";
+                return false;
+            }
         }
-
-        $reset_code=rand(100000,999999);
-        $expires_at=date("Y-m-d H:i:s", strtotime("+5 minutes"));
-
-        $stmt=$this->db->prepare("DELETE FROM password_resets WHERE email =?");
-        $stmt->execute([$email]);
-
-        $stmt=$this->db->prepare("INSERT INTO password_resets (email, reset_code, expires_at) VALUES (?,?,?");
-        if(!stmt->execute([$email,$reset_code,$expires_at])){
-            return false;
-        }
-        
-    $subject= "Your Password Reset COde";
-    $message= "Use this code to reset your password: ".$reset_code;
-    $headers="From: noreply@corta.com";
-    if(!mail($email,$subject,$message,$headers)){
         return false;
     }
-    return true;
- }
-    public function verifyCode($user_code,$email){
-    $stmt = $this->db->prepare("SELECT * FROM password_resets WHERE email = ? AND reset_code = ? AND expires_at > NOW()");
-    $stmt->execute([$email, $user_code]);
-    $code_data = $stmt->fetch();
 
-    if(!code_data){
-        return "Invalid or expired code.";
+    public function verifyCode($email, $user_code) {
+        $stmt = $this->conn->prepare("SELECT * FROM password_resets WHERE email = ? AND reset_code = ? AND expires_at > NOW()");
+        $stmt->execute([$email, $user_code]);
+        $code_data = $stmt->fetch();
+
+        if (!$code_data) {
+            return "Invalid or expired code.";
+        }
+
+        $stmt = $this->conn->prepare("DELETE FROM password_resets WHERE email = ?");
+        $stmt->execute([$email]);
+
+        return "valid";
     }
-    $stmt = $this->db->prepare("DELETE FROM password_resets WHERE email = ?");
-    $stmt->execute([$email]);
+    public function resetPassword($email, $new_password) {
+        $hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
+        $stmt = $this->conn->prepare("UPDATE users SET password = ? WHERE email = ?");
+        if (!$stmt->execute([$hashed_password, $email])) {
+            return "Error updating password.";
+        }
 
-    return "valid";
-
-    }
-
-}
-$db=new Database();
-$passwordReset=new PasswordReset($db);
-
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $user_code=implode("",$_POST["code"]);
-    $verificationResult=$passwordReset->verifyCode($user_code);
-
-    if($verificationResult == "valid"){
-        header("Location: resetpassword.php");
-        exit();
-    }else{
-        $error=$verificationResult;
+        return "Password updated successfully.";
     }
 }
+?>
