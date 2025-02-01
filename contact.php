@@ -1,15 +1,8 @@
 
 <?php
-include 'db.php'; 
-
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$dbname = 'corta';
-
-$database = new Database($host, $user, $password, $dbname);
-$database->connect();
-$conn = $database->getConnection();
+session_start();
+include 'db.php';
+include 'message.php';
 
 function validateInput($data) {
     $data = trim($data);
@@ -18,29 +11,29 @@ function validateInput($data) {
     return $data;
 }
 
+$database = new Database();
+$message = new Message($database);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = validateInput($_POST['name']);
     $email = validateInput($_POST['email']);
-    $message = validateInput($_POST['message']);
+    $messageText = validateInput($_POST['message']);
 
-    if (empty($name) || empty($email) || empty($message)) {
-        echo "All fields are required!";
+    if (empty($name) || empty($email) || empty($messageText)) {
+        $error = "All fields are required!";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email address!";
+        $error = "Invalid email address!";
     } else {
-        $stmt = $conn->prepare("INSERT INTO messages (name, email, message, created_at) VALUES (?, ?, ?, NOW())");
-        $stmt->bind_param("sss", $name, $email, $message);
-
-        if ($stmt->execute()) {
-            echo "Your message has been successfully sent!";
+        $result = $message->insertMessage($name, $email, $messageText);
+        if (strpos($result, "Error") === false) {
+            $success = $result;
         } else {
-            echo "Error: " . $stmt->error;
+            $error = $result;
         }
-        $stmt->close();
     }
 }
-$database->closeConnection();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
