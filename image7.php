@@ -1,45 +1,86 @@
 <?php
+session_start();
 
-class ProductPage {
-    private $product_name;
-    private $product_description;
-    private $product_price;
-    private $product_colors;
-
-    public function __construct($name, $description, $price, $colors) {
-        $this->product_name = $name;
-        $this->product_description = $description;
-        $this->product_price = $price;
-        $this->product_colors = $colors;
-    }
-
-    public function getProductName() {
-        return $this->product_name;
-    }
-
-    public function getProductDescription() {
-        return $this->product_description;
-    }
-
-    public function getProductPrice() {
-        return $this->product_price;
-    }
-
-    public function getProductColors() {
-        return $this->product_colors;
-    }
-
+class Navbar {
     public function render() {
-        ?>
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Product Page</title>
-            <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
-            <style>
-             *{
+        echo '<header class="navbar">
+                <div class="title">CORTA</div>
+                <a href="home.php">Home</a>
+                <a href="store.php">Store</a>
+                <a href="contact.php">ContactUs</a>
+                <a href="news.php">News</a>';
+        
+        if (!isset($_SESSION['userLoggedIn']) || $_SESSION['userLoggedIn'] != "true") {
+            echo '<button class="sign-up"><a href="signup.php">Sign up</a></button>
+                  <button class="log-in"><a href="login.php">Log in</a></button>';
+        }
+        
+        echo '</header>';
+    }
+}
+
+class Footer {
+    public function render() {
+        echo '<footer class="site-footer">
+                <div class="footer">
+                    <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
+                </div>
+              </footer>';
+    }
+}
+
+class Product {
+    private $quantity;
+
+    public function __construct($quantity = 1) {
+        $this->quantity = $quantity;
+    }
+
+    public function increase() {
+        if ($this->quantity < 10) {
+            $this->quantity++;
+        } else {
+            return "The maximum quantity is 10";
+        }
+    }
+
+    public function decrease() {
+        if ($this->quantity > 1) {
+            $this->quantity--;
+        } else {
+            return "Minimum quantity is 1";
+        }
+    }
+
+    public function addToBag() {
+        if (isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] == "true") {
+            return "Item added to bag with quantity: " . $this->quantity;
+        } else {
+            return "Please login to continue";
+        }
+    }
+
+    public function getQuantity() {
+        return $this->quantity;
+    }
+}
+
+$navbar = new Navbar();
+$footer = new Footer();
+$product = new Product(1); 
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <style>
+    
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -163,7 +204,7 @@ a:hover{
             gap: 10px;
             border: 1px solid #ccc;
             position: absolute;
-            margin-top: 34rem;
+            margin-top: 33.5rem;
             margin-left: 29.3rem;
             
 
@@ -191,18 +232,16 @@ a:hover{
             font-size: 16px;
             background-color: #000000;
             padding: 14px 36px;
-            color: white;
+           color: white;
             position: absolute;
             margin-top: 40rem;
             margin-left: 29.3rem;
             border-radius: 10px;
         }
-
         .button1:hover{
             cursor: pointer;
             background-color: #c3b59e;
         }
-
         .container-footer{
     width: 100%;
     height: 10vh;
@@ -224,95 +263,78 @@ a:hover{
     text-align: center; 
     font-size: 10px; 
  }
-        
-        
-            </style>
-        </head>
-        <body>
-            <header class="navbar">
-                <div class="title">CORTA</div>
-                <a href="home.php">Home</a>
-                <a href="store.php">Store</a>
-                <a href="contact.php">ContactUs</a>
-                <a href="news.php">News</a>
-                <button class="sign-up"> <a href="signup.php">Sign up</a> </button>
-                <button class="log-in"> <a href="login.php">Log in</a></button>
-            </header>
+    </style>
+</head>
+<body>
 
-            <div class="container">
-                <div class="main1">
-                    <img src="foto7.png" alt="Product Image">
-                </div>
-                <div class="main2">
-                    <h1><?php echo $this->getProductName(); ?></h1>
-                    <h3><?php echo $this->getProductDescription(); ?></h3>
-                    <p>$<?php echo $this->getProductPrice(); ?></p>
-                    <label for="color" class="label_color">Color</label>
-                    <br>
-                    <select name="color" id="color">
-                        <?php foreach ($this->getProductColors() as $color): ?>
-                            <option value="<?php echo $color; ?>"><?php echo $color; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-
-                <div class="sasia-selector">
-                    <div class="sasia-button" onclick="decrease()">-</div>
-                    <div class="sasia-display" id="sasia">1</div>
-                    <div class="sasia-button" onclick="increase()">+</div>
-                </div>
-
-                <button class="button1" onclick="addToBag()">Add to bag</button>
-            </div>
-
-            <script>
-                let sasia = 1;
-
-                function increase() {
-                    if (sasia < 10) {
-                        sasia++;
-                        document.getElementById("sasia").innerText = sasia;
-                    } else {
-                        alert("The maximum quantity is 10");
-                    }
-                }
-
-                function decrease() {
-                    if (sasia > 1) {
-                        sasia--;
-                        document.getElementById("sasia").innerText = sasia;
-                    } else {
-                        alert("Minimum quantity is 1");
-                    }
-                }
-
-                function addToBag() {
-                    let userLoggedIn = localStorage.getItem('userLoggedIn');
-
-                    if (userLoggedIn === "true") {
-                        alert("Item added to bag with quantity: " + sasia);
-                    } else {
-                        loginPrompt();
-                    }
-                }
-
-                function loginPrompt() {
-                    alert("Please login to continue");
-                    window.location.href = "login.php";
-                }
-            </script>
-
-            <footer class="site-footer">
-                <div class="footer">
-                    <p> Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
-                </div>
-            </footer>
-        </body>
-        </html>
-        <?php
-    }
-}
-
-$product = new ProductPage("Denim Wanderer Bag", "100% Organic Cotton Denim", 48.00, ["Light Blue", "Dark Blue"]);
-$product->render();
+<?php
+$navbar->render();
 ?>
+
+<div class="contanier">
+        <div class="main1">
+            <img src="foto7.png" alt="">
+        </div>
+        <div class="main2">
+            <h1>Denim Wanderer <br>Bag</h1>
+            <h3>100% Organic Cotton Denim</h3>
+            <p>$48.00</p>
+            <label for="color" class="label_color">Color</label>
+            <br>
+            <select name="color" id="color">
+                <option value="Light Blue">Light Blue</option>
+                <option value="Dark Blue">Dark Blue</option>
+                
+          
+
+        </select>
+    </div>
+
+    <div class="sasia-selector">
+        <div class="sasia-button" onclick="decrease()">-</div>
+        <div class="sasia-display" id="sasia"><?php echo $product->getQuantity(); ?></div>
+        <div class="sasia-button" onclick="increase()">+</div>
+    </div>
+
+    <button class="button1" onclick="addToBag()">Add to bag</button>
+</div>
+
+<script>
+    let sasia = <?php echo $product->getQuantity(); ?>; 
+
+    function increase() {
+        if (sasia < 10) {
+            sasia++;
+            document.getElementById("sasia").innerText = sasia;
+        } else {
+            alert("The maximum quantity is 10");
+        }
+    }
+
+    function decrease() {
+        if (sasia > 1) {
+            sasia--;
+            document.getElementById("sasia").innerText = sasia;
+        } else {
+            alert("Minimum quantity is 1");
+        }
+    }
+
+    function addToBag() {
+        let userLoggedIn = <?php echo isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] == "true" ? 'true' : 'false'; ?>;
+
+        if (userLoggedIn) {
+            alert("Item added to bag with quantity: " + sasia);
+        } else {
+            alert("Please login to continue");
+            window.location.href = "login.php";
+        }
+    }
+</script>
+
+<?php
+$footer->render();
+?>
+
+</body>
+</html>

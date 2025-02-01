@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Klasa për Navbar
 class Navbar {
     public function render() {
         echo '<header class="navbar">
@@ -20,7 +19,6 @@ class Navbar {
     }
 }
 
-// Klasa për Footer
 class Footer {
     public function render() {
         echo '<footer class="site-footer">
@@ -31,7 +29,6 @@ class Footer {
     }
 }
 
-// Klasa për të menaxhuar produktet dhe funksionet si shtimi në "bag"
 class Product {
     private $quantity;
 
@@ -68,10 +65,9 @@ class Product {
     }
 }
 
-// Instancimi i klasave dhe shfaqja e përmbajtjes
 $navbar = new Navbar();
 $footer = new Footer();
-$product = new Product(1); // Mund të ndryshoni këtë vlerë për të menaxhuar sasinë
+$product = new Product(1); 
 
 ?>
 
