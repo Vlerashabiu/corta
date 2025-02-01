@@ -119,6 +119,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             <a href="manage_products.php">Manage Products</a>
             <a href="manage_news.php">Manage News</a>
             <a href="view_contact.php">View Contact</a>
+            <a href="manage_purchases.php">Manage Purchases</a> 
         </div>
         <div>
             <a href="logout.php">Logout</a>
