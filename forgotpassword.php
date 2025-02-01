@@ -1,22 +1,20 @@
 <?php
-session_start();
-$conn = new mysqli("localhost","root","","corta");
+
+include 'passwordReset.php';
+
+ $db=new Database();
+ $passwordReset =new PasswordReset($db);
+
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $email =$_POST['email'];
-    $sql ="SELECT * FROM users WHERE email = '$email'";
-    $result =$conn->query($sql);
 
-    if($result->num_rows >0){
-        $code =rand(100000, 999999);
-        $_SESSION['reset_code']=$code;
-        $_SESSION['reset_email']= $email;
-
-        mail($email, "Password Reset Code", "Your reset code is: " . $code);
-        echo "A reset code has been sent to your email address.";
-
+    if($passwordReset->sendResetCode($email)){
+        header("Location: confirmationCode.php");
+        exit();
     }else{
         echo "No account found with this email.";
+        
     }
 }
 ?>
@@ -59,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <button type="submit">Send Code</button>
             </form>
             <div class="login">
-            Return to <a href="login.html">Log In</a>
+            Return to <a href="login.php">Log In</a>
         </div>
     </div>
    <footer class="site-footer">

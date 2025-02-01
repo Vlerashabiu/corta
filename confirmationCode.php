@@ -1,17 +1,23 @@
 <?php
-session_start();
-if (!isset($_SESSION['reset_code'])) {
-    echo "Session expired or reset code not found. Please request a new reset link.";
-    exit(); 
-}
-    $user_code =implode("",$_POST["code"]);
-    if($user_code == $_SESSION['reset_code']){
+
+include 'passwordReset.php';
+
+$db= new Database();
+$passwordReset=new PasswordReset($db);
+
+if($_SERVER["REQUEST_METHOD"]== "POST"){
+    $user_code=implode("",$_POST["code"]);
+    $email=$_SESSION['email'];
+
+    $verificationResult=$passwordReset->verifyCode($user_code,$email);
+    
+    if($verificationResult === "valid"){
         header("Location: resetpassword.php");
         exit();
     }else{
-        $error= "Invalid confirmation code!";
+        $error="Incorrect or expired code";
     }
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,12 +31,12 @@ if (!isset($_SESSION['reset_code'])) {
 <body>
     <header class="navbar">
         <div class ="title">CORTA</div>
-           <a href="home.html">Home</a>
-           <a href="store.html">Store</a>
-           <a href="contact.html">ContactUs</a>
-           <a href="news.html">News</a>
-          <button class="sign-up"><a href="signup.html">Sign up</a></button>
-          <button class="log-in"> <a href="login.html">Log in</a></button>
+           <a href="index.php">Home</a>
+           <a href="store.php">Store</a>
+           <a href="contact.php">ContactUs</a>
+           <a href="news.php">News</a>
+          <button class="sign-up"><a href="signup.php">Sign up</a></button>
+          <button class="log-in"> <a href="login.php">Log in</a></button>
         </header>
 
 
