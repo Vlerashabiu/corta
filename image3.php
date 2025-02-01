@@ -1,4 +1,5 @@
 <?php
+$cart = new Cart();
 class Navbar {
     public function render() {
         echo '
@@ -61,9 +62,9 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chic Corduroy Bag</title>
-   <style>
-    *{
+    <title>Ocean Breeze Linen Bag</title>
+    <style>
+        *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -188,7 +189,7 @@ a:hover{
             border: 1px solid #ccc;
             position: absolute;
             margin-top: 33.5rem;
-            margin-left: 29.3rem;
+            margin-left: 23rem;
             
 
         }
@@ -215,16 +216,18 @@ a:hover{
             font-size: 16px;
             background-color: #000000;
             padding: 14px 36px;
-           color: white;
+            color: white;
             position: absolute;
             margin-top: 40rem;
-            margin-left: 29.3rem;
+            margin-left: 23rem;
             border-radius: 10px;
         }
+
         .button1:hover{
             cursor: pointer;
             background-color: #c3b59e;
         }
+
         .container-footer{
     width: 100%;
     height: 10vh;
@@ -246,7 +249,8 @@ a:hover{
     text-align: center; 
     font-size: 10px; 
  }
-   </style>
+        
+    </style>
 </head>
 
 <body>
@@ -257,12 +261,12 @@ a:hover{
 
 <div class="contanier">
     <div class="main1">
-        <img src="foto1.png" alt="Chic Corduroy Bag">
+        <img src="foto4.png" alt="Canvas Coast Bag">
     </div>
     <div class="main2">
-        <h1>Chic Corduroy <br>Bag</h1>
-        <h3>00% Organic Cotton Corduroy</h3>
-        <p>$65.00</p>
+        <h1><?php echo $cart->getProductDetails()['name']; ?></h1>
+        <h3>100% Organic Cotton Canvas</h3>
+        <p>$<?php echo number_format($cart->getProductDetails()['price'], 2); ?></p>
         <label for="color" class="label_color">Color</label>
         <br>
         <select name="color" id="color">
@@ -281,6 +285,7 @@ a:hover{
 
     <button class="button1" onclick="addToBag()">Add to bag</button>
 </div>
+
 
 <script>
     let sasia = 1;

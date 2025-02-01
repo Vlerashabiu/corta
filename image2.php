@@ -1,4 +1,5 @@
 <?php
+// Krijimi i një klase për Navbar
 class Navbar {
     public function render() {
         echo '
@@ -14,6 +15,7 @@ class Navbar {
     }
 }
 
+// Krijimi i një klase për menaxhimin e çantës së blerjeve
 class Cart {
     private $quantity = 1;
 
@@ -52,7 +54,7 @@ class Cart {
     }
 }
 
-session_start(); 
+session_start(); // Aktivizimi i sesionit për menaxhimin e gjendjes së login
 ?>
 
 <!DOCTYPE html>
@@ -61,9 +63,9 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chic Corduroy Bag</title>
-   <style>
-    *{
+    <title>Urban Denim Bag</title>
+    <style>
+        *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -173,6 +175,7 @@ a:hover{
             font-size: 1rem;
             padding: 0.5rem;
             border: 3px solid gray;
+            margin-top: 10rem;
        
         }
 
@@ -187,9 +190,8 @@ a:hover{
             gap: 10px;
             border: 1px solid #ccc;
             position: absolute;
-            margin-top: 33.5rem;
-            margin-left: 29.3rem;
-            
+            margin-top: 24rem;
+            margin-left: 30rem;
 
         }
 
@@ -208,6 +210,7 @@ a:hover{
         .sasia-display {
             font-size: 20px;
             width: 40px;
+            
             text-align: center;
         }
 
@@ -215,16 +218,17 @@ a:hover{
             font-size: 16px;
             background-color: #000000;
             padding: 14px 36px;
-           color: white;
+            color: white;
             position: absolute;
-            margin-top: 40rem;
-            margin-left: 29.3rem;
+            margin-top: 32rem;
+            margin-left: 30rem;
             border-radius: 10px;
         }
         .button1:hover{
             cursor: pointer;
             background-color: #c3b59e;
         }
+        
         .container-footer{
     width: 100%;
     height: 10vh;
@@ -246,31 +250,25 @@ a:hover{
     text-align: center; 
     font-size: 10px; 
  }
-   </style>
+        
+    </style>
+    
 </head>
 
 <body>
 <?php
-    $navbar = new Navbar(); 
-    $navbar->render(); 
+    $navbar = new Navbar(); // Krijimi i një instance të Navbar
+    $navbar->render(); // Thirrja e metodës render për të shfaqur Navbar
 ?>
 
 <div class="contanier">
     <div class="main1">
-        <img src="foto1.png" alt="Chic Corduroy Bag">
+        <img src="foto2.png" alt="Urban Denim Bag">
     </div>
     <div class="main2">
-        <h1>Chic Corduroy <br>Bag</h1>
-        <h3>00% Organic Cotton Corduroy</h3>
-        <p>$65.00</p>
-        <label for="color" class="label_color">Color</label>
-        <br>
-        <select name="color" id="color">
-            <option value="Olive">Olive</option>
-            <option value="Midnight">Midnight</option>
-            <option value="Fashion Grey">Fashion Grey</option>
-            <option value="Sand">Sand</option>
-        </select>
+        <h1>Urban Denim Bag</h1>
+        <h3>100% Organic Cotton Denim</h3>
+        <p>$68.00</p>
     </div>
 
     <div class="sasia-selector">
