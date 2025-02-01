@@ -1,8 +1,6 @@
 <?php
-// Start the session to track user login status
 session_start();
 
-// Class for rendering the Navbar
 class Navbar {
     public function render() {
         echo '
@@ -18,7 +16,6 @@ class Navbar {
     }
 }
 
-// Class for handling cart functionalities (product quantity and adding to cart)
 class Cart {
     private $quantity = 1;
     private $productName = "Kyoto Bamboo Bag";
@@ -79,7 +76,6 @@ $cart = new Cart();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyoto Bamboo Bag</title>
     <style>
-        /* Your CSS code remains unchanged */
         * {
             margin: 0;
             padding: 0;

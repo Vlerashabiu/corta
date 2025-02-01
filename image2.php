@@ -71,7 +71,6 @@ session_start(); // Aktivizimi i sesionit për menaxhimin e gjendjes së login
     box-sizing: border-box;
     font-family: sans-serif;
 }
-        
  .navbar{
     position: fixed;
     top: 0;
@@ -257,8 +256,8 @@ a:hover{
 
 <body>
 <?php
-    $navbar = new Navbar(); // Krijimi i një instance të Navbar
-    $navbar->render(); // Thirrja e metodës render për të shfaqur Navbar
+    $navbar = new Navbar(); 
+    $navbar->render(); 
 ?>
 
 <div class="contanier">
