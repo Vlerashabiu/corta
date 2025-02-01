@@ -21,7 +21,7 @@ class Dashboard {
     }
 
     public function getTotalMessages() {
-        return $this->getCount("contact_messages");
+        return $this->getCount("messages");
     }
 
     private function getCount($table) {
