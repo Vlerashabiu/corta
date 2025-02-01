@@ -61,15 +61,15 @@ class Product {
 }
 
 $products = [
-    new Product("image1.html", "foto1.png", "Chic Corduroy Bag", "$65.00"),
-    new Product("image2.html", "foto2.png", "Urban Denim", "$68.00"),
-    new Product("image3.html", "foto3.png", "Ocean Breeze Linen", "$76.00"),
-    new Product("image4.html", "foto4.png", "Canvas Coast", "$60.00"),
-    new Product("image5.html", "foto5.png", "Eco Cedar Bag", "$65.00"),
-    new Product("image6.html", "foto6.png", "Kyoto Bamboo Bag", "$65.00"),
-    new Product("image7.html", "foto7.png", "Denim Wanderer", "$48.00"),
-    new Product("image8.html", "foto8.png", "Bamboo Temple", "$50.00"),
-    new Product("image9.html", "foto9.png", "Seaside Linen Bag", "$70.00")
+    new Product("image1.php", "foto1.png", "Chic Corduroy Bag", "$65.00"),
+    new Product("image2.php", "foto2.png", "Urban Denim", "$68.00"),
+    new Product("image3.php", "foto3.png", "Ocean Breeze Linen", "$76.00"),
+    new Product("image4.php", "foto4.png", "Canvas Coast", "$60.00"),
+    new Product("image5.php", "foto5.png", "Eco Cedar Bag", "$65.00"),
+    new Product("image6.php", "foto6.png", "Kyoto Bamboo Bag", "$65.00"),
+    new Product("image7.php", "foto7.png", "Denim Wanderer", "$48.00"),
+    new Product("image8.php", "foto8.png", "Bamboo Temple", "$50.00"),
+    new Product("image9.php", "foto9.png", "Seaside Linen Bag", "$70.00")
 ];
 ?>
 
@@ -85,14 +85,14 @@ $products = [
 </head>
 <body>
 <header class="navbar">
-    <div class="title">CORTA</div>
-    <a href="home.html">Home</a>
-    <a href="store.html">Store</a>
-    <a href="contact.html">ContactUs</a>
-    <a href="news.html">News</a>
-    <button class="sign-up"><a href="signup.html">Sign up</a></button>
-    <button class="log-in"><a href="login.html">Log in</a></button>
-</header>
+        <div class="title">CORTA</div>
+        <a href="home.php">Home</a>
+        <a href="store.php">Store</a>
+        <a href="contact.php">ContactUs</a>
+        <a href="news.php">News</a>
+        <button class="sign-up"><a href="signup.php">Sign up</a></button>
+        <button class="log-in"><a href="login.php">Log in</a></button>
+    </header>
 
 <h1>The Boutique</h1>
 <div class="image">
