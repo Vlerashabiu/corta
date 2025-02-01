@@ -1,11 +1,11 @@
 <?php
-session_start();
+require_once "sessionManager.php";
+require_once "dashboard.php";
+require_once "db.php";
 
-
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
-    exit();
-}
+$db = new Database();
+$conn = $db->getConnection();
+$dashboard = new Dashboard($conn);
 ?>
 
 
@@ -114,7 +114,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     <div class="sidebar">
         <div>
             <h2>Admin Dashboard</h2>
-            <a href="dashboard.php">Home</a>
             <a href="manage_users.php">Manage Users</a>
             <a href="manage_products.php">Manage Products</a>
             <a href="manage_news.php">Manage News</a>
@@ -135,19 +134,19 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         <div class="cards">
             <div class="card">
                 <h3>Users</h3>
-                <p>Total: 150</p>
+                <p>Total: <?php echo $dashboard->getTotalUsers(); ?></p>
             </div>
             <div class="card">
                 <h3>Products</h3>
-                <p>Total: 80</p>
+                <p>Total: <?php echo $dashboard->getTotalProducts(); ?></p>
             </div>
             <div class="card">
                 <h3>News</h3>
-                <p>Total: 20</p>
+                <p>Total: <?php echo $dashboard->getTotalNews(); ?></p>
             </div>
             <div class="card">
                 <h3>Messages</h3>
-                <p>Total: 35</p>
+                <p>Total: <?php echo $dashboard->getTotalMessages(); ?></p>
             </div>
         </div>
     </div>
