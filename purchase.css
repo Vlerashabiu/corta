@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+    color: #486949;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #98c299;
+}
+h2{
+    align-items: center;
+    color: #326133;
+}
+h4{
+    color: #486949;
+}
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    color: #1a4e1c;
+}
+
+table th {
+    background-color: #f2f2f2;
+    color: #486949;
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    color: #346736;
+}
+
+button.btn-update {
+    background-color: #4CAF50;
+    color: white;
+}
+
+button.btn-disabled {
+    background-color: #ccc;
+    color: #6f6e6e;
+    cursor: not-allowed;
+}
+
+button:hover {
+    opacity: 0.8;
+    color: #346736;
+}

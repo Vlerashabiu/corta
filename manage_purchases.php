@@ -69,54 +69,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="purchase.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome, <?php echo htmlspecialchars($username); ?>!</h1>
-        <p>Role: <?php echo htmlspecialchars($role); ?></p>
-        <a href="logout.php">Logout</a>
-    </header>
+   
+<h2>Manage Purchases</h2>
 
-    <main>
-        <h2>Order Management</h2>
+<h4>Add Purchase</h4>
+<form method="POST">
+    <input type="hidden" name="action" value="add">
+    <label>User ID:</label>
+    <input type="number" name="user_id" required>
+    <label>Product Name:</label>
+    <input type="text" name="product_name" required>
+    <label>Quantity:</label>
+    <input type="number" name="quantity" required>
+    <label>Total Price:</label>
+    <input type="text" name="total_price" required>
+    <button type="submit">Add Purchase</button>
+</form>
 
-        <?php if (empty($orders)): ?>
-            <p>No orders found.</p>
-        <?php else: ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Customer Name</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($orders as $order): ?>
-                        <tr>
-                            <td><?php echo $order['order_id']; ?></td>
-                            <td><?php echo htmlspecialchars($order['customer_name']); ?></td>
-                            <td><?php echo htmlspecialchars($order['product_name']); ?></td>
-                            <td><?php echo $order['quantity']; ?></td>
-                            <td><?php echo "$" . number_format($order['price'], 2); ?></td>
-                            <td><?php echo htmlspecialchars($order['status']); ?></td>
-                            <td>
-                                <?php if ($order['status'] !== 'Shipped'): ?>
-                                    <form method="POST" action="">
-                                        <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
-                                        <button type="submit" class="btn-update">Update to Shipped</button>
-                                    </form>
-                                <?php else: ?>
-                                    <button disabled class="btn-disabled">Already Shipped</button>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
-    </main>
+<h4>Purchase List</h4>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Purchase Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        
+        $result = $conn->query("SELECT * FROM purchases");
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['user_id']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['product_name']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
+            echo "<td>$" . htmlspecialchars($row['total_price']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['purchase_date']) . "</td>";
+            echo "<td>
+                    <form method='POST' style='display:inline-block;'>
+                        <input type='hidden' name='action' value='update'>
+                        <input type='hidden' name='id' value='" . htmlspecialchars($row['id']) . "'>
+                        <input type='number' name='quantity' value='" . htmlspecialchars($row['quantity']) . "' required>
+                        <input type='text' name='total_price' value='" . htmlspecialchars($row['total_price']) . "' required>
+                        <button type='submit'>Update</button>
+                    </form>
+                    <form method='POST' style='display:inline-block;'>
+                        <input type='hidden' name='action' value='delete'>
+                        <input type='hidden' name='id' value='" . htmlspecialchars($row['id']) . "'>
+                        <button type='submit' onclick='return confirm(\"Are you sure?\");'>Delete</button>
+                    </form>
+                  </td>";
+            echo "</tr>";
+        }
+        ?>
+    </tbody>
+</table>
 </body>
 </html>
