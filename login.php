@@ -10,7 +10,7 @@ class LoginSystem{
         $this->conn =$conn;
     }
     public function loginUser($email, $password){
-        $stmt =$this->conn->prepare("SELECT * FROM users WHERE email =?");
+        $stmt =$this->conn->prepare("SELECT id, username, password, role, created_at, email FROM users WHERE email = ?");
         $stmt->bind_param("s",$email);
         $stmt->execute();
         $stmt->store_result();
