@@ -69,6 +69,7 @@ if (!$result) {
                             <input type='hidden' name='purchase_id' value='" . htmlspecialchars($row['purchase_id']) . "'>
                             <button type='submit' class='btn-update'>Update Status</button>
                         </form>
+            
                         <form method='POST' style='display:inline-block;'>
                             <input type='hidden' name='action' value='delete'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($row['purchase_id']) . "'>

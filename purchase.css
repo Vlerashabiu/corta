@@ -1,39 +1,35 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding: 20px;
+    background-color: #e5efe6;
 }
 
-header {
-    margin-bottom: 20px;
-}
-
-header h1 {
-    font-size: 24px;
-    color: #486949;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    color: #98c299;
-}
 h2{
-    align-items: center;
+    text-align: center;
     color: #326133;
+    margin-bottom: 15px;
 }
 h4{
     color: #486949;
+    margin-bottom: 10px;
+}
+table{
+    width:100%;
+    border-collapse: collapse;
+    background-color: #c4d8c5;
+    box-shadow: #99b59a;
 }
 table th, table td {
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 12px;
+    border: 1px solid #283d29;
     text-align: left;
-    color: #1a4e1c;
+    color: #283d29;
 }
 
 table th {
     background-color: #f2f2f2;
-    color: #486949;
+    color: #283d29;
+    font-weight: bold;
 }
 
 button {
@@ -41,6 +37,8 @@ button {
     border: none;
     cursor: pointer;
     color: #346736;
+    border-radius: 4px;
+    transition: 0.3s;
 }
 
 button.btn-update {
@@ -48,13 +46,23 @@ button.btn-update {
     color: white;
 }
 
+
+button.btn-:hover {
+    background-color: #25602d;
+    color: #6f6e6e;
+
+}
+button.btn-delete {
+    background-color: #682e2c;
+    color: white;
+}
+
+button.btn-delete:hover {
+    background-color: #c33e39;
+}
+
 button.btn-disabled {
     background-color: #ccc;
     color: #6f6e6e;
     cursor: not-allowed;
-}
-
-button:hover {
-    opacity: 0.8;
-    color: #346736;
 }
