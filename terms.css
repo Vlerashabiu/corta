@@ -1,57 +1,219 @@
-.term {
-    font-family:  Tahoma, Verdana, sans-serif;
-    text-align: center; 
-    color: rgb(92, 107, 80);
-    font-size: 40px;
-    margin-bottom: 40px;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 
-.license {
-    margin-left: 180px;
-    color: rgb(92, 107, 80);
-    font-size: 24px;
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(219, 217, 219, 0.4);
+    z-index: 10;
+}
+
+.title{
+   font-size: 30px;
+   font-family: 'Major Mono Display';
+   letter-spacing: 8px;
+   cursor: pointer;
+   margin-top: 15px;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: rgb(115,132, 100);
+    margin: 10px;
+    font-size: 17px;
+    display: inline-block;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.log-in, .sign-up{
+    background-color: #e2d8c8;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 10px;
+    display: inline-block;
+}
+
+.log-in:hover, .sign-up:hover{
+    background-color: #c3b59e;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.main1 img {
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin-top: 10rem;
+}
+
+.main2{
+    margin-top: 10rem;
+    text-align: center;
+}
+
+.main2 h1 {
+    font-size: 55px;
+    font-weight: 600;
+}
+
+.main2 h3 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.main2 p {
+    font-size: 20px;
+    font-weight: 600;
+    color: gray;
+    margin-bottom: 5rem;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 500px;
+}
+
+#color {
+    width: 70%;
+    height: 5vh;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: 3px solid gray;
+    display: block;
+    margin: 0 auto;
+}
+
+.label_color {
+    font-size: 1.5rem;
+    color: gray;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.sasia-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #ccc;
+    justify-content: center;
     margin-top: 20px;
+}
+
+.sasia-button {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    user-select: none;
+}
+
+.sasia-display {
+    font-size: 20px;
+    width: 40px;
+    text-align: center;
+}
+
+.button1 {
+    font-size: 16px;
+    background-color: #000000;
+    padding: 14px 36px;
+    color: white;
+    border-radius: 10px;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    width: auto;
+}
+
+.button1:hover{
+    cursor: pointer;
+    background-color: #c3b59e;
+}
+
+.container-footer{
+    width: 100%;
+    height: 10vh;
+    background-color: gray;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+}
+
+.site-footer{
+    width: 100%;
+    bottom: 0;
+    background-color: rgb(202, 216, 190);
+    color: rgb(143, 155, 132);
+    padding: 9px;
+    text-align: center;
+    font-size: 10px;
+}
+
+@media (max-width: 768px) {
+    .navbar a, .log-in, .sign-up {
+        display: block;
+        text-align: center;
+        margin: 10px auto;
+    }
     
+    .container {
+        flex-direction: column;
+    }
+    
+    .main1 img {
+        margin-top: 5rem;
+    }
+    
+    .main2 {
+        margin-top: 5rem;
+    }
+    
+    .button1 {
+        width: 80%;
+    }
 }
 
-.description {
-    text-align: justify; 
-    color: rgb(92, 107, 80);
-    font-size: 16px;
-    line-height: 1.6; 
-    margin: 20px 15%;
-}
-.listat{
-    text-align: justify; 
-    color: rgb(92, 107, 80);
-    font-size: 16px;
-    line-height: 1.6; 
-    margin: 20px 18%; 
-}
-
-.liability{
-    margin-left: 180px;
-    color: rgb(92, 107, 80);
-    font-size: 24px;
-    margin-top: 20px;
-}
-
-.reservation{
-    margin-left: 180px;
-    color: rgb(92, 107, 80);
-    font-size: 24px;
-    margin-top: 20px;
-}
-
-.remove{
-    margin-left: 180px;
-    color: rgb(92, 107, 80);
-    font-size: 24px;
-    margin-top: 20px;
-}
-
-
-.main{
-margin-top: 16vh;
-
+@media (max-width: 480px) {
+    .main2 h1 {
+        font-size: 40px;
+    }
+    
+    .main2 h3 {
+        font-size: 24px;
+    }
+    
+    .main2 p {
+        font-size: 16px;
+    }
+    
+    .button1 {
+        width: 100%;
+        padding: 12px 24px;
+    }
 }

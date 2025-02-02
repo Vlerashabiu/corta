@@ -85,6 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p>Copyright © 2024 - 2025 Corta, All Right Reserved.</p>
         </div>
     </footer>
-    <script src="contact.js"></script>
+    <script src="contact.js" defer></script>
 </body>
 </html>

@@ -85,14 +85,14 @@ $products = [
 </head>
 <body>
 <header class="navbar">
-        <div class="title">CORTA</div>
-        <a href="index.php">Home</a>
-        <a href="store.php">Store</a>
-        <a href="contact.php">ContactUs</a>
-        <a href="news.php">News</a>
-        <button class="sign-up"><a href="signup.php">Sign up</a></button>
-        <button class="log-in"><a href="login.php">Log in</a></button>
-    </header>
+    <div class ="title">CORTA</div>
+       <a href="index.php">Home</a>
+       <a href="store.php">Store</a>
+       <a href="contact.php">ContactUs</a>
+       <a href="news.php">News</a>
+        <button class="sign-up"> <a href="signup.php">Sign up</a> </button>
+        <button class ="log-in"> <a href="login.php">Log in</a> </button>
+</header>
 
 <h1>The Boutique</h1>
 <div class="image">

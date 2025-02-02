@@ -1,33 +1,125 @@
-.refunds{
-    font-family:  Tahoma, Verdana, sans-serif;
-    text-align: center; 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    background-color: #e5efe6;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h2 {
+    text-align: center;
+    color: #326133;
+    margin-bottom: 15px;
+}
+
+h4 {
+    color: #486949;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #c4d8c5;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #283d29;
+    text-align: left;
+    color: #283d29;
+}
+
+table th {
+    background-color: #f2f2f2;
+    color: #283d29;
+    font-weight: bold;
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    color: #346736;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+button.btn-update {
+    background-color: #4CAF50;
+    color: white;
+}
+
+button.btn-update:hover {
+    background-color: #25602d;
+    color: white;
+}
+
+button.btn-delete {
+    background-color: #682e2c;
+    color: white;
+}
+
+button.btn-delete:hover {
+    background-color: #c33e39;
+}
+
+button.btn-disabled {
+    background-color: #ccc;
+    color: #6f6e6e;
+    cursor: not-allowed;
+}
+
+.refunds {
+    font-family: Tahoma, Verdana, sans-serif;
+    text-align: center;
     color: rgb(92, 107, 80);
     font-size: 40px;
     margin-bottom: 60px;
-    
 }
-.paragraph{
-    text-align: justify; 
+
+.paragraph, .goods {
+    text-align: justify;
     color: rgb(92, 107, 80);
     font-size: 16px;
-    line-height: 1.6; 
-    margin: 20px 15%;
-    margin-top: 10px;
+    line-height: 1.6;
+    margin: 20px 10%;
 }
-.returning{
-    margin-left: 180px;
+
+.returning {
+    text-align: center;
     color: rgb(92, 107, 80);
     font-size: 24px;
     margin-top: 20px;
 }
-.goods{
-    text-align: justify; 
-    color: rgb(92, 107, 80);
-    font-size: 16px;
-    line-height: 1.6; 
-    margin: 20px 18%; 
-}
-.main{
+
+.main {
     margin-top: 16vh;
-    
-    } 
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    table {
+        font-size: 14px;
+    }
+    table th, table td {
+        padding: 8px;
+    }
+    button {
+        width: 100%;
+    }
+    .paragraph, .goods {
+        margin: 20px 5%;
+    }
+}

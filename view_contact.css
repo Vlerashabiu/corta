@@ -9,16 +9,19 @@ header {
     text-align: center;
     background-color: #384d63;
     color: white;
-    padding: 5px;
-    font-size: 10px;
+    padding: 10px;
+    font-size: 14px;
     font-weight: bold;
     border-radius: 8px;
     margin-bottom: 20px;
+    width: 80%;
+    margin: 0 auto 20px;
 }
 
 main {
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 15px;
 }
 
 .message-box {
@@ -28,11 +31,13 @@ main {
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 8px;
+    width: 100%;
 }
 
 .message-box p {
     margin: 5px 0;
     color: #333;
+    font-size: 16px;
 }
 
 .message-box p strong {
@@ -44,4 +49,46 @@ main {
     height: 1px;
     background-color: #ddd;
     margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        font-size: 12px;
+        width: 100%;
+        padding: 8px;
+    }
+
+    main {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .message-box {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .message-box p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 10px;
+        padding: 6px;
+    }
+
+    .message-box {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .message-box p {
+        font-size: 12px;
+    }
 }
