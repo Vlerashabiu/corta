@@ -20,6 +20,7 @@ class LoginSystem{
             $stmt->fetch();
 
             if(password_verify($password, $hashed_password)){
+                $_SESSION['userLoggedIn'] = true;
                 $_SESSION['id']=$id;
                 $_SESSION['username']=$username;
                 $_SESSION['email']=$email;

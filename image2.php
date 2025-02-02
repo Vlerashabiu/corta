@@ -42,7 +42,7 @@ class User {
     }
 
     public function login() {
-        if ($this->username == "admin" && $this->password == "admin") {
+        if ($this->username == "user" && $this->password == "user") {
             $_SESSION['userLoggedIn'] = true;
             return true;
         }

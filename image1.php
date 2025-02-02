@@ -313,4 +313,3 @@ $footer->render();
 
 </body>
 </html>
-
