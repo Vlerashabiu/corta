@@ -5,6 +5,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit();
 }
+$username = $_SESSION['username'];
 
 require_once 'db.php';
 require_once 'product.php';
@@ -12,7 +13,6 @@ require_once 'product.php';
 $db = new Database();
 $product = new Product($db);
 
-$username = $_SESSION['username'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action']) && $_POST['action'] === 'add') {
