@@ -244,12 +244,13 @@ $product->render();
     }
 
     function addToBag() {
-        let userLoggedIn = localStorage.getItem('userLoggedIn'); 
+        let userLoggedIn = <?php echo isset($_SESSION['userLoggedIn']) && $_SESSION['userLoggedIn'] == "true" ? 'true' : 'false'; ?>;
 
-        if (userLoggedIn === "true") { 
+        if (userLoggedIn) {
             alert("Item added to bag with quantity: " + sasia);
         } else {
-            loginPrompt();
+            alert("Please login to continue");
+            window.location.href = "login.php";
         }
     }
 
