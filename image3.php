@@ -183,22 +183,6 @@ a:hover{
             margin-right: 24.2rem;
         }
 
-
-
-        #color {
-            width: 70%;
-            height: 5vh;
-            font-size: 1rem;
-            padding: 0.5rem;
-            border: 3px solid gray;
-       
-        }
-
-        .label_color {
-            font-size: 1.5rem;
-            color: gray;
-        }
-
         .sasia-selector {
             display: flex;
             align-items: center;
@@ -280,13 +264,6 @@ $navbar->render();
         <h1>Ocean Breeze Linen <br> Bag</h1>
         <h3>100% Organic Linen</h3>
         <p>$76.00</p>
-        <label for="color" class="label_color">Color</label>
-        <br>
-        <select name="color" id="color">
-            <option value="Sea Green">Sea Green</option>
-            <option value="Light Marble">Light Marble</option>
-            <option value="Charcoal">Charcoal</option>
-        </select>
     </div>
 
     <div class="sasia-selector">

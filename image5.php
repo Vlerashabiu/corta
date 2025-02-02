@@ -170,18 +170,6 @@ a:hover{
             margin-bottom: 5rem;
             margin-right: 24.2rem;
         }
-        #color {
-            width: 70%;
-            height: 5vh;
-            font-size: 1rem;
-            padding: 0.5rem;
-            border: 3px solid gray;
-        }
-        .label_color {
-            font-size: 1.5rem;
-            color: gray;
-        }
-
         .sasia-selector {
             display: flex;
             align-items: center;
@@ -252,13 +240,6 @@ a:hover{
             <h1><?php echo $cart->getProductDetails()['name']; ?></h1>
             <h3>100% Organic Cotton Corduroy</h3>
             <p>$<?php echo number_format($cart->getProductDetails()['price'], 2); ?></p>
-            <label for="color" class="label_color">Color</label><br>
-            <select name="color" id="color">
-                <option value="Fern Green">Fern Green</option>
-                <option value="Wild Dove">Wild Dove</option>
-                <option value="Mocha">Mocha</option>
-                <option value="Flamingo">Flamingo</option>
-            </select>
         </div>
 
         <div class="sasia-selector">

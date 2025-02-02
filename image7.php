@@ -182,22 +182,6 @@ a:hover{
             margin-right: 24.2rem;
         }
 
-
-
-        #color {
-            width: 70%;
-            height: 5vh;
-            font-size: 1rem;
-            padding: 0.5rem;
-            border: 3px solid gray;
-       
-        }
-
-        .label_color {
-            font-size: 1.5rem;
-            color: gray;
-        }
-
         .sasia-selector {
             display: flex;
             align-items: center;
@@ -279,15 +263,6 @@ $navbar->render();
             <h1>Denim Wanderer <br>Bag</h1>
             <h3>100% Organic Cotton Denim</h3>
             <p>$48.00</p>
-            <label for="color" class="label_color">Color</label>
-            <br>
-            <select name="color" id="color">
-                <option value="Light Blue">Light Blue</option>
-                <option value="Dark Blue">Dark Blue</option>
-                
-          
-
-        </select>
     </div>
 
     <div class="sasia-selector">

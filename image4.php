@@ -181,23 +181,6 @@ a:hover{
             margin-bottom: 5rem;
             margin-right: 24.2rem;
         }
-
-
-
-        #color {
-            width: 70%;
-            height: 5vh;
-            font-size: 1rem;
-            padding: 0.5rem;
-            border: 3px solid gray;
-       
-        }
-
-        .label_color {
-            font-size: 1.5rem;
-            color: gray;
-        }
-
         .sasia-selector {
             display: flex;
             align-items: center;
@@ -279,17 +262,6 @@ $navbar->render();
             <h1>Canvas Coast  <br>Bag</h1>
             <h3>100% Organic Cotton Convas</h3>
             <p>$60.00</p>
-            <label for="color" class="label_color">Color</label>
-            <br>
-            <select name="color" id="color">
-                <option value="Olive ">Olive </option>
-                <option value="Midnight">Midnight</option>
-                <option value="Fashion Grey">Fashion Grey</option>
-                <option value="Sand">Sand</option>
-
-          
-
-        </select>
     </div>
 
     <div class="sasia-selector">

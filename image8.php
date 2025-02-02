@@ -41,11 +41,7 @@ class Page {
                 <h1>' . $this->title . '</h1>
                 <h3>' . $this->description . '</h3>
                 <p>$' . $this->price . '</p>
-                <label for="color" class="label_color">Color</label>
-                <br>
-                <select name="color" id="color">
-                    <option value="Green">Green</option>
-                </select>
+                
             </div>
             <div class="sasia-selector">
                 <div class="sasia-button" onclick="decrease()">-</div>
@@ -168,18 +164,6 @@ $product->render();
             margin-right: 24.2rem;
         }
 
-        #color {
-            width: 70%;
-            height: 5vh;
-            font-size: 1rem;
-            padding: 0.5rem;
-            border: 3px solid gray;
-        }
-
-        .label_color {
-            font-size: 1.5rem;
-            color: gray;
-        }
 
         .sasia-selector {
             display: flex;
