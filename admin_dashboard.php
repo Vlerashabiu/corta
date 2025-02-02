@@ -101,13 +101,21 @@ $dashboard = new Dashboard($conn);
             font-size: 14px;
             color: #555;
         }
-        .settings{
-            padding: 7px;
-            border-radius: 3px;
-            background-color: #93acc4;
-            border: none;
-            cursor: pointer;
-        }
+        .logout-btn {
+        padding: 10px 15px;
+        background-color:rgb(72, 98, 125);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.3s ease;
+      }
+
+       .logout-btn:hover {
+       background-color: #34495e;
+      }
+       
     </style>
 </head>
 <body>
@@ -120,15 +128,14 @@ $dashboard = new Dashboard($conn);
             <a href="view_contact.php">View Contact</a>
             <a href="manage_purchases.php">Manage Purchases</a> 
         </div>
-        <div>
-            <a href="logout.php">Logout</a>
-        </div>
     </div>
 
     <div class="content">
         <div class="header">
             <h1>Welcome, Admin</h1>
-            <button class="settings">Settings</button>
+            <div>
+            <button class="logout-btn" onclick="window.location.href='logout.php'">Log out</button>
+        </div>
         </div>
 
         <div class="cards">
