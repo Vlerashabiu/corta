@@ -7,67 +7,78 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'){
 
 include 'db.php';
 
+class User {
+    private $db;
+    
+    public function __construct($db) {
+        $this->db = $db;
+    }
+
+    public function addUser($username, $password, $role) {
+        if (empty($username) || empty($password) || !in_array($role, ['admin', 'user'])) {
+            return "Invalid input!";
+        }
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+        $stmt = $this->db->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $username, $hashed_password, $role);
+        
+        if ($stmt->execute()) {
+            return "User added successfully!";
+        } else {
+            return "Error: " . $this->db->error;
+        }
+    }
+
+    public function deleteUser($id) {
+        if (!is_numeric($id)) {
+            return "Invalid user ID!";
+        }
+        $stmt = $this->db->prepare("DELETE FROM users WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        
+        if ($stmt->execute()) {
+            return "User deleted successfully!";
+        } else {
+            return "Error: " . $this->db->error;
+        }
+    }
+
+    public function updateUserRole($id, $role) {
+        if (!is_numeric($id) || !in_array($role, ['admin', 'user'])) {
+            return "Invalid input!";
+        }
+        $stmt = $this->db->prepare("UPDATE users SET role = ? WHERE id = ?");
+        $stmt->bind_param("si", $role, $id);
+        
+        if ($stmt->execute()) {
+            return "User role updated successfully!";
+        } else {
+            return "Error: " . $this->db->error;
+        }
+    }
+
+    public function getUsers() {
+        $result = $this->db->query("SELECT id, username, role FROM users");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+}
+
+$db = new Database();
+$user = new User($db->getConnection());
+
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])){
    $action=$_POST['action'];
    
-   if($action === 'add'){
-    $username=trim($_POST['username']);
-    $password=trim($_POST['password']);
-    $role=$_POST['role'];
-
-    if(empty($username) || empty($password) || !in_array($role, ['admin', 'user'])){
-        echo "Invalid input!";
-        exit();
-    }
-    $hashed_password =password_hash($password, PASSWORD_BCRYPT);
-
-    $stmt= $conn -> prepare("INSERT INTO users (username, password, role) VALUES (?,?,?)");
-    $stmt-> bind_param("sss", $username, $hashed_password, $role);
-
-    if($stmt->execute()){
-        echo "User added successfully!";
-    }else{
-        echo "Error: " . $conn->error;
-    }
-
-    $stmt-> close();
-
-   }elseif ($action === 'delete'){
-    $id=$_POST['id'];
-
-    if(!is_numeric($id)){
-        echo "Invalid user ID!";
-        exit();
-    }
-    $stmt =$conn->prepare("DELETE FROM users WHERE id = ?");
-    $stmt->bind_param("i", $id);
-
-    if($stmt->execute()){
-        echo "User deleted successfully!";
-    }else{
-        echo "Error: " . $conn->error;
-    }
-    $stmt->close();
-   }elseif($action === 'update'){
-    $id=$_POST['id'];
-    $role =$_POST['role'];
-
-    if(!is_numeric($id) || !in_array($role,['admin', 'user'])){
-        echo "Invalid input!";
-        exit();
-    }
-    $stmt=$conn->prepare("UPDATE users SET role = ? WHERE id =?");
-    $stmt->bind_param("si", $role, $id);
-
-    if($stmt->execute()){
-        echo "User role updated successfully!";
-    } else {
-        echo "Error: " . $conn->error;
-    }
-    $stmt->close();
-   }
+   if ($action === 'add') {
+    $message = $user->addUser(trim($_POST['username']), trim($_POST['password']), $_POST['role']);
+} elseif ($action === 'delete') {
+    $message = $user->deleteUser($_POST['id']);
+} elseif ($action === 'update') {
+    $message = $user->updateUserRole($_POST['id'], $_POST['role']);
 }
-
+echo $message;
+exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
