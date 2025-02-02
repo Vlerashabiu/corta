@@ -49,7 +49,8 @@ if (!$result) {
             <th>Quantity</th>
             <th>Price</th>
             <th>Purchase Date</th>
-            <th>Actions</th>
+            <th>Status</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -64,17 +65,23 @@ if (!$result) {
                 echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
                 echo "<td>$" . number_format($row['price'], 2) . "</td>";
                 echo "<td>" . htmlspecialchars($row['purchase_date']) . "</td>";
+                
                 echo "<td>
-                        <form method='POST' style='display:inline-block;'>
-                            <input type='hidden' name='purchase_id' value='" . htmlspecialchars($row['purchase_id']) . "'>
-                            <button type='submit' class='btn-update'>Update Status</button>
+                        <form method='POST' action='update_purchase.php' style='display:inline-block;'>
+                        <input type='hidden' name='purchase_id' value='" . htmlspecialchars($row['purchase_id']) . "'>
+                        <select name='status'>
+                        <option value='pending'>Pending</option>
+                        <option value='shipped'>Shipped</option>
+                        <option value='delivered'>Delivered</option>
+                        <option value='canceled'>Canceled</option>
+                        </select>
+                        <button type='submit'>Update</button>
                         </form>
             
-                        <form method='POST' style='display:inline-block;'>
-                            <input type='hidden' name='action' value='delete'>
-                            <input type='hidden' name='id' value='" . htmlspecialchars($row['purchase_id']) . "'>
-                            <button type='submit' onclick='return confirm(\"Are you sure?\");'>Delete</button>
-                        </form>
+                       <form method='POST' action='delete_purchase.php' style='display:inline-block;'>
+                       <input type='hidden' name='id' value='" . htmlspecialchars($row['purchase_id']) . "'>
+                       <button type='submit' onclick='return confirm(\"Are you sure?\");'>Delete</button>
+                       </form>
                     </td>";
                 echo "</tr>";
             }

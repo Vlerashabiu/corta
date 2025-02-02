@@ -306,14 +306,32 @@ $product = new Product("Urban Denim Bag", "100% Organic Cotton Denim", 68.00, "f
         }
 
         function addToBag() {
-            let userLoggedIn = <?php echo json_encode(isUserLoggedIn()); ?>;
+    let userLoggedIn = <?php echo json_encode(isUserLoggedIn()); ?>;
+    let quantity = document.getElementById("sasia").innerText;
+    let productId = <?php echo json_encode($product->getId()); ?>; 
 
-            if (userLoggedIn) {
-                alert("Item added to bag with quantity: " + sasia);
+    if (userLoggedIn) {
+        fetch("add_purchase.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `product_id=${productId}&quantity=${quantity}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Purchase added successfully!");
             } else {
-                loginPrompt();
+                alert("Error adding purchase: " + data.error);
             }
-        }
+        })
+        .catch(error => console.error("Error:", error));
+    } else {
+        alert("Please log in to make a purchase.");
+        window.location.href = "login.php";
+    }
+}
 
         function loginPrompt() {
             alert("Please login to continue");
